@@ -1,8 +1,8 @@
 name: Docker
 
 on:
-  push:
-  pull_request:
+  push: [ main ]
+  pull_request: [ main ]
 
 jobs:
   build_publish_containers:
@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Checkout submodules
-        uses: textbook/git-checkout-submodule-action@master
+        uses: textbook/git-checkout-submodule-action@main
 
       - name: Build/push
         uses: whoan/docker-build-with-cache-action@v5
