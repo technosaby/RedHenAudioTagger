@@ -10,6 +10,8 @@ RUN apt-get update \
 
 RUN pip install --no-cache --upgrade pip setuptools
 
+RUN apt-get install apt-utils
+
 RUN apt-get install ffmpeg
 
 RUN pip3 install numpy \
