@@ -1,4 +1,4 @@
-FROM debian:bitnami/git
+FROM ubuntu:20.24
 
 RUN apt-get update \
 
