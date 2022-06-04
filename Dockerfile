@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM bitnami/git
 
 RUN apt-get update -qq -y && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
