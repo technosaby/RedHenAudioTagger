@@ -2,6 +2,8 @@ FROM debian:bullseye-slim
 
 RUN apt-get update
 
+RUN apt-get install -y python-pip
+
 RUN apt-get install python3 \
     pip3 \
     ffmpeg
