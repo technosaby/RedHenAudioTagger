@@ -1,19 +1,26 @@
-FROM ubuntu:20.24
+FROM ubuntu:20.04
 
-RUN apt-get update \
+RUN apt-get update -qq -y && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    	build-essential cmake\
+        python3-dev \
+        python3-pip \
+        ffmpeg \
+        uuid-runtime \
+        libgtk-3-dev \
+        python3
 
-RUN apt-get install python3 \
-    pip3 \
-    ffmpeg
-
-RUN pip3 install numpy \
+RUN python3 -m pip install \
+    numpy \ 
     scikit-learn \
-    pytorch \
-    nltk \
+    pandas \
+    dlib \
+    opencv-python \
+    face_recognition \
     matplotlib \
-    h5py \
-    opencv-python
-
-ADD . /mypackage/
-
-ENTRYPOINT ["python", "-m", "mypackage.script"]
+    ffmpeg-python \
+    ffmpeg \
+    traceback2 \
+    uuid \
+    requests \
+    wikipedia 
