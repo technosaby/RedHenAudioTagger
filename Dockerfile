@@ -1,8 +1,6 @@
-FROM debian:stable-slim
+FROM debian:bitnami/git
 
-RUN \
-  sed -i 's/stable\/updates/stable-security/g' /etc/apt/sources.list && \
-  apt-get update && \
+RUN apt-get update \
 
 RUN apt-get install python3 \
     pip3 \
