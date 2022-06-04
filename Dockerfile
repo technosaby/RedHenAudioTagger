@@ -1,6 +1,8 @@
-FROM debian:bullseye-slim
+FROM debian:stable-slim
 
-RUN apt-get update
+RUN \
+  sed -i 's/stable\/updates/stable-security/g' /etc/apt/sources.list && \
+  apt-get update && \
 
 RUN apt-get install python3 \
     pip3 \
