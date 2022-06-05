@@ -11,7 +11,7 @@ RUN pip install --no-cache --upgrade pip setuptools
 
 RUN pip3 install numpy \
     scikit-learn \
-    pytorch \
+    torch \
     nltk \
     matplotlib \
     h5py \
