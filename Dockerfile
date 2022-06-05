@@ -1,5 +1,7 @@
 FROM debian:bullseye-slim
 
+RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
+
 RUN apt-get update \
  && apt-get install --assume-yes --no-install-recommends --quiet \
         python3 \
@@ -7,8 +9,6 @@ RUN apt-get update \
  && apt-get clean all
 
 RUN pip install --no-cache --upgrade pip setuptools
-
-RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
 
 RUN apt-get install ffmpeg
 
