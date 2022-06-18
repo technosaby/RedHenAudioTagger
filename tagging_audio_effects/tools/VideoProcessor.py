@@ -3,6 +3,10 @@ import subprocess
 import os
 import sys
 
+
+# This file is responsible for extracting the audio files from the Redhen Video Files
+# This file can be run using the command - python VideoProcessor.py <<source_folder>> <<output_folder>>
+
 INPUT_VIDEO_PATH = sys.argv[1]
 OUTPUT_AUDIO_PATH = sys.argv[2]
 
