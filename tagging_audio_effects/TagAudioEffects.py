@@ -5,11 +5,16 @@ import csv
 import matplotlib.pyplot as plt
 from scipy.io import wavfile
 import scipy.signal
+import os
+from tools import DataParser
+
+# This class deals with tagging audio effects for the Redhen videos
+# ToDo:// To have interfaces for adding other models
 
 class TagAudioEffects:
     def __init__(self):
         self.cmd = "ffmpeg"
-        self.model = hub.load('https://tfhub.dev/google/yamnet/1')
+        self.model = hub.load('models')
 
     # Find the name of the class with the top score when mean-aggregated across frames.
     def class_names_from_csv(self, class_map_csv_text):
@@ -32,6 +37,9 @@ class TagAudioEffects:
 
     def run_model(self, waveform):
         scores, embeddings, spectrogram = self.model(waveform)
+        return scores, embeddings, spectrogram
+
+    def plot_graph(self, scores, spectrogram, waveform, file_name="dummy.jpg"):
         scores_np = scores.numpy()
         spectrogram_np = spectrogram.numpy()
         plt.figure(figsize=(10, 6))
@@ -60,19 +68,20 @@ class TagAudioEffects:
         yticks = range(0, top_n, 1)
         plt.yticks(yticks, [class_names[top_class_indices[x]] for x in yticks])
         _ = plt.ylim(-0.5 + np.array([top_n, 0]))
-        plt.show()
-        plt.savefig('temp.jpg')
+        #plt.show()
+        plt.savefig(file_name)
 
 if __name__ == '__main__':
     print("Tagging Audio Effects using Yammnet... ")
-    INPUT_VIDEO_PATH = "/Users/saby/Documents/RedHen/SampleCode/sample_redhen_files/"
-    wav_file_name = INPUT_VIDEO_PATH + "abc.wav"
-    #wav_file_name="speech_whistling2.wav"
+    INPUT_VIDEO_PATH = "/Users/saby/Documents/RedHen/SampleCode/output_files/"
+    file_name = "abc.mp3"
+    wav_file_name = INPUT_VIDEO_PATH + file_name
     taggingAudioEffects = TagAudioEffects()
     class_map_path = taggingAudioEffects.model.class_map_path().numpy()
     class_names = taggingAudioEffects.class_names_from_csv(class_map_path)
     sample_rate, wav_data = wavfile.read(wav_file_name, 'rb')
     sample_rate, wav_data = taggingAudioEffects.ensure_sample_rate(sample_rate, wav_data)
+
     # Show some basic information about the audio.
     duration = len(wav_data) / sample_rate
     print(f'Sample rate: {sample_rate} Hz')
@@ -83,14 +92,12 @@ if __name__ == '__main__':
     print(f'Sample rate: {sample_rate} Hz')
     print(f'Total duration: {duration:.2f}s')
     print(f'Size of the input: {len(wav_data)}')
-    taggingAudioEffects.run_model(wav_data)
+
+    # needs to be normalized to values in [-1.0, 1.0]
+    waveform = wav_data / tf.int16.max
+    scores, embeddings, spectrogram = taggingAudioEffects.run_model(waveform)
+    taggingAudioEffects.plot_graph(scores, spectrogram, waveform, os.path.splitext(file_name)[0]+".jpg")
+    data_parser = DataParser(scores, os.path.splitext(file_name)[0], class_names)
+    data_parser.parse_dump_scores()
     print("All operations done ...")
 
-
-#
-# Sample rate: 16000 Hz
-# Total duration: 4.92s
-# Size of the input: 78720
-# Sample rate: 16000 Hz
-# Total duration: 4.92s
-# Size of the input: 78720
