@@ -1,8 +1,11 @@
+#!/usr/bin/python
 import numpy as np
 import csv
-# This file will parse the data and show in the required formats
-# The data will be frame by frame scores which is received by Yamnet model
-# This frame scores will be parsed in the required formats needed by Redhen for reporting
+
+""" This file will parse the data and show in the required formats
+The data will be frame by frame scores which is received by Yamnet model
+This frame scores will be parsed in the required formats needed by Red Hen for reporting
+"""
 
 class DataParser:
     def __init__(self, scores, file_name, class_names, format="DEFAULT"):

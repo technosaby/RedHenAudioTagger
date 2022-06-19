@@ -14,6 +14,3 @@ This will contain all the tools required for the project.
   #### Example: 
   Command to generate video files from "sample_redhen_files" containing ".mp4" files to "output_files" with ".wav" files and logging enabled
     ```python VideoProcessor.py sample_redhen_files/ output_files/ "wav" "mp4" 1 ```
-  
-## DataParser.py
-  - This file parses the outputs from the model and parses the data and dump it in different formats

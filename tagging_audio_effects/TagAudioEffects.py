@@ -6,7 +6,8 @@ import matplotlib.pyplot as plt
 from scipy.io import wavfile
 import scipy.signal
 import os
-from tools import DataParser
+from tagging_audio_effects import DataParser
+
 
 # This class deals with tagging audio effects for the Redhen videos
 # ToDo:// To have interfaces for adding other models
