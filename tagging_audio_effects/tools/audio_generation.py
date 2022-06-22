@@ -2,6 +2,7 @@
 import subprocess
 import os
 import sys
+
 """
 This file do the following
 1. Parses the video files and extracts audio from the video files.
@@ -16,6 +17,7 @@ OUTPUT_AUDIO_FORMAT = sys.argv[3]
 INPUT_VIDEO_FORMAT = sys.argv[4]
 LOGS = sys.argv[5]
 
+
 # INPUT_VIDEO_PATH = "abc.mp4" #"sample_redhen_files/" #"abc.mp4" #"/mnt/rds/redhen/gallina/tv/2022"
 # OUTPUT_AUDIO_PATH = "." #"output_files/" #"/home/sxg1263/sxg1263gallinahome/audio_output_files"
 # OUTPUT_AUDIO_FORMAT = "wav"
@@ -24,7 +26,7 @@ LOGS = sys.argv[5]
 
 # python VideoProcessor.py "/mnt/rds/redhen/gallina/tv/2022" "/home/sxg1263/sxg1263gallinahome/audio_output_files"
 
-class VideoProcessor:
+class AudioProcessor:
     def __init__(self):
         self.cmd = "ffmpeg"
 
@@ -57,9 +59,9 @@ class VideoProcessor:
                     input_file_name = os.path.join(input_structure, filename)
                     self.extract_audio(input_file_name, output_file_name, output_ext, logs)
 
+
 if __name__ == '__main__':
-    vp = VideoProcessor()
+    vp = AudioProcessor()
     print("Starting generation of audio files from ", INPUT_VIDEO_PATH, " to ", OUTPUT_AUDIO_PATH
           + " with format " + OUTPUT_AUDIO_FORMAT)
     vp.extract_audio_files(INPUT_VIDEO_PATH, OUTPUT_AUDIO_PATH, INPUT_VIDEO_FORMAT, OUTPUT_AUDIO_FORMAT, int(LOGS))
-

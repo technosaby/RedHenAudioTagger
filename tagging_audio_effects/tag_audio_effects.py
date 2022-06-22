@@ -6,11 +6,12 @@ import matplotlib.pyplot as plt
 from scipy.io import wavfile
 import scipy.signal
 import os
-from tagging_audio_effects import DataParser
+from tagging_audio_effects.data_parser import DataParser
 
 
-# This class deals with tagging audio effects for the Redhen videos
-# ToDo:// To have interfaces for adding other models
+# This class deals with tagging audio effects for the RedHen videos
+# ToDo:// This file needs to be worked on.
+#  ALs to have interfaces for adding other models
 
 class TagAudioEffects:
     def __init__(self):
@@ -69,8 +70,9 @@ class TagAudioEffects:
         yticks = range(0, top_n, 1)
         plt.yticks(yticks, [class_names[top_class_indices[x]] for x in yticks])
         _ = plt.ylim(-0.5 + np.array([top_n, 0]))
-        #plt.show()
+        # plt.show()
         plt.savefig(file_name)
+
 
 if __name__ == '__main__':
     print("Tagging Audio Effects using Yammnet... ")
@@ -80,7 +82,7 @@ if __name__ == '__main__':
     taggingAudioEffects = TagAudioEffects()
     class_map_path = taggingAudioEffects.model.class_map_path().numpy()
     class_names = taggingAudioEffects.class_names_from_csv(class_map_path)
-    sample_rate, wav_data = wavfile.read(wav_file_name, 'rb')
+    sample_rate, wav_data = wavfile.read(wav_file_name)
     sample_rate, wav_data = taggingAudioEffects.ensure_sample_rate(sample_rate, wav_data)
 
     # Show some basic information about the audio.
@@ -97,8 +99,7 @@ if __name__ == '__main__':
     # needs to be normalized to values in [-1.0, 1.0]
     waveform = wav_data / tf.int16.max
     scores, embeddings, spectrogram = taggingAudioEffects.run_model(waveform)
-    taggingAudioEffects.plot_graph(scores, spectrogram, waveform, os.path.splitext(file_name)[0]+".jpg")
+    taggingAudioEffects.plot_graph(scores, spectrogram, waveform, os.path.splitext(file_name)[0] + ".jpg")
     data_parser = DataParser(scores, os.path.splitext(file_name)[0], class_names)
     data_parser.parse_dump_scores()
     print("All operations done ...")
-
