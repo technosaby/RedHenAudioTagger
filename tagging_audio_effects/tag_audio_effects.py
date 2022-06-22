@@ -16,6 +16,7 @@ from tagging_audio_effects.data_parser import DataParser
 class TagAudioEffects:
     def __init__(self):
         self.cmd = "ffmpeg"
+        # ToDo:Model is extracted as sometimes tensorflow hub does not work.
         self.model = hub.load('models')
 
     # Find the name of the class with the top score when mean-aggregated across frames.
