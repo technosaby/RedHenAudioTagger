@@ -20,5 +20,3 @@ RUN pip3 install numpy \
 ADD . /mypackage/
 
 ENTRYPOINT ["python", "-m", "mypackage.script"]
-
-RUN python tools/VideoProcessor.py "/mnt/rds/redhen/gallina/tv/2022/" "/home/sxg1263/sxg1263gallinahome/audio_output_files/" "wav" "mp4" 1
