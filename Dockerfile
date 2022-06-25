@@ -20,16 +20,14 @@ ADD ./tagging_audio_effects .
 # View contents while building dockerfile
 RUN ls -a
 
-RUN  python3 tools/audio_generation.py /mnt/rds/redhen/gallina/tv/2022 . "wav" "mp4" 1
+#RUN  python3 tools/audio_generation.py /mnt/rds/redhen/gallina/tv/2022 . "wav" "mp4" 1
 
 
 # Install local dependencies
 # RUN cd ..
 
-RUN pip3 install -r requirements.txt
+#RUN pip3 install -r requirements.txt
 
-#RUN pip3 install .
-#RUN cd ..
 
 # Remove copied folder
 RUN rm -f -r ./tagging_audio_effects
