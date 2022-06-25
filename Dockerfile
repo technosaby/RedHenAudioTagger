@@ -10,12 +10,6 @@ RUN apt-get install --assume-yes --no-install-recommends --quiet \
         ffmpeg
 
 RUN pip install --no-cache --upgrade pip setuptools
-
-RUN pip3 install numpy \
-    scikit-learn \
-    torch \
-    matplotlib \
-    h5py 
     
 # Set working directory to MultiModalTVShowSeg-2022
 WORKDIR /TaggingAudioEffects
@@ -26,18 +20,13 @@ ADD ./tagging_audio_effects .
 # View contents while building dockerfile
 RUN ls -a
 
-# Generate the audio files for the video files
-RUN cd tools
-
-# View contents while building dockerfile
-RUN ls -a
-
-RUN  python audio_generation.py /mnt/rds/redhen/gallina/tv/2022 . "wav" "mp4" 1
+RUN  python3 tools/audio_generation.py /mnt/rds/redhen/gallina/tv/2022 . "wav" "mp4" 1
 
 
 # Install local dependencies
 # RUN cd ..
-# RUN pip3 install -r requirements.txt
+
+RUN pip3 install -r requirements.txt
 
 #RUN pip3 install .
 #RUN cd ..
