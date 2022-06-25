@@ -27,7 +27,7 @@ ADD ./tagging_audio_effects .
 RUN ls -a
 
 # Generate the audio files for the video files
-RUN cd tools/
+RUN cd tools
 
 # View contents while building dockerfile
 RUN ls -a
