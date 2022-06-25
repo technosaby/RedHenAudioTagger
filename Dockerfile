@@ -28,6 +28,10 @@ RUN ls -a
 
 # Generate the audio files for the video files
 RUN cd tools/
+
+# View contents while building dockerfile
+RUN ls -a
+
 RUN  python audio_generation.py /mnt/rds/redhen/gallina/tv/2022 . "wav" "mp4" 1
 
 
