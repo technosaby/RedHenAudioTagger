@@ -3,89 +3,21 @@ name: Docker
 on:
   push:
   pull_request:
-
+    
 jobs:
-  build_publish_bionic_nvcaffe:
+  build_publish_containers:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
+        with:
+          submodules: recursive
 
       - name: Build/push
         uses: whoan/docker-build-with-cache-action@v5
         with:
           registry: ghcr.io
-          image_name: ${{ github.actor }}/openpose_bionic_nvcaffe
-          context: bionic
-          dockerfile: Dockerfile.nvcaffe
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-  build_publish_bionic_multi:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
-
-      - name: Build/push bionic_multi
-        uses: whoan/docker-build-with-cache-action@v5
-        with:
-          registry: ghcr.io
-          image_name: ${{ github.actor }}/openpose_bionic_multi
-          context: bionic
-          dockerfile: Dockerfile.multi
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-  build_publish_focal_nvcaffe:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
-
-      - name: Build/push focal_nvcaffe
-        uses: whoan/docker-build-with-cache-action@v5
-        with:
-          registry: ghcr.io
-          image_name: ${{ github.actor }}/openpose_focal_nvcaffe
-          context: focal
-          dockerfile: Dockerfile.nvcaffe
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-  build_publish_focal_multi:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
-
-      - name: Build/push focal_multi
-        uses: whoan/docker-build-with-cache-action@v5
-        with:
-          registry: ghcr.io
-          image_name: ${{ github.actor }}/openpose_focal_multi
-          context: focal
-          dockerfile: Dockerfile.multi
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-  build_publish_focal_cpu:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
-
-      - name: Build/push focal_cpu
-        uses: whoan/docker-build-with-cache-action@v5
-        with:
-          registry: ghcr.io
-          image_name: ${{ github.actor }}/openpose_focal_cpu
-          context: focal
-          dockerfile: Dockerfile.cpu
+          image_name: ${{ github.actor }}/audiotagging
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
