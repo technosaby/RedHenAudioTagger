@@ -27,7 +27,7 @@ ADD ./tagging_audio_effects .
 RUN ls -a
 
 # Generate the audio files for the video files
-RUN cd tagging_audio_effects/tools/
+RUN cd tools/
 RUN  python audio_generation.py /mnt/rds/redhen/gallina/tv/2022 . "wav" "mp4" 1
 
 
