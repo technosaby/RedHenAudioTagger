@@ -6,5 +6,6 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
+      image: technosaby/gsoc2022-redhen-audio-tagging
     volumes:
       - ./:/TaggingAudioEffects
