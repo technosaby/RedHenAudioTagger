@@ -18,6 +18,6 @@ jobs:
         uses: whoan/docker-build-with-cache-action@v5
         with:
           registry: ghcr.io
-          image_name: technosaby/gsoc2022-redhen-audio-tagging
+          image_name: "technosaby/gsoc2022-redhen-audio-tagging"
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
