@@ -60,16 +60,16 @@ def convert_to_compatible_file(audio_path):
 
     if LOGS:
         # Show some basic information about the converted audio.
-        duration = len(wav_data) / sample_rate
+        duration_audio = len(wav_data) / sample_rate
         print(f'Sample rate: {sample_rate} Hz')
-        print(f'Total duration: {duration:.2f}s')
+        print(f'Total duration: {duration_audio:.2f}s')
         print(f'Size of the input: {len(wav_data)}')
         # Show some basic information about the audio.
         duration = len(wav_data) / sample_rate
         print(f'Sample rate: {sample_rate} Hz')
         print(f'Total duration: {duration:.2f}s')
         print(f'Size of the input: {len(wav_data)}')
-    return ret, waveform, duration
+    return ret, waveform, duration_audio, sample_rate
 
 
 def get_file_paths(folder_path, audio_format):
@@ -160,7 +160,7 @@ if __name__ == '__main__':
     # Load Audio Files
     for file_path in get_file_paths(INPUT_AUDIO_PATH, INPUT_AUDIO_FORMAT):
         print("Processing file " + file_path)
-        result, converted_wav_data, duration = convert_to_compatible_file(file_path)
+        result, converted_wav_data, duration, sample_rate = convert_to_compatible_file(file_path)
         if result == -1:
             print("Error: File not compatible to be processed by model")
             continue
@@ -171,7 +171,7 @@ if __name__ == '__main__':
                                          os.path.splitext(file_name)[0] + ".jpg")
         data_parser = DataParser(scores, os.path.join(OUTPUT_DATA_PATH,
                                                       os.path.splitext(file_name)[0]),
-                                 class_names, INPUT_AUDIO_FORMAT, duration, PATCH_HOP_SECONDS,
+                                 class_names, INPUT_AUDIO_FORMAT, duration, sample_rate, PATCH_HOP_SECONDS,
                                  PATCH_WINDOW_SECONDS, STFT_HOP, STFT_WINDOW, "DEFAULT")
         data_parser.parse_dump_scores()
         if LOGS: print("Operation complete for file ", file_name)

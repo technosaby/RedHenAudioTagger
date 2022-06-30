@@ -10,7 +10,7 @@ This frame scores will be parsed in the required formats needed by Red Hen for r
 
 
 class DataParser:
-    def __init__(self, scores, file_name_with_path, class_names, audio_format, duration,
+    def __init__(self, scores, file_name_with_path, class_names, audio_format, duration, sample_rate,
                  patch_hop_seconds, patch_window_seconds,
                  stft_hop, stft_window, parsing_format="DEFAULT"):
         self.scores = np.array(scores)
@@ -23,6 +23,7 @@ class DataParser:
         self.patch_window_seconds = patch_window_seconds
         self.stft_hop = stft_hop
         self.stft_window = stft_window
+        self.sample_rate = sample_rate
 
     def parse_dump_scores(self):
         """
@@ -37,21 +38,26 @@ class DataParser:
         frame_length = self.patch_window_seconds + (self.stft_window - self.stft_hop)
         frame_end_times = np.array(frame_start_times) + frame_length
 
+        # Appending file names to the seconds
+        file_name = os.path.split(self.file_name_with_path)[1]
+        frame_start_times_with_filename = [file_name + str(format(s, '07.03f')) for s in frame_start_times]
+        frame_end_times_with_filename = [file_name + str(format(s, '07.03f')) for s in frame_end_times]
+
         if self.parsing_format == "DEFAULT":
             with open(self.file_name_with_path + '.sfx', 'w') as f:
-                file_name = os.path.split(self.file_name_with_path)[1]
                 # Create Header of the file
                 file_header = "TOP|" + file_name.translate({ord('-'): None}).translate({ord('_'):None})[0:12] +\
                               "|" + file_name + "\n"
                 file_header += "FORMAT|" + self.audio_format + "\n"
                 file_header += "DURATION|" + str(self.duration) + "\n"
+                file_header += "SAMPLING_RATE|" + str(self.sample_rate)
                 file_header += "PATCH_WINDOW_SECONDS|" + str(self.patch_window_seconds) + \
                                " PATCH_HOP_SECONDS|" + str(self.patch_hop_seconds) + "\n"
 
                 f.write(file_header)
                 # Write content
-                writer = csv.writer(f)
-                writer.writerows(zip(frame_start_times, frame_end_times, derived_classes))
+                writer = csv.writer(f, delimiter="|")
+                writer.writerows(zip(frame_start_times_with_filename, frame_end_times_with_filename, derived_classes))
 
         elif self.parsing_format == "ELAN_EAF":
             # ToDO:// Discuss with mentors about this
