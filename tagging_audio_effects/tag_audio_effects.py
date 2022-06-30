@@ -69,7 +69,7 @@ def convert_to_compatible_file(audio_path):
         print(f'Sample rate: {sample_rate} Hz')
         print(f'Total duration: {duration:.2f}s')
         print(f'Size of the input: {len(wav_data)}')
-    return ret, waveform
+    return ret, waveform, duration
 
 
 def get_file_paths(folder_path, audio_format):
@@ -126,7 +126,6 @@ def plot_graph(scores, spectrogram, waveform, class_names, output_path, file_nam
     yticks = range(0, top_n, 1)
     plt.yticks(yticks, [class_names[top_class_indices[x]] for x in yticks])
     _ = plt.ylim(-0.5 + np.array([top_n, 0]))
-    # plt.show()
     plt.savefig(os.path.join(output_path, file_name))
 
 
@@ -150,22 +149,30 @@ if __name__ == '__main__':
     OUTPUT_DATA_FORMAT = sys.argv[3]  # "default"
     OUTPUT_DATA_PATH = sys.argv[4]
     LOGS = sys.argv[5]
+    # All these values (in sec) are from parameter.py of YaMNet
+    PATCH_HOP_SECONDS = 0.48
+    PATCH_WINDOW_SECONDS = 0.96
+    STFT_WINDOW = 0.025
+    STFT_HOP = 0.010
 
     print("Tagging Audio Effects using Yammnet... ")
     tagging_audio_effects = TagAudioEffects()
     # Load Audio Files
     for file_path in get_file_paths(INPUT_AUDIO_PATH, INPUT_AUDIO_FORMAT):
         print("Processing file " + file_path)
-        result, converted_wav_data = convert_to_compatible_file(file_path)
+        result, converted_wav_data, duration = convert_to_compatible_file(file_path)
         if result == -1:
             print("Error: File not compatible to be processed by model")
             continue
         scores, embeddings, spectrogram = tagging_audio_effects.run_model(converted_wav_data)
-        _, file_name = os.path.split(file_path)
+        file_path_head, file_name = os.path.split(file_path)
         class_names = class_names_from_csv(tagging_audio_effects.get_class_map_path())
         plot_graph(scores, spectrogram, converted_wav_data, class_names, OUTPUT_DATA_PATH,
                                          os.path.splitext(file_name)[0] + ".jpg")
-        data_parser = DataParser(scores, os.path.join(OUTPUT_DATA_PATH , os.path.splitext(file_name)[0]), class_names)
+        data_parser = DataParser(scores, os.path.join(OUTPUT_DATA_PATH,
+                                                      os.path.splitext(file_name)[0]),
+                                 class_names, INPUT_AUDIO_FORMAT, duration, PATCH_HOP_SECONDS,
+                                 PATCH_WINDOW_SECONDS, STFT_HOP, STFT_WINDOW, "DEFAULT")
         data_parser.parse_dump_scores()
         if LOGS: print("Operation complete for file ", file_name)
     print("All operations done ...")
