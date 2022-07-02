@@ -157,6 +157,7 @@ if __name__ == '__main__':
 
     print("Tagging Audio Effects using Yammnet... ")
     tagging_audio_effects = TagAudioEffects()
+
     # Load Audio Files
     for file_path in get_file_paths(INPUT_AUDIO_PATH, INPUT_AUDIO_FORMAT):
         print("Processing file " + file_path)
@@ -164,6 +165,8 @@ if __name__ == '__main__':
         if result == -1:
             print("Error: File not compatible to be processed by model")
             continue
+        #ToDo://Check if all supported .seg files are present for output generation
+
         scores, embeddings, spectrogram = tagging_audio_effects.run_model(converted_wav_data)
         file_path_head, file_name = os.path.split(file_path)
         class_names = class_names_from_csv(tagging_audio_effects.get_class_map_path())
