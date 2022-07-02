@@ -31,7 +31,7 @@ class DataParser:
         self.stft_hop = stft_hop
         self.stft_window = stft_window
         self.sample_rate = sample_rate
-        self.round_val = 1
+        self.round_val = 4
 
     def process_scores(self):
         derived_classes = []
@@ -56,8 +56,9 @@ class DataParser:
 
         # Appending file names to the seconds
         file_name = os.path.split(self.output_file_name_with_path)[1]
-        frame_start_times_with_filename = [file_name + str(format(s, '07.03f')) for s in frame_start_times]
-        frame_end_times_with_filename = [file_name + str(format(s, '07.03f')) for s in frame_end_times]
+        file_name_frame_header = "-".join(file_name.split("_", 2)[:2]).replace("-", "")
+        frame_start_times_with_filename = [file_name_frame_header + str(format(s, '07.03f')) for s in frame_start_times]
+        frame_end_times_with_filename = [file_name_frame_header + str(format(s, '07.03f')) for s in frame_end_times]
 
         if self.parsing_format == "DEFAULT":
             with open(self.output_file_name_with_path + '.sfx', 'w') as f:
@@ -69,7 +70,8 @@ class DataParser:
                 # Write data section
                 writer = csv.writer(f, delimiter="|")
                 writer.writerows(
-                    zip(frame_start_times_with_filename, frame_end_times_with_filename, sfx_tags, derived_classes_with_scores))
+                    zip(frame_start_times_with_filename, frame_end_times_with_filename,
+                        sfx_tags, derived_classes_with_scores))
 
         elif self.parsing_format == "ELAN_EAF":
             # ToDO:// For future
@@ -83,7 +85,7 @@ class DataParser:
             head = [next(fi) for x in range(N)]
             id = ""
             for ln in head:
-                if ln.startswith("TOP:"):
+                if ln.startswith("TOP"):
                     id += ln
                 elif ln.startswith("COL"):
                     id += ln
