@@ -172,7 +172,10 @@ if __name__ == '__main__':
         class_names = class_names_from_csv(tagging_audio_effects.get_class_map_path())
         plot_graph(scores, spectrogram, converted_wav_data, class_names, OUTPUT_DATA_PATH,
                                          os.path.splitext(file_name)[0] + ".jpg")
-        data_parser = DataParser(scores, os.path.join(OUTPUT_DATA_PATH,
+        data_parser = DataParser(scores,
+                                 os.path.join(file_path_head,
+                                              os.path.splitext(file_name)[0]),
+                                 os.path.join(OUTPUT_DATA_PATH,
                                                       os.path.splitext(file_name)[0]),
                                  class_names, INPUT_AUDIO_FORMAT, duration, sample_rate, PATCH_HOP_SECONDS,
                                  PATCH_WINDOW_SECONDS, STFT_HOP, STFT_WINDOW, "DEFAULT")

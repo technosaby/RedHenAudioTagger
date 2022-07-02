@@ -16,13 +16,14 @@ def generate_legend():
 
 
 class DataParser:
-    def __init__(self, scores, file_name_with_path, class_names, audio_format, duration, sample_rate,
+    def __init__(self, scores, input_file_name_with_path, output_file_name_with_path, class_names, audio_format, duration, sample_rate,
                  patch_hop_seconds, patch_window_seconds,
                  stft_hop, stft_window, parsing_format="DEFAULT"):
         self.scores = np.array(scores)
         self.parsing_format = parsing_format
         self.class_names = class_names
-        self.file_name_with_path = file_name_with_path
+        self.input_file_name_with_path = input_file_name_with_path
+        self.output_file_name_with_path = output_file_name_with_path
         self.audio_format = audio_format
         self.duration = duration
         self.patch_hop_seconds = patch_hop_seconds
@@ -30,7 +31,7 @@ class DataParser:
         self.stft_hop = stft_hop
         self.stft_window = stft_window
         self.sample_rate = sample_rate
-        self.round_val = 3
+        self.round_val = 1
 
     def process_scores(self):
         derived_classes = []
@@ -54,14 +55,14 @@ class DataParser:
         frame_end_times = np.array(frame_start_times) + frame_length
 
         # Appending file names to the seconds
-        file_name = os.path.split(self.file_name_with_path)[1]
+        file_name = os.path.split(self.output_file_name_with_path)[1]
         frame_start_times_with_filename = [file_name + str(format(s, '07.03f')) for s in frame_start_times]
         frame_end_times_with_filename = [file_name + str(format(s, '07.03f')) for s in frame_end_times]
 
         if self.parsing_format == "DEFAULT":
-            with open(self.file_name_with_path + '.sfx', 'w') as f:
+            with open(self.output_file_name_with_path + '.sfx', 'w') as f:
                 # Create Header of the file
-                file_header = self.generate_header(file_name)
+                file_header = self.generate_header()
                 f.write(file_header)
                 legend_info = generate_legend()
                 f.write(legend_info)
@@ -76,9 +77,9 @@ class DataParser:
         else:
             print("Please use specified formats")
 
-    def generate_header(self, file_name):
+    def generate_header(self):
         N = 30  # read first 20 lines of the seg file
-        with open(self.file_name_with_path + ".seg", "r") as fi:
+        with open(self.input_file_name_with_path + ".seg", "r") as fi:
             head = [next(fi) for x in range(N)]
             id = ""
             for ln in head:
