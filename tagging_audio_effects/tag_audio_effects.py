@@ -72,7 +72,7 @@ def convert_to_compatible_file(audio_path):
     return ret, waveform, duration_audio, sample_rate
 
 
-def get_file_paths(folder_path, audio_format):
+def get_audio_file_paths(folder_path, audio_format):
     """
     This gets the file paths and gets the audio file names along with the path in an array
 
@@ -159,26 +159,33 @@ if __name__ == '__main__':
     tagging_audio_effects = TagAudioEffects()
 
     # Load Audio Files
-    for file_path in get_file_paths(INPUT_AUDIO_PATH, INPUT_AUDIO_FORMAT):
-        print("Processing file " + file_path)
-        result, converted_wav_data, duration, sample_rate = convert_to_compatible_file(file_path)
-        if result == -1:
-            print("Error: File not compatible to be processed by model")
+    audio_file_path = get_audio_file_paths(INPUT_AUDIO_PATH, INPUT_AUDIO_FORMAT)
+    # Check if all supported .seg files are present for output generation
+    for audio_file in audio_file_path:
+        file_path_head, file_name = os.path.split(audio_file)
+        # Check if seg files are present
+        seg_file_path = os.path.join(file_path_head, os.path.splitext(file_name)[0] + ".seg")
+        if not os.path.exists(seg_file_path):
+            print("Cannot continue as .seg file not present in path " + seg_file_path)
             continue
-        #ToDo://Check if all supported .seg files are present for output generation
+        else:
+            print(".seg file present, Audio Processing file " + audio_file)
+            result, converted_wav_data, duration, sample_rate = convert_to_compatible_file(audio_file)
+            if result == -1:
+                print("Error: File not compatible to be processed by model")
+                continue
+            scores, embeddings, spectrogram = tagging_audio_effects.run_model(converted_wav_data)
 
-        scores, embeddings, spectrogram = tagging_audio_effects.run_model(converted_wav_data)
-        file_path_head, file_name = os.path.split(file_path)
-        class_names = class_names_from_csv(tagging_audio_effects.get_class_map_path())
-        plot_graph(scores, spectrogram, converted_wav_data, class_names, OUTPUT_DATA_PATH,
-                                         os.path.splitext(file_name)[0] + ".jpg")
-        data_parser = DataParser(scores,
-                                 os.path.join(file_path_head,
-                                              os.path.splitext(file_name)[0]),
-                                 os.path.join(OUTPUT_DATA_PATH,
-                                                      os.path.splitext(file_name)[0]),
-                                 class_names, INPUT_AUDIO_FORMAT, duration, sample_rate, PATCH_HOP_SECONDS,
-                                 PATCH_WINDOW_SECONDS, STFT_HOP, STFT_WINDOW, "DEFAULT")
-        data_parser.parse_dump_scores()
-        if LOGS: print("Operation complete for file ", file_name)
+            class_names = class_names_from_csv(tagging_audio_effects.get_class_map_path())
+            plot_graph(scores, spectrogram, converted_wav_data, class_names, OUTPUT_DATA_PATH,
+                       os.path.splitext(file_name)[0] + ".jpg")
+            data_parser = DataParser(scores,
+                                     os.path.join(file_path_head,
+                                                  os.path.splitext(file_name)[0]),
+                                     os.path.join(OUTPUT_DATA_PATH,
+                                                  os.path.splitext(file_name)[0]),
+                                     class_names, INPUT_AUDIO_FORMAT, duration, sample_rate, PATCH_HOP_SECONDS,
+                                     PATCH_WINDOW_SECONDS, STFT_HOP, STFT_WINDOW, "DEFAULT")
+            data_parser.parse_dump_scores()
+            if LOGS: print("Operation complete for file ", file_name)
     print("All operations done ...")
