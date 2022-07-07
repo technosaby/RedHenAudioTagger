@@ -78,13 +78,15 @@ def get_audio_file_paths(folder_path, audio_format):
 
     :param folder_path: The folder path where
     :param audio_format: Audio format which
-    :return: An array of audio file paths
+    :return: An array of audio file paths, directory names for the audio files
     """
     audio_file_paths = []
+    dir_names_date = []
     for dir_path, dir_names, file_names in os.walk(folder_path):
         for file_name in [f for f in file_names if f.endswith("." + audio_format)]:
+            dir_names_date.append(dir_path.replace(folder_path, ''))
             audio_file_paths.append(os.path.join(dir_path, file_name))
-    return audio_file_paths
+    return audio_file_paths, dir_names_date
 
 
 def class_names_from_csv(class_map_csv_text):
@@ -97,7 +99,7 @@ def class_names_from_csv(class_map_csv_text):
     return class_names
 
 
-def plot_graph(scores, spectrogram, waveform, class_names, output_path, file_name="dummy.jpg"):
+def plot_graph(scores, spectrogram, waveform, class_names, output_path):
     scores_np = scores.numpy()
     spectrogram_np = spectrogram.numpy()
     plt.figure(figsize=(10, 6))
@@ -126,7 +128,8 @@ def plot_graph(scores, spectrogram, waveform, class_names, output_path, file_nam
     yticks = range(0, top_n, 1)
     plt.yticks(yticks, [class_names[top_class_indices[x]] for x in yticks])
     _ = plt.ylim(-0.5 + np.array([top_n, 0]))
-    plt.savefig(os.path.join(output_path, file_name))
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    plt.savefig(output_path)
 
 
 class TagAudioEffects:
@@ -159,9 +162,9 @@ if __name__ == '__main__':
     tagging_audio_effects = TagAudioEffects()
 
     # Load Audio Files
-    audio_file_path = get_audio_file_paths(INPUT_AUDIO_PATH, INPUT_AUDIO_FORMAT)
+    audio_file_path, dir_names_dates = get_audio_file_paths(INPUT_AUDIO_PATH, INPUT_AUDIO_FORMAT)
     # Check if all supported .seg files are present for output generation
-    for audio_file in audio_file_path:
+    for index, audio_file in enumerate(audio_file_path):
         file_path_head, file_name = os.path.split(audio_file)
         # Check if seg files are present
         seg_file_path = os.path.join(file_path_head, os.path.splitext(file_name)[0] + ".seg")
@@ -177,12 +180,13 @@ if __name__ == '__main__':
             scores, embeddings, spectrogram = tagging_audio_effects.run_model(converted_wav_data)
 
             class_names = class_names_from_csv(tagging_audio_effects.get_class_map_path())
-            plot_graph(scores, spectrogram, converted_wav_data, class_names, OUTPUT_DATA_PATH,
-                       os.path.splitext(file_name)[0] + ".jpg")
+            plot_graph(scores, spectrogram, converted_wav_data, class_names,
+                       os.path.join(OUTPUT_DATA_PATH, dir_names_dates[index],
+                                    os.path.splitext(file_name)[0] + ".jpg"))
             data_parser = DataParser(scores,
                                      os.path.join(file_path_head,
                                                   os.path.splitext(file_name)[0]),
-                                     os.path.join(OUTPUT_DATA_PATH,
+                                     os.path.join(OUTPUT_DATA_PATH, dir_names_dates[index],
                                                   os.path.splitext(file_name)[0]),
                                      class_names, INPUT_AUDIO_FORMAT, duration, sample_rate, PATCH_HOP_SECONDS,
                                      PATCH_WINDOW_SECONDS, STFT_HOP, STFT_WINDOW, "DEFAULT")

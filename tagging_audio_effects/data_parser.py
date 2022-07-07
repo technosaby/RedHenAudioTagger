@@ -61,6 +61,7 @@ class DataParser:
         frame_end_times_with_filename = [file_name_frame_header + str(format(s, '07.03f')) for s in frame_end_times]
 
         if self.parsing_format == "DEFAULT":
+            os.makedirs(os.path.dirname(self.output_file_name_with_path + '.sfx'), exist_ok=True)
             with open(self.output_file_name_with_path + '.sfx', 'w') as f:
                 # Create Header of the file
                 file_header = self.generate_header()
