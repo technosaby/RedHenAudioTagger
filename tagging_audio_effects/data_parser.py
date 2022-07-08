@@ -16,7 +16,8 @@ def generate_legend():
 
 
 class DataParser:
-    def __init__(self, scores, input_file_name_with_path, output_file_name_with_path, class_names, audio_format, duration, sample_rate,
+    def __init__(self, scores, input_file_name_with_path, output_file_name_with_path, class_names,
+                 audio_format, duration, sample_rate, score_filtering_decimal_places,
                  patch_hop_seconds, patch_window_seconds,
                  stft_hop, stft_window, parsing_format="DEFAULT"):
         self.scores = np.array(scores)
@@ -31,7 +32,7 @@ class DataParser:
         self.stft_hop = stft_hop
         self.stft_window = stft_window
         self.sample_rate = sample_rate
-        self.round_val = 4
+        self.round_val = score_filtering_decimal_places
 
     def process_scores(self):
         derived_classes = []

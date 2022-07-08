@@ -157,6 +157,7 @@ if __name__ == '__main__':
     PATCH_WINDOW_SECONDS = 0.96
     STFT_WINDOW = 0.025
     STFT_HOP = 0.010
+    SCORE_FILTERING_DECIMAL_PLACES = 4
 
     print("Tagging Audio Effects using Yammnet... ")
     tagging_audio_effects = TagAudioEffects()
@@ -188,7 +189,9 @@ if __name__ == '__main__':
                                                   os.path.splitext(file_name)[0]),
                                      os.path.join(OUTPUT_DATA_PATH, dir_names_dates[index],
                                                   os.path.splitext(file_name)[0]),
-                                     class_names, INPUT_AUDIO_FORMAT, duration, sample_rate, PATCH_HOP_SECONDS,
+                                     class_names, INPUT_AUDIO_FORMAT, duration, sample_rate,
+                                     SCORE_FILTERING_DECIMAL_PLACES,
+                                     PATCH_HOP_SECONDS,
                                      PATCH_WINDOW_SECONDS, STFT_HOP, STFT_WINDOW, "DEFAULT")
             data_parser.parse_dump_scores()
             if LOGS: print("Operation complete for file ", file_name)
