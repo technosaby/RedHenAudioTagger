@@ -12,7 +12,7 @@ def process_tag_result(result_dictionary, scores_dict):
     df = pd.DataFrame(columns=['Tags', 'Time', 'Score'])
     for tag, times in result_dictionary.items():
         for time in times:
-            df.loc[len(df.index)] = [tag, time, scores_dict[time]]
+            df.loc[len(df.index)] = [tag, time, [score for score in scores_dict[time].split(",") if tag in score][0]]
     return df
 
 
