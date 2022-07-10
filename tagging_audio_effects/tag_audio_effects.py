@@ -151,13 +151,14 @@ if __name__ == '__main__':
     INPUT_AUDIO_FORMAT = sys.argv[2]  # "wav
     OUTPUT_DATA_FORMAT = sys.argv[3]  # "default"
     OUTPUT_DATA_PATH = sys.argv[4]
-    LOGS = sys.argv[5]
+    SCORE_FILTERING_DECIMAL_PLACES = sys.argv[5] # 4
+    LOGS = sys.argv[6]
+
     # All these values (in sec) are from parameter.py of YaMNet
     PATCH_HOP_SECONDS = 0.48
     PATCH_WINDOW_SECONDS = 0.96
     STFT_WINDOW = 0.025
     STFT_HOP = 0.010
-    SCORE_FILTERING_DECIMAL_PLACES = 4
 
     print("Tagging Audio Effects using Yammnet... ")
     tagging_audio_effects = TagAudioEffects()
