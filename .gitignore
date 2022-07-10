@@ -130,3 +130,6 @@ dmypy.json
 
 # DS Store Files
 .DS_Store
+
+#Pycharm idea
+.idea/
