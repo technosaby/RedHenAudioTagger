@@ -18,8 +18,8 @@ def generate_legend():
 class DataParser:
     def __init__(self, scores, input_file_name_with_path, output_file_name_with_path, class_names,
                  audio_format, duration, sample_rate, score_filtering_decimal_places,
-                 patch_hop_seconds, patch_window_seconds,
-                 stft_hop, stft_window, parsing_format="DEFAULT"):
+                 is_seg_file_present, patch_hop_seconds, patch_window_seconds,
+                 stft_hop, stft_window, parsing_format="SFX", LOGS=0):
         self.scores = np.array(scores)
         self.parsing_format = parsing_format
         self.class_names = class_names
@@ -27,12 +27,14 @@ class DataParser:
         self.output_file_name_with_path = output_file_name_with_path
         self.audio_format = audio_format
         self.duration = duration
+        self.is_seg_file_present = is_seg_file_present
         self.patch_hop_seconds = patch_hop_seconds
         self.patch_window_seconds = patch_window_seconds
         self.stft_hop = stft_hop
         self.stft_window = stft_window
         self.sample_rate = sample_rate
         self.round_val = score_filtering_decimal_places
+        self.is_logs_enabled = LOGS
 
     def process_scores(self):
         derived_classes = []
@@ -61,12 +63,16 @@ class DataParser:
         frame_start_times_with_filename = [file_name_frame_header + str(format(s, '07.03f')) for s in frame_start_times]
         frame_end_times_with_filename = [file_name_frame_header + str(format(s, '07.03f')) for s in frame_end_times]
 
-        if self.parsing_format == "DEFAULT":
+        if self.parsing_format == "SFX":
             os.makedirs(os.path.dirname(self.output_file_name_with_path + '.sfx'), exist_ok=True)
             with open(self.output_file_name_with_path + '.sfx', 'w') as f:
-                # Create Header of the file
-                file_header = self.generate_header()
-                f.write(file_header)
+                if self.is_seg_file_present:
+                    # Create Header of the file
+                    file_header = self.generate_header()
+                    f.write(file_header)
+                # Write audio model properties
+                audio_model_properties = self.generate_audio_model_properties()
+                f.write(audio_model_properties)
                 legend_info = generate_legend()
                 f.write(legend_info)
                 # Write data section
@@ -110,8 +116,11 @@ class DataParser:
                 elif ln.startswith("LBT"):
                     id += ln
         file_header = id
-        file_header += "AUDIO_FORMAT|" + self.audio_format + "\n"
-        file_header += "SAMPLING_RATE|" + str(self.sample_rate) + "\n"
-        file_header += "PATCH_WINDOW_SECONDS|" + str(self.patch_window_seconds) + "\n"
-        file_header += "PATCH_HOP_SECONDS|" + str(self.patch_hop_seconds) + "\n"
         return str(file_header)
+
+    def generate_audio_model_properties(self):
+        data_audio_model_properties = "AUDIO_FORMAT|" + self.audio_format + "\n"
+        data_audio_model_properties += "SAMPLING_RATE|" + str(self.sample_rate) + "\n"
+        data_audio_model_properties += "PATCH_WINDOW_SECONDS|" + str(self.patch_window_seconds) + "\n"
+        data_audio_model_properties += "PATCH_HOP_SECONDS|" + str(self.patch_hop_seconds) + "\n"
+        return data_audio_model_properties

@@ -1,8 +1,9 @@
+Codebook_Yamnet_1.0
 index,display_name
 0,Speech
-1,"Child speech
+1,"Child speech, kid speaking"
 2,Conversation
-3,"Narration
+3,"Narration, monologue"
 4,Babbling
 5,Speech synthesizer
 6,Shout
@@ -17,11 +18,11 @@ index,display_name
 15,Giggle
 16,Snicker
 17,Belly laugh
-18,"Chuckle
-19,"Crying
-20,"Baby cry
+18,"Chuckle, chortle"
+19,"Crying, sobbing"
+20,"Baby cry, infant cry"
 21,Whimper
-22,"Wail
+22,"Wail, moan"
 23,Sigh
 24,Singing
 25,Choir
@@ -47,27 +48,27 @@ index,display_name
 45,Sniff
 46,Run
 47,Shuffle
-48,"Walk
-49,"Chewing
+48,"Walk, footsteps"
+49,"Chewing, mastication"
 50,Biting
 51,Gargling
 52,Stomach rumble
-53,"Burping
+53,"Burping, eructation"
 54,Hiccup
 55,Fart
 56,Hands
 57,Finger snapping
 58,Clapping
-59,"Heart sounds
+59,"Heart sounds, heartbeat"
 60,Heart murmur
 61,Cheering
 62,Applause
 63,Chatter
 64,Crowd
-65,"Hubbub
+65,"Hubbub, speech noise, speech babble"
 66,Children playing
 67,Animal
-68,"Domestic animals
+68,"Domestic animals, pets"
 69,Dog
 70,Bark
 71,Yip
@@ -80,11 +81,11 @@ index,display_name
 78,Meow
 79,Hiss
 80,Caterwaul
-81,"Livestock
+81,"Livestock, farm animals, working animals"
 82,Horse
 83,Clip-clop
-84,"Neigh
-85,"Cattle
+84,"Neigh, whinny"
+85,"Cattle, bovinae"
 86,Moo
 87,Cowbell
 88,Pig
@@ -93,9 +94,9 @@ index,display_name
 91,Bleat
 92,Sheep
 93,Fowl
-94,"Chicken
+94,"Chicken, rooster"
 95,Cluck
-96,"Crowing
+96,"Crowing, cock-a-doodle-doo"
 97,Turkey
 98,Gobble
 99,Duck
@@ -103,29 +104,29 @@ index,display_name
 101,Goose
 102,Honk
 103,Wild animals
-104,"Roaring cats (lions
+104,"Roaring cats (lions, tigers)"
 105,Roar
 106,Bird
-107,"Bird vocalization
-108,"Chirp
+107,"Bird vocalization, bird call, bird song"
+108,"Chirp, tweet"
 109,Squawk
-110,"Pigeon
+110,"Pigeon, dove"
 111,Coo
 112,Crow
 113,Caw
 114,Owl
 115,Hoot
-116,"Bird flight
-117,"Canidae
-118,"Rodents
+116,"Bird flight, flapping wings"
+117,"Canidae, dogs, wolves"
+118,"Rodents, rats, mice"
 119,Mouse
 120,Patter
 121,Insect
 122,Cricket
 123,Mosquito
-124,"Fly
+124,"Fly, housefly"
 125,Buzz
-126,"Bee
+126,"Bee, wasp, etc."
 127,Frog
 128,Croak
 129,Snake
@@ -138,7 +139,7 @@ index,display_name
 136,Electric guitar
 137,Bass guitar
 138,Acoustic guitar
-139,"Steel guitar
+139,"Steel guitar, slide guitar"
 140,Tapping (guitar technique)
 141,Strum
 142,Banjo
@@ -174,7 +175,7 @@ index,display_name
 172,Gong
 173,Tubular bells
 174,Mallet percussion
-175,"Marimba
+175,"Marimba, xylophone"
 176,Glockenspiel
 177,Vibraphone
 178,Steelpan
@@ -185,11 +186,11 @@ index,display_name
 183,Trombone
 184,Bowed string instrument
 185,String section
-186,"Violin
+186,"Violin, fiddle"
 187,Pizzicato
 188,Cello
 189,Double bass
-190,"Wind instrument
+190,"Wind instrument, woodwind instrument"
 191,Flute
 192,Saxophone
 193,Clarinet
@@ -288,57 +289,57 @@ index,display_name
 286,Stream
 287,Waterfall
 288,Ocean
-289,"Waves
+289,"Waves, surf"
 290,Steam
 291,Gurgling
 292,Fire
 293,Crackle
 294,Vehicle
-295,"Boat
-296,"Sailboat
-297,"Rowboat
-298,"Motorboat
+295,"Boat, Water vehicle"
+296,"Sailboat, sailing ship"
+297,"Rowboat, canoe, kayak"
+298,"Motorboat, speedboat"
 299,Ship
 300,Motor vehicle (road)
 301,Car
-302,"Vehicle horn
+302,"Vehicle horn, car horn, honking"
 303,Toot
 304,Car alarm
-305,"Power windows
+305,"Power windows, electric windows"
 306,Skidding
 307,Tire squeal
 308,Car passing by
-309,"Race car
+309,"Race car, auto racing"
 310,Truck
 311,Air brake
-312,"Air horn
+312,"Air horn, truck horn"
 313,Reversing beeps
-314,"Ice cream truck
+314,"Ice cream truck, ice cream van"
 315,Bus
 316,Emergency vehicle
 317,Police car (siren)
 318,Ambulance (siren)
-319,"Fire engine
+319,"Fire engine, fire truck (siren)"
 320,Motorcycle
-321,"Traffic noise
+321,"Traffic noise, roadway noise"
 322,Rail transport
 323,Train
 324,Train whistle
 325,Train horn
-326,"Railroad car
+326,"Railroad car, train wagon"
 327,Train wheels squealing
-328,"Subway
+328,"Subway, metro, underground"
 329,Aircraft
 330,Aircraft engine
 331,Jet engine
-332,"Propeller
+332,"Propeller, airscrew"
 333,Helicopter
-334,"Fixed-wing aircraft
+334,"Fixed-wing aircraft, airplane"
 335,Bicycle
 336,Skateboard
 337,Engine
 338,Light engine (high frequency)
-339,"Dental drill
+339,"Dental drill, dentist's drill"
 340,Lawn mower
 341,Chainsaw
 342,Medium engine (mid frequency)
@@ -346,7 +347,7 @@ index,display_name
 344,Engine knocking
 345,Engine starting
 346,Idling
-347,"Accelerating
+347,"Accelerating, revving, vroom"
 348,Door
 349,Doorbell
 350,Ding-dong
@@ -357,13 +358,13 @@ index,display_name
 355,Squeak
 356,Cupboard open or close
 357,Drawer open or close
-358,"Dishes
-359,"Cutlery
+358,"Dishes, pots, and pans"
+359,"Cutlery, silverware"
 360,Chopping (food)
 361,Frying (food)
 362,Microwave oven
 363,Blender
-364,"Water tap
+364,"Water tap, faucet"
 365,Sink (filling or washing)
 366,Bathtub (filling or washing)
 367,Hair dryer
@@ -375,7 +376,7 @@ index,display_name
 373,Keys jangling
 374,Coin (dropping)
 375,Scissors
-376,"Electric shaver
+376,"Electric shaver, electric razor"
 377,Shuffling cards
 378,Typing
 379,Typewriter
@@ -385,20 +386,20 @@ index,display_name
 383,Telephone
 384,Telephone bell ringing
 385,Ringtone
-386,"Telephone dialing
+386,"Telephone dialing, DTMF"
 387,Dial tone
 388,Busy signal
 389,Alarm clock
 390,Siren
 391,Civil defense siren
 392,Buzzer
-393,"Smoke detector
+393,"Smoke detector, smoke alarm"
 394,Fire alarm
 395,Foghorn
 396,Whistle
 397,Steam whistle
 398,Mechanisms
-399,"Ratchet
+399,"Ratchet, pawl"
 400,Clock
 401,Tick
 402,Tick-tock
@@ -420,14 +421,14 @@ index,display_name
 418,Power tool
 419,Drill
 420,Explosion
-421,"Gunshot
+421,"Gunshot, gunfire"
 422,Machine gun
 423,Fusillade
 424,Artillery fire
 425,Cap gun
 426,Fireworks
 427,Firecracker
-428,"Burst
+428,"Burst, pop"
 429,Eruption
 430,Boom
 431,Wood
@@ -435,15 +436,15 @@ index,display_name
 433,Splinter
 434,Crack
 435,Glass
-436,"Chink
+436,"Chink, clink"
 437,Shatter
 438,Liquid
-439,"Splash
+439,"Splash, splatter"
 440,Slosh
 441,Squish
 442,Drip
 443,Pour
-444,"Trickle
+444,"Trickle, dribble"
 445,Gush
 446,Fill (with liquid)
 447,Spray
@@ -452,17 +453,17 @@ index,display_name
 450,Boiling
 451,Sonar
 452,Arrow
-453,"Whoosh
-454,"Thump
+453,"Whoosh, swoosh, swish"
+454,"Thump, thud"
 455,Thunk
 456,Electronic tuner
 457,Effects unit
 458,Chorus effect
 459,Basketball bounce
 460,Bang
-461,"Slap
-462,"Whack
-463,"Smash
+461,"Slap, smack"
+462,"Whack, thwack"
+463,"Smash, crash"
 464,Breaking
 465,Bouncing
 466,Whip
@@ -472,9 +473,9 @@ index,display_name
 470,Rub
 471,Roll
 472,Crushing
-473,"Crumpling
+473,"Crumpling, crinkling"
 474,Tearing
-475,"Beep
+475,"Beep, bleep"
 476,Ping
 477,Ding
 478,Clang
@@ -488,7 +489,7 @@ index,display_name
 486,Clickety-clack
 487,Rumble
 488,Plop
-489,"Jingle
+489,"Jingle, tinkle"
 490,Hum
 491,Zing
 492,Boing
@@ -499,11 +500,11 @@ index,display_name
 497,Chirp tone
 498,Sound effect
 499,Pulse
-500,"Inside
-501,"Inside
-502,"Inside
-503,"Outside
-504,"Outside
+500,"Inside, small room"
+501,"Inside, large room or hall"
+502,"Inside, public space"
+503,"Outside, urban or manmade"
+504,"Outside, rural or natural"
 505,Reverberation
 506,Echo
 507,Noise
