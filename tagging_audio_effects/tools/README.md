@@ -12,9 +12,10 @@ This will contain all the tools required for the project.
     ```python audio_file_convertor.py <<folder_with_video_files>> <<folder_for_audio_files>> <<output_audio_format>> <<input_video>> <<logs_enabled>>```
   #### Example: 
   1. Download a sample mp4 file using the following command
-  ```curl -L -o sample_video.mp4 "https://drive.google.com/uc?export=download&id=1BSEKvjTawTd36rvpE4pFjYKPwh-fKNZ-"```
-  2. Generate an audio file (wav format) from the downloaded video file (mp4 format) with logs enabled using the command,
-  ```python audio_file_convertor.py sample_video.mp4 ./ "wav" "mp4" 1```
+  ```curl -L -o sample_video.mp4 "https://drive.google.com/uc?export=download&id=1X-TOEZ6wmnNDMzagt0Hyhp2YSwQaHI-T"```
+  2. Place the file in a folder "sample"
+  3. To generate an audio file (wav format) from the downloaded video file (mp4 format) with logs enabled using the command from the path outside the "sample" folder ,
+  ```python audio_file_convertor.py sample/ ./ "wav" 1```
 
 ## Parse the metadata(.sfx) to filter tags
  - File Name: ssfx.py
