@@ -32,3 +32,10 @@ This will contain all the tools required for the project.
   The output will contain the tag name the timestamp where the tag is found and the scores for all the tags at that timestamp.
   A sample [output file](../samples/2010-01-01_2335_US_CSPAN2_World_War_II.csv) is also present in the "samples" folder for reference.
   
+## Generate Codebook
+ - This file with take the YaMNet class mapping [csv file](../models/assets/yamnet_class_map.csv) and generate 
+ a [codebook file](../codebook/codebook_yamnet_1.0.csv)
+ - It removes the ',' and replaces them with '|'
+ - It also do some string formatting
+ ### Instructions to run
+ ```python codebook_generator.py```
