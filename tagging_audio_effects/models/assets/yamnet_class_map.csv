@@ -74,7 +74,7 @@ index,mid,display_name
 72,/m/07qf0zm,Howl
 73,/m/07rc7d9,Bow-wow
 74,/m/0ghcn6,Growling
-75,/t/dd00136,Whimper (dog)
+75,/t/dd00136,Whimper
 76,/m/01yrx,Cat
 77,/m/02yds9,Purr
 78,/m/07qrkrw,Meow
@@ -103,7 +103,7 @@ index,mid,display_name
 101,/m/0dbvp,Goose
 102,/m/07qwf61,Honk
 103,/m/01280g,Wild animals
-104,/m/0cdnk,"Roaring cats (lions, tigers)"
+104,/m/0cdnk,"Roaring cats like lions or tigers"
 105,/m/04cvmfc,Roar
 106,/m/015p6,Bird
 107,/m/020bb7,"Bird vocalization, bird call, bird song"
@@ -139,14 +139,14 @@ index,mid,display_name
 137,/m/018vs,Bass guitar
 138,/m/042v_gx,Acoustic guitar
 139,/m/06w87,"Steel guitar, slide guitar"
-140,/m/01glhc,Tapping (guitar technique)
+140,/m/01glhc,Tapping or guitar technique
 141,/m/07s0s5r,Strum
 142,/m/018j2,Banjo
 143,/m/0jtg0,Sitar
 144,/m/04rzd,Mandolin
 145,/m/01bns_,Zither
 146,/m/07xzm,Ukulele
-147,/m/05148p4,Keyboard (musical)
+147,/m/05148p4,Keyboard or musical instrument
 148,/m/05r5c,Piano
 149,/m/01s0ps,Electric piano
 150,/m/013y1f,Organ
@@ -169,7 +169,7 @@ index,mid,display_name
 167,/m/03qtq,Hi-hat
 168,/m/01sm1g,Wood block
 169,/m/07brj,Tambourine
-170,/m/05r5wn,Rattle (instrument)
+170,/m/05r5wn,Rattle or similar instrument
 171,/m/0xzly,Maraca
 172,/m/0mbct,Gong
 173,/m/016622,Tubular bells
@@ -201,7 +201,7 @@ index,mid,display_name
 199,/m/07n_g,Tuning fork
 200,/m/0f8s22,Chime
 201,/m/026fgl,Wind chime
-202,/m/0150b9,Change ringing (campanology)
+202,/m/0150b9,Change ringing or campanology
 203,/m/03qjg,Harmonica
 204,/m/0mkg,Accordion
 205,/m/0192l,Bagpipes
@@ -209,7 +209,7 @@ index,mid,display_name
 207,/m/0l14l2,Shofar
 208,/m/07kc_,Theremin
 209,/m/0l14t7,Singing bowl
-210,/m/01hgjl,Scratching (performance technique)
+210,/m/01hgjl,Scratching or similar performance technique
 211,/m/064t9,Pop music
 212,/m/0glt670,Hip hop music
 213,/m/02cz_7,Beatboxing
@@ -263,7 +263,7 @@ index,mid,display_name
 261,/m/074ft,Song
 262,/m/025td0t,Background music
 263,/m/02cjck,Theme music
-264,/m/03r5q_,Jingle (music)
+264,/m/03r5q_,Jingle or similar music
 265,/m/0l14gg,Soundtrack music
 266,/m/07pkxdp,Lullaby
 267,/m/01z7dr,Video game music
@@ -278,7 +278,7 @@ index,mid,display_name
 276,/t/dd00037,Scary music
 277,/m/03m9d0z,Wind
 278,/m/09t49,Rustling leaves
-279,/t/dd00092,Wind noise (microphone)
+279,/t/dd00092,Wind noise or microphone
 280,/m/0jb2l,Thunderstorm
 281,/m/0ngt1,Thunder
 282,/m/0838f,Water
@@ -299,7 +299,7 @@ index,mid,display_name
 297,/m/056ks2,"Rowboat, canoe, kayak"
 298,/m/02rlv9,"Motorboat, speedboat"
 299,/m/06q74,Ship
-300,/m/012f08,Motor vehicle (road)
+300,/m/012f08,Motor vehicle on a road
 301,/m/0k4j,Car
 302,/m/0912c9,"Vehicle horn, car horn, honking"
 303,/m/07qv_d5,Toot
@@ -316,9 +316,9 @@ index,mid,display_name
 314,/m/03cl9h,"Ice cream truck, ice cream van"
 315,/m/01bjv,Bus
 316,/m/03j1ly,Emergency vehicle
-317,/m/04qvtq,Police car (siren)
-318,/m/012n7d,Ambulance (siren)
-319,/m/012ndj,"Fire engine, fire truck (siren)"
+317,/m/04qvtq,Police car or police siren
+318,/m/012n7d,Ambulance or siren
+319,/m/012ndj,"Fire engine siren , fire truck siren"
 320,/m/04_sv,Motorcycle
 321,/m/0btp2,"Traffic noise, roadway noise"
 322,/m/06d_3,Rail transport
@@ -337,12 +337,12 @@ index,mid,display_name
 335,/m/0199g,Bicycle
 336,/m/06_fw,Skateboard
 337,/m/02mk9,Engine
-338,/t/dd00065,Light engine (high frequency)
+338,/t/dd00065,Light engine at high frequency
 339,/m/08j51y,"Dental drill, dentist's drill"
 340,/m/01yg9g,Lawn mower
 341,/m/01j4z9,Chainsaw
-342,/t/dd00066,Medium engine (mid frequency)
-343,/t/dd00067,Heavy engine (low frequency)
+342,/t/dd00066,Medium engine at mid frequency
+343,/t/dd00067,Heavy engine at low frequency
 344,/m/01h82_,Engine knocking
 345,/t/dd00130,Engine starting
 346,/m/07pb8fc,Idling
@@ -359,21 +359,21 @@ index,mid,display_name
 357,/m/0fqfqc,Drawer open or close
 358,/m/04brg2,"Dishes, pots, and pans"
 359,/m/023pjk,"Cutlery, silverware"
-360,/m/07pn_8q,Chopping (food)
-361,/m/0dxrf,Frying (food)
+360,/m/07pn_8q,Chopping of food
+361,/m/0dxrf,Frying of food
 362,/m/0fx9l,Microwave oven
 363,/m/02pjr4,Blender
 364,/m/02jz0l,"Water tap, faucet"
-365,/m/0130jx,Sink (filling or washing)
-366,/m/03dnzn,Bathtub (filling or washing)
+365,/m/0130jx,Sink work like filling or washing
+366,/m/03dnzn,Bathtub work like filling or washing
 367,/m/03wvsk,Hair dryer
 368,/m/01jt3m,Toilet flush
 369,/m/012xff,Toothbrush
 370,/m/04fgwm,Electric toothbrush
 371,/m/0d31p,Vacuum cleaner
-372,/m/01s0vc,Zipper (clothing)
+372,/m/01s0vc,Zipper as in clothing
 373,/m/03v3yw,Keys jangling
-374,/m/0242l,Coin (dropping)
+374,/m/0242l,Coin jingles or dropping
 375,/m/01lsmm,Scissors
 376,/m/02g901,"Electric shaver, electric razor"
 377,/m/05rj2,Shuffling cards
@@ -415,7 +415,7 @@ index,mid,display_name
 413,/m/03l9g,Hammer
 414,/m/03p19w,Jackhammer
 415,/m/01b82r,Sawing
-416,/m/02p01q,Filing (rasp)
+416,/m/02p01q,Filing or rasp
 417,/m/023vsd,Sanding
 418,/m/0_ksk,Power tool
 419,/m/01d380,Drill
@@ -445,9 +445,9 @@ index,mid,display_name
 443,/m/07prgkl,Pour
 444,/m/07pqc89,"Trickle, dribble"
 445,/t/dd00088,Gush
-446,/m/07p7b8y,Fill (with liquid)
+446,/m/07p7b8y,Fill with liquid
 447,/m/07qlf79,Spray
-448,/m/07ptzwd,Pump (liquid)
+448,/m/07ptzwd,Pump liquid
 449,/m/07ptfmf,Stir
 450,/m/0dv3j,Boiling
 451,/m/0790c,Sonar

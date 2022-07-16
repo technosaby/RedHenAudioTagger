@@ -1,3 +1,10 @@
+"""
+This file parsers the metadata file (.sfx) file to filter tags.
+ - It filters only single tags and gives the timestamp with the scores for that tag.
+ - Currently, it only filters a single tag within a timeframe.
+ - In the future, we need to implement an advanced filtering mechanism using logical operations (&, | etc).
+"""
+
 import collections
 import sys
 import os

@@ -13,10 +13,11 @@ if __name__ == '__main__':
     writer = csv.writer(output_file)
 
     for line in data:
-        line.pop(1)
+        line.pop(1)  # For removing the 'mid' field as it is not required in codebook
         line = [value.replace(',', ' |') for value in line]
         writer.writerow(line)
 
+    # Closing the files
     input_file.close()
     output_file.close()
 
