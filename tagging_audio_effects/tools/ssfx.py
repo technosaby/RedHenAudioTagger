@@ -11,7 +11,9 @@ import os
 from collections import OrderedDict
 import numpy as np
 import pandas as pd
-
+from subprocess import PIPE, run
+import json
+import sh
 
 def process_tag_result(result_dictionary, scores_dict):
     for tag in result_dictionary:
@@ -23,14 +25,26 @@ def process_tag_result(result_dictionary, scores_dict):
     return df
 
 
-def get_time_interval_tags(scores_dict, tag, time_windows_indices):
-    result = collections.defaultdict(list)
-    for index, window in enumerate(time_windows_indices):
-        matching_idx = [idx for idx, s in enumerate(list(scores_dict.values())[window[0]:window[1]]) if
-                        tag in s]
-        if len(matching_idx) != 0:
-            result[tag].append(np.array(list(scores_dict.keys())).take(np.array(matching_idx) + window[0]))
-    df = process_tag_result(result, scores_dict)
+def get_time_interval_tags(scores_dict, tag_query):
+    df = pd.DataFrame(columns=['Score'])
+    for time, scores in scores_dict.items():
+        json_data = json.loads(scores)
+        temp_dict = {}
+        ##ToDo:// Find correct way of doing this using jq (get the key for the filter).
+        # Current way is crude
+        for data in json_data:
+            temp_dict[data] = "{" + data + ":" + json_data[data] + "}"
+            # json_data[data] = "{" + data + ":" + json_data[data] + "}"
+        result = run(["jq", "-cn", json.dumps(temp_dict) + '|' + tag_query, ], stdout=PIPE, stderr=PIPE,
+                     universal_newlines=True)
+        if result.stdout:
+            df.loc[time] = result.stdout
+
+    # matching_idx = [idx for idx, s in enumerate(list(scores_dict.values())[window[0]:window[1]]) if
+    #                 tag in s]
+    # if len(matching_idx) != 0:
+    #     result[tag].append(np.array(list(scores_dict.keys())).take(np.array(matching_idx) + window[0]))
+    # df = process_tag_result(result, scores_dict)
     return df
 
 
@@ -52,7 +66,7 @@ def is_starting_line(line):
         return True
 
 
-def filter_sfx_file(sfx_file, audio_effects, time_duration, filename_text):
+def filter_sfx_file(sfx_file, tags_query):
     dict_times_score = OrderedDict()
     with open(sfx_file) as f:
         lines = f.readlines()
@@ -65,14 +79,8 @@ def filter_sfx_file(sfx_file, audio_effects, time_duration, filename_text):
                 split_line = line.split(line_split_separator)
                 dict_times_score[split_line[0].rstrip("|").split("|")[1].replace(file_name_text, '')] = split_line[
                     1].lstrip("|")
-
-    # Creating time windows
-    time_windows_indices = [(i, time_duration + i)
-                            for i in range(0, int(float(list(dict_times_score.keys())[-1].replace(filename_text, ''))))]
-    tag_combinations = get_tag_combinations(audio_effects)
-
     # For each window find the tags
-    df = get_time_interval_tags(dict_times_score, tag_combinations, time_windows_indices)
+    df = get_time_interval_tags(dict_times_score, tags_query)
     return df
 
 
@@ -82,15 +90,13 @@ if __name__ == '__main__':
     FILE_LOCATION = sys.argv[1]
     START_DATE = sys.argv[2]
     END_DATE = sys.argv[3]
-    EFFECTS = sys.argv[4]
-    TIME_DURATION = int(sys.argv[5])
-    LOGS = int(sys.argv[6])
+    EFFECTS_QUERY = sys.argv[4]
+    LOGS = int(sys.argv[5])
 
     # FILE_LOCATION = "/Users/saby/Documents/RedHen/Baselining/TaggedAudioFiles/"
-    #START_DATE = "2010-01-01"
-    #END_DATE = "2020-01-01"
-    # EFFECTS = "Clicking"
-    # TIME_DURATION = 5
+    # START_DATE = "2022-01-01"
+    # END_DATE = "2022-11-01"
+    # EFFECTS_QUERY = '(.Music // .song //.background), (.Television // .Tv)'
     # LOGS = 1
 
     # Code Starts from here ....
@@ -106,7 +112,7 @@ if __name__ == '__main__':
         file_name = os.path.split(sfx_files_with_path[index])[1].replace(".sfx", "")
         file_name_text = "-".join(file_name.split("_", 2)[:2]).replace("-", "")
         if LOGS: print("Starting the filtering script for filename ", sfx_file)
-        df = filter_sfx_file(sfx_file, EFFECTS, TIME_DURATION, file_name_text)
+        df = filter_sfx_file(sfx_file, EFFECTS_QUERY)
         # Dump Dataframe to CSV
         df.to_csv(csv_file_name)
         if LOGS: print("Operation completed for sfx file ", sfx_file)

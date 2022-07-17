@@ -2,6 +2,8 @@
 import numpy as np
 import csv
 import os
+import json
+import ast
 
 """ This file will parse the data and show in the required formats
 The data will be frame by frame scores which is received by YaMNet model
@@ -38,9 +40,12 @@ class DataParser:
 
     def process_scores(self):
         derived_classes = []
+        score_data = {}
         for row in self.scores:
-            derived_classes.append({self.class_names[i]: np.round(x, self.round_val)
-                                    for i, x in enumerate(row) if np.round(x, self.round_val) > 0.0})
+            for i, x in enumerate(row):
+                if np.round(x, self.round_val) > 0.0:
+                    score_data[self.class_names[i]] = str(np.round(x, self.round_val))
+            derived_classes.append(json.dumps(score_data))
         return derived_classes
 
     def parse_dump_scores(self):
@@ -79,7 +84,7 @@ class DataParser:
                 legend_info = generate_legend()
                 f.write(legend_info)
                 # Write data section
-                writer = csv.writer(f, delimiter="|")
+                writer = csv.writer(f, delimiter="|", quoting=csv.QUOTE_NONE, quotechar='')
                 writer.writerows(
                     zip(frame_start_times_with_filename, frame_end_times_with_filename,
                         sfx_tags, derived_classes_with_scores))

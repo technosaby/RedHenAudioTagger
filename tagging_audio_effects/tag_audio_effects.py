@@ -184,9 +184,9 @@ if __name__ == '__main__':
         scores, embeddings, spectrogram = tagging_audio_effects.run_model(converted_wav_data)
 
         class_names = class_names_from_csv(tagging_audio_effects.get_class_map_path())
-        plot_graph(scores, spectrogram, converted_wav_data, class_names,
-                   os.path.join(OUTPUT_DATA_PATH, dir_names_dates[index],
-                                os.path.splitext(file_name)[0] + ".jpg"))
+        # plot_graph(scores, spectrogram, converted_wav_data, class_names,
+        #            os.path.join(OUTPUT_DATA_PATH, dir_names_dates[index],
+        #                         os.path.splitext(file_name)[0] + ".jpg"))
         data_parser = DataParser(scores,
                                  os.path.join(file_path_head,
                                               os.path.splitext(file_name)[0]),
