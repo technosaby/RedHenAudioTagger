@@ -1,9 +1,9 @@
 #!/usr/bin/python
-import numpy as np
 import csv
-import os
 import json
-import ast
+import os
+
+import numpy as np
 
 """ This file will parse the data and show in the required formats
 The data will be frame by frame scores which is received by YaMNet model

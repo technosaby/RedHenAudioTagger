@@ -19,25 +19,38 @@ This will contain all the tools required for the project.
 
 ## Parse the metadata(.sfx) to filter tags
  - File Name: ssfx.py
- - Parses the metadata file (.sfx) file to filter tags.
- - It filters only single tags and gives the timestamp with the scores for that tag.
- - Currently, it only filters a single tag within a timeframe.
- - In the future, we need to implement an advanced filtering mechanism using logical operations (&, | etc).
+ - Parses the metadata file (.sfx) file to filter tags based on query.
+ - It takes a JQ query and filters the tags and the scores based on that.
+ - It filters score for each frames present in the SFX file.
 
   ### Instructions to Run
   To run this locally, we can use the command as below.
-  ```python ssfx.py ../samples/ 2010-01-01 2020-01-01 Clicking 5 1```
-  This will take the sfx file(s) from the "samples" folder (which are generated from the tagging script) and filters 
-  between the dates "2010-01-01" and "2020-01-01" and then generates the tagging in a csv format. The tagging
-  only contains the sound effects occuring within 5 seconds timeframe.
-  The output will contain the tag name the timestamp where the tag is found and the scores for all the tags at that timestamp.
-  A sample [output file](../samples/2010-01-01_2335_US_CSPAN2_World_War_II.csv) is also present in the "samples" folder for reference.
+
+  ```python ssfx.py "../samples/" 2022-01-01 2022-11-01 "(.Music // .Song), (.Television // .Radio)" 1```
   
-## Generate Codebook
+This will take the sfx file(s) from the "samples" folder (which are generated from the tagging script) and filters 
+  between the dates "2022-01-01" and "2022-11-01" and then filters the scores based on the query for each frame of data.
+  The output will contain the timestamp where the tag is found and the scores for all the tags at that timestamp.
+  The tags which are present in the SFX file and should be used for filtering are given in the [code book](../codebook/codebook_yamnet_1.0.csv)
+  . An example of an output csv file filtered by the command given above can be found [her](../samples/2022-07-10_PresidentXiJinping-Why_I_proposed_the_Belt_and_Road-hNKTbMx8PFk.csv) can 
+  afor reference.
+  
+  ### Reference for writing the query
+  [JQ](https://stedolan.github.io/jq/) has been used to generate the query for the tags. Some examples to make the queries 
+  are given below. These are standard JQ query formats.
+  - ```"(.Music // .Song)"```
+    Filter the frames which contain tag with (Music or Radio) 
+  - ```".Song, .Radio"```
+    Filter the frames which contain tags with Song and Radio
+  - ```"(.Music // .Song), (.Television // .Radio)"```
+    Filter the frames which contain tag with (Music or Radio) and (Television or Radio)
+ 
+ ## Generate Codebook
+ - File Name: codebook_generator.py
  - This file with take the YaMNet class mapping [csv file](../models/assets/yamnet_class_map.csv) and generate 
  a [codebook file](../codebook/codebook_yamnet_1.0.csv)
- - It removes the ',' and replaces them with '|'
- - It also do some string formatting
+ - In the process, it also does some formatting ( like removing the ',' between tags and replacing them with '|', 
+ string formatting, etc)
    ### Instructions to run
    ```python codebook_generator.py```
 

@@ -2,73 +2,82 @@
 This file parsers the metadata file (.sfx) file to filter tags.
  - It filters only single tags and gives the timestamp with the scores for that tag.
  - Currently, it only filters a single tag within a timeframe.
- - In the future, we need to implement an advanced filtering mechanism using logical operations (&, | etc).
+ - It takes a JQ query and filters the scores based on the query
 """
 
-import collections
-import sys
-import os
-from collections import OrderedDict
-import numpy as np
-import pandas as pd
-from subprocess import PIPE, run
 import json
-import sh
+import os
+import sys
+from collections import OrderedDict
+from subprocess import PIPE, run
 
-def process_tag_result(result_dictionary, scores_dict):
-    for tag in result_dictionary:
-        result_dictionary[tag] = sorted(set([elem for sublist in result_dictionary[tag] for elem in sublist]))
-    df = pd.DataFrame(columns=['Tags', 'Time', 'Score'])
-    for tag, times in result_dictionary.items():
-        for time in times:
-            df.loc[len(df.index)] = [tag, time, [score for score in scores_dict[time].split(",") if tag in score][0]]
-    return df
+import pandas as pd
 
 
-def get_time_interval_tags(scores_dict, tag_query):
-    df = pd.DataFrame(columns=['Score'])
+def filter_scores_on_tag_query(scores_dict, tag_query):
+    """
+    This block uses jq query and run it on single line of scores in SFX file to get the filtered tags and
+    scores based on the tag query
+
+    :param scores_dict: The scores in the form of a JSON
+    :param tag_query: The query in the form of a JQ query
+    :return: Filtered tags in a dataframe
+    """
+    df_score = pd.DataFrame(columns=['Score'])
     for time, scores in scores_dict.items():
         json_data = json.loads(scores)
         temp_dict = {}
-        ##ToDo:// Find correct way of doing this using jq (get the key for the filter).
-        # Current way is crude
+        # ToDo:// Find correct way of doing this using jq (get the key for the filter). Current way is crude
         for data in json_data:
             temp_dict[data] = "{" + data + ":" + json_data[data] + "}"
-            # json_data[data] = "{" + data + ":" + json_data[data] + "}"
         result = run(["jq", "-cn", json.dumps(temp_dict) + '|' + tag_query, ], stdout=PIPE, stderr=PIPE,
                      universal_newlines=True)
-        if result.stdout:
-            df.loc[time] = result.stdout
-
-    # matching_idx = [idx for idx, s in enumerate(list(scores_dict.values())[window[0]:window[1]]) if
-    #                 tag in s]
-    # if len(matching_idx) != 0:
-    #     result[tag].append(np.array(list(scores_dict.keys())).take(np.array(matching_idx) + window[0]))
-    # df = process_tag_result(result, scores_dict)
-    return df
+        # Removing nulls and new lines from filtered results
+        processed_result = result.stdout.replace("null", '')
+        processed_result = processed_result.replace("\n", '')
+        if processed_result:
+            df_score.loc[time] = processed_result
+    return df_score
 
 
-def get_sfx_files(folder_path, date, sfx_files_with_path):
-    sfx_format = "sfx"
+def get_sfx_files(folder_path, date_filter, sfx_files, sfx_format="sfx"):
+    """
+    This function filters all the sfx files based on dates present in a folder
+
+    :param sfx_files: The filtered list where filtered data is appended
+    :param folder_path: Path of the folder where sfx files are present
+    :param date_filter: The date based on which filtering is done
+    :param sfx_format: The extension of the sfx file
+    :return: The list of sfx files
+    """
+
     for dir_path, dir_names, file_names in os.walk(folder_path):
-        for file_name in [f for f in file_names if f.endswith("." + sfx_format) and f.startswith(str(date).split()[0])]:
-            sfx_files_with_path.append(os.path.join(dir_path, file_name))
-    return sfx_files_with_path
-
-
-# ToDo:// create tags
-def get_tag_combinations(audio_effects):
-    return audio_effects
+        for file_name_sfx in [f for f in file_names if f.endswith("." + sfx_format) and
+                                                       f.startswith(str(date_filter).split()[0])]:
+            sfx_files.append(os.path.join(dir_path, file_name_sfx))
+    return sfx_files
 
 
 def is_starting_line(line):
+    """
+    Based on this tag the SFX file filtering starts and scores are collected after this line
+    :param line: A line from the SFX file
+    :return: If the line contains FFS tag
+    """
     if line.startswith("FFS"):
         return True
 
 
-def filter_sfx_file(sfx_file, tags_query):
+def filter_sfx_file(sfx_file_for_filter, tags_query):
+    """
+    This function takes an SFX file abd processes each line, extracts the scores in JSON format and prepares it for
+    further processing for the filtration based on tag query
+    :param sfx_file_for_filter: The sfx file which needs to be processed
+    :param tags_query: The tag query in JQ format
+    :return:
+    """
     dict_times_score = OrderedDict()
-    with open(sfx_file) as f:
+    with open(sfx_file_for_filter) as f:
         lines = f.readlines()
         start_read = False
         for line in lines:
@@ -80,11 +89,9 @@ def filter_sfx_file(sfx_file, tags_query):
                 dict_times_score[split_line[0].rstrip("|").split("|")[1].replace(file_name_text, '')] = split_line[
                     1].lstrip("|")
     # For each window find the tags
-    df = get_time_interval_tags(dict_times_score, tags_query)
-    return df
+    df_filtered_result = filter_scores_on_tag_query(dict_times_score, tags_query)
+    return df_filtered_result
 
-
-# ssfx -r —files /tv/2022/2022-03/20220305 —effects{{drum|percussion}&{laughter}} —within 5
 
 if __name__ == '__main__':
     FILE_LOCATION = sys.argv[1]
@@ -111,9 +118,12 @@ if __name__ == '__main__':
         csv_file_name = os.path.split(sfx_files_with_path[index])[1].replace(".sfx", ".csv")
         file_name = os.path.split(sfx_files_with_path[index])[1].replace(".sfx", "")
         file_name_text = "-".join(file_name.split("_", 2)[:2]).replace("-", "")
-        if LOGS: print("Starting the filtering script for filename ", sfx_file)
+        if LOGS:
+            print("Starting the filtering script for filename ", sfx_file)
         df = filter_sfx_file(sfx_file, EFFECTS_QUERY)
         # Dump Dataframe to CSV
         df.to_csv(csv_file_name)
-        if LOGS: print("Operation completed for sfx file ", sfx_file)
-    if LOGS: print("All Done ...")
+        if LOGS:
+            print("Operation completed for sfx file ", sfx_file)
+    if LOGS:
+        print("All Done ...")
