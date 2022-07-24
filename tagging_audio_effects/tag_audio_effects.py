@@ -15,6 +15,7 @@ from scipy.io import wavfile
 import scipy.signal
 import os
 import sys
+import getopt
 from data_parser import DataParser
 
 
@@ -57,17 +58,17 @@ def convert_to_compatible_file(audio_path):
     # wav_data = ensure_wav_format(wav_data)
     # needs to be normalized to values in [-1.0, 1.0]
     waveform = wav_data / tf.int16.max
+    duration_audio = len(wav_data) / sample_rate
+    total_duration = len(wav_data) / sample_rate
 
     if LOGS:
         # Show some basic information about the converted audio.
-        duration_audio = len(wav_data) / sample_rate
         print(f'Sample rate: {sample_rate} Hz')
         print(f'Total duration: {duration_audio:.2f}s')
         print(f'Size of the input: {len(wav_data)}')
         # Show some basic information about the audio.
-        duration = len(wav_data) / sample_rate
         print(f'Sample rate: {sample_rate} Hz')
-        print(f'Total duration: {duration:.2f}s')
+        print(f'Total duration: {total_duration:.2f}s')
         print(f'Size of the input: {len(wav_data)}')
     return ret, waveform, duration_audio, sample_rate
 
@@ -146,13 +147,49 @@ class TagAudioEffects:
         return self.model.class_map_path().numpy()
 
 
+def process_args(argv):
+    arg_audio_input = ""
+    arg_audio_input_format = "wav"
+    arg_output = "."
+    arg_decimal_places = "2"
+    arg_logs = "0"
+    arg_plot_graphs = "0"
+
+    arg_help = "{0} -i <audio input path> -a <audio input format (default: wav)> -o <output data path (default: .)> " \
+               "-d <decimal places for scores filtering (default : 2)> " \
+               "-g <plot graphs(default: 0)> -l <logs enabled (default 0) >".format(argv[0])
+    try:
+        opts, args = getopt.getopt(argv[1:], "hi:a:o:d:g:l:", ["help", "audio input path=", "audio input format=",
+                                                               "output path=", "score round-off=",
+                                                               "plot graphs=", "logs="])
+    except:
+        print(arg_help)
+        sys.exit(2)
+
+    for opt, arg in opts:
+        if opt in ("-h", "--help"):
+            print(arg_help)  # print the help message
+            sys.exit(2)
+        elif opt in ("-i", "--audio input path"):
+            arg_audio_input = arg
+        elif opt in ("-a", "--audio input format"):
+            arg_audio_input_format = arg
+        elif opt in ("-o", "--output path"):
+            arg_output = arg
+        elif opt in ("-d", "--score round-off"):
+            arg_decimal_places = arg
+        elif opt in ("-g", "--plot graphs"):
+            arg_plot_graphs = arg
+        elif opt in ("-l", "--logs"):
+            arg_logs = arg
+
+    return arg_audio_input, arg_audio_input_format, arg_output, int(arg_decimal_places), \
+           int(arg_plot_graphs), int(arg_logs)
+
+
 if __name__ == '__main__':
-    INPUT_AUDIO_PATH = sys.argv[1]
-    INPUT_AUDIO_FORMAT = sys.argv[2]  # "wav
-    OUTPUT_DATA_FORMAT = sys.argv[3]  # "default"
-    OUTPUT_DATA_PATH = sys.argv[4]
-    SCORE_FILTERING_DECIMAL_PLACES = int(sys.argv[5]) # 4
-    LOGS = int(sys.argv[6])
+    INPUT_AUDIO_PATH, INPUT_AUDIO_FORMAT, OUTPUT_DATA_PATH, SCORE_FILTERING_DECIMAL_PLACES, PLOT_GRAPHS, LOGS = \
+        process_args(sys.argv)
 
     # All these values (in sec) are from parameter.py of YaMNet
     PATCH_HOP_SECONDS = 0.48
@@ -160,7 +197,12 @@ if __name__ == '__main__':
     STFT_WINDOW = 0.025
     STFT_HOP = 0.010
 
-    print("Tagging Audio Effects using YaMNnet... ")
+    if LOGS:
+        print("Tagging Audio Effects using YaMNet... ")
+        os.environ['TF_CPP_MIN_LOG_LEVEL'] = '0'
+    else:
+        os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+
     tagging_audio_effects = TagAudioEffects()
 
     # Load Audio Files
@@ -172,21 +214,23 @@ if __name__ == '__main__':
         # Check if seg files are present
         seg_file_path = os.path.join(file_path_head, os.path.splitext(file_name)[0] + ".seg")
         if not os.path.exists(seg_file_path):
-            print(".seg file not present in path " + seg_file_path)
+            if LOGS: print(".seg file not present in path " + seg_file_path)
         else:
             is_seg_file_present = True
-            print(".seg file present, Audio Processing file " + audio_file)
+            if LOGS: print(".seg file present, Audio Processing file " + audio_file)
 
         result, converted_wav_data, duration, sample_rate = convert_to_compatible_file(audio_file)
         if result == -1:
-            print("Error: File not compatible to be processed by model")
+            if LOGS: print("Error: File not compatible to be processed by model")
             continue
         scores, embeddings, spectrogram = tagging_audio_effects.run_model(converted_wav_data)
 
         class_names = class_names_from_csv(tagging_audio_effects.get_class_map_path())
-        # plot_graph(scores, spectrogram, converted_wav_data, class_names,
-        #            os.path.join(OUTPUT_DATA_PATH, dir_names_dates[index],
-        #                         os.path.splitext(file_name)[0] + ".jpg"))
+
+        if PLOT_GRAPHS:
+            plot_graph(scores, spectrogram, converted_wav_data, class_names,
+                       os.path.join(OUTPUT_DATA_PATH, dir_names_dates[index],
+                                    os.path.splitext(file_name)[0] + ".jpg"))
         data_parser = DataParser(scores,
                                  os.path.join(file_path_head,
                                               os.path.splitext(file_name)[0]),
@@ -199,4 +243,4 @@ if __name__ == '__main__':
                                  PATCH_WINDOW_SECONDS, STFT_HOP, STFT_WINDOW, "SFX", LOGS)
         data_parser.parse_dump_scores()
         if LOGS: print("Operation complete for file ", file_name)
-    print("All operations done ...")
+    if LOGS: print("All operations done ...")

@@ -88,12 +88,8 @@ class DataParser:
                 writer.writerows(
                     zip(frame_start_times_with_filename, frame_end_times_with_filename,
                         sfx_tags, derived_classes_with_scores))
-
-        elif self.parsing_format == "ELAN_EAF":
-            # ToDO:// For future
-            pass
         else:
-            print("Please use specified formats")
+            if self.is_logs_enabled: print("Please use specified formats")
 
     def generate_top_header(self):
         file_header_top = "TOP"
