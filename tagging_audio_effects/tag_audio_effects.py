@@ -148,6 +148,11 @@ class TagAudioEffects:
 
 
 def process_args(argv):
+    """
+    Process arguments passed to the file
+    :param argv: The arguments passed to the file
+    :return: Returns the processed variables
+    """
     arg_audio_input = ""
     arg_audio_input_format = "wav"
     arg_output = "."

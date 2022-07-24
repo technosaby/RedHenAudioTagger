@@ -98,6 +98,11 @@ def filter_sfx_file(sfx_file_for_filter, tags_query):
 
 
 def process_args(argv):
+    """
+    Process arguments passed to the file
+    :param argv: The arguments passed to the file
+    :return: Returns the processed variables
+    """
     arg_input = ""
     arg_query = ""
     arg_start_date = ""
