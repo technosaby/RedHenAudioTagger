@@ -19,14 +19,15 @@ This will contain all the tools required for the project.
 
 ## Parse the metadata(.sfx) to filter tags
  - File Name: ssfx.py
- - Parses the metadata file (.sfx) file to filter tags based on query.
- - It takes a JQ query and filters the tags and the scores based on that.
- - It filters score for each frames present in the SFX file.
+ - Parses the metadata file (.sfx) file to filter tags based on query. The .sfx file is passed as an argument with "-i". 
+ - It takes a JQ query and filters the tags and the scores based on that. 
+This is passed as an argument with "-q". 
+ - To select the range of dates, the start date is passed with "-s" argument while the end date is passed with "-e".
+ - It filters score for each frames present in the SFX file and dumps the result in a CSV file. 
 
   ### Instructions to Run
   To run this locally, we can use the command as below.
-
-  ```python ssfx.py "../samples/" 2022-01-01 2022-11-01 "(.Music // .Song), (.Television // .Radio)" 1```
+  ```python ssfx.py -i <tagged files> -s <start date> -e <end date> -q <JQ Query> -l <logs enabled (default 0) >```
   
 This will take the sfx file(s) from the "samples" folder (which are generated from the tagging script) and filters 
   between the dates "2022-01-01" and "2022-11-01" and then filters the scores based on the query for each frame of data.
