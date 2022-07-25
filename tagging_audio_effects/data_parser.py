@@ -1,7 +1,9 @@
 #!/usr/bin/python
-import numpy as np
 import csv
+import json
 import os
+
+import numpy as np
 
 """ This file will parse the data and show in the required formats
 The data will be frame by frame scores which is received by YaMNet model
@@ -11,7 +13,7 @@ This frame scores will be parsed in the required formats needed by Red Hen for r
 
 def generate_legend():
     legend_info = "SFX_01|FileName: audio_file_convertor.py|Source Person: Sabyasachi Ghosal" + "\n"
-    legend_info += "FFS|AudioCodebook=Model_Putput_Index|Machine_Identifier|Class_Description" + "\n"
+    legend_info += "FFS|Codebook=Model_Output_Index|Class_Description" + "\n"
     return legend_info
 
 
@@ -38,9 +40,12 @@ class DataParser:
 
     def process_scores(self):
         derived_classes = []
+        score_data = {}
         for row in self.scores:
-            derived_classes.append({self.class_names[i]: np.round(x, self.round_val)
-                                    for i, x in enumerate(row) if np.round(x, self.round_val) > 0.0})
+            for i, x in enumerate(row):
+                if np.round(x, self.round_val) > 0.0:
+                    score_data[self.class_names[i]] = str(np.round(x, self.round_val))
+            derived_classes.append(json.dumps(score_data))
         return derived_classes
 
     def parse_dump_scores(self):
@@ -66,26 +71,31 @@ class DataParser:
         if self.parsing_format == "SFX":
             os.makedirs(os.path.dirname(self.output_file_name_with_path + '.sfx'), exist_ok=True)
             with open(self.output_file_name_with_path + '.sfx', 'w') as f:
+                # Create Header of the file, read if seg file present else create Top header
                 if self.is_seg_file_present:
-                    # Create Header of the file
                     file_header = self.generate_header()
-                    f.write(file_header)
+                else:
+                    file_header = self.generate_top_header()
+                f.write(file_header)
+
                 # Write audio model properties
                 audio_model_properties = self.generate_audio_model_properties()
                 f.write(audio_model_properties)
                 legend_info = generate_legend()
                 f.write(legend_info)
                 # Write data section
-                writer = csv.writer(f, delimiter="|")
+                writer = csv.writer(f, delimiter="|", quoting=csv.QUOTE_NONE, quotechar='')
                 writer.writerows(
                     zip(frame_start_times_with_filename, frame_end_times_with_filename,
                         sfx_tags, derived_classes_with_scores))
-
-        elif self.parsing_format == "ELAN_EAF":
-            # ToDO:// For future
-            pass
         else:
-            print("Please use specified formats")
+            if self.is_logs_enabled: print("Please use specified formats")
+
+    def generate_top_header(self):
+        file_header_top = "TOP"
+        file_name = os.path.normpath(self.input_file_name_with_path).split(os.sep)[-1]
+        file_header_top += "|" + file_name + "\n"
+        return file_header_top
 
     def generate_header(self):
         N = 30  # read first 20 lines of the seg file

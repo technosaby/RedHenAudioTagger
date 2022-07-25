@@ -1,4 +1,5 @@
 #!/usr/bin/python
+import getopt
 import subprocess
 import os
 import sys
@@ -84,12 +85,44 @@ class AudioFileConvertor:
                 self.extract_audio(input_file_name, output_file_name, output_ext, logs)
 
 
-if __name__ == '__main__':
-    INPUT_VIDEO_PATH = sys.argv[1]
-    OUTPUT_AUDIO_PATH = sys.argv[2]
-    OUTPUT_AUDIO_FORMAT = sys.argv[3]
-    LOGS = sys.argv[4]
+def process_args(argv):
+    """
+    Process arguments passed to the file
+    :param argv: The arguments passed to the file
+    :return: Returns the processed variables
+    """
+    arg_video_input = ""
+    arg_audio_output = "."
+    arg_output_audio_format = "wav"
+    arg_logs = "0"
 
+    arg_help = "{0} -i <video input path> -a <audio input format (default: wav)> -o <audio output path (default: .)> " \
+               " -l <logs enabled (default 0) >".format(argv[0])
+    try:
+        opts, args = getopt.getopt(argv[1:], "hi:a:o:l:", ["help", "video input path=", "audio input format=",
+                                                           "audio output path=", "logs="])
+    except:
+        print(arg_help)
+        sys.exit(2)
+
+    for opt, arg in opts:
+        if opt in ("-h", "--help"):
+            print(arg_help)  # print the help message
+            sys.exit(2)
+        elif opt in ("-i", "--video input path"):
+            arg_video_input = arg
+        elif opt in ("-a", "--audio input format"):
+            arg_audio_output = arg
+        elif opt in ("-o", "--audio output path"):
+            arg_output_audio_format = arg
+        elif opt in ("-l", "--logs"):
+            arg_logs = arg
+
+    return arg_video_input, arg_audio_output, arg_output_audio_format, int(arg_logs)
+
+
+if __name__ == '__main__':
+    INPUT_VIDEO_PATH, OUTPUT_AUDIO_FORMAT, OUTPUT_AUDIO_PATH, LOGS = process_args(sys.argv)
     extra_file_extensions_for_copy = ["seg", "eaf"]
     audio_processor = AudioFileConvertor()
     print("Starting generation of audio files from ", INPUT_VIDEO_PATH, " to ", OUTPUT_AUDIO_PATH
