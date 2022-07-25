@@ -24,6 +24,7 @@ RUN ls -a
 
 # Installing JQ required for parsing
 WORKDIR /bin
+RUN apt-get install -y wget
 RUN wget "http://stedolan.github.io/jq/download/linux64/jq" && chmod 755 jq
 # CMD ["/bin/jq"]
 
