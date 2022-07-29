@@ -31,7 +31,7 @@ RUN wget "http://stedolan.github.io/jq/download/linux64/jq" && chmod 755 jq
 RUN ls -a
 
 # Install local dependencies
-RUN pip3 install -r requirements.txt
+RUN pip3 install -r tagging_audio_effects/requirements.txt
 
 # Remove copied folder
 RUN rm -f -r ./tagging_audio_effects
