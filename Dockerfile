@@ -21,19 +21,19 @@ RUN pwd
 ADD ./tagging_audio_effects .
 RUN pwd
 
-# Installing JQ required for parsing
-WORKDIR /bin
-RUN apt-get install -y wget
-RUN wget "http://stedolan.github.io/jq/download/linux64/jq" && chmod 755 jq
-RUN pwd 
-# CMD ["/bin/jq"]
-
 
 # View contents while building dockerfile
 RUN ls -a
 
 # Install local dependencies
 RUN pip3 install -r tagging_audio_effects/requirements.txt
+
+# Installing JQ required for parsing
+WORKDIR /bin
+RUN apt-get install -y wget
+RUN wget "http://stedolan.github.io/jq/download/linux64/jq" && chmod 755 jq
+RUN pwd 
+# CMD ["/bin/jq"]
 
 # Remove copied folder
 RUN rm -f -r ./tagging_audio_effects
