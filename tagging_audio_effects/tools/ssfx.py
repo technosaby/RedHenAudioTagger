@@ -23,7 +23,7 @@ def filter_scores_on_tag_query(scores_dict, tag_query):
     :param tag_query: The query in the form of a JQ query
     :return: Filtered tags in a dataframe
     """
-    df_score = pd.DataFrame(columns=['Score'])
+    df_score = pd.DataFrame(columns=['Confidence Score'])
     for time, scores in scores_dict.items():
         json_data = json.loads(scores)
         temp_dict = {}

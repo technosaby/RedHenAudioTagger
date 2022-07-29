@@ -10,8 +10,9 @@ The default path to generate the output is the path from where the command is ru
   - Takes the format of the audio files given as input. This can be specified by the "-a" argument. 
 For now the default value is set to "wav" and it only supports WAV files because YaMNet supports only WAV files. 
 The idea later is to extend it to other formats.
-  - There is an additional flag (-d) to control how refined the filtering should be. If you want the tags with scores to be 
-very refined then you can select 4 decimal places which will filter tags with scores up to 4 decimal places {"Speech": 0.9600, 
+  - There is an additional flag (-d) to control how refined the filtering of the confidence scores should be. These are confidence scores 
+calculated by the model for different classes of tags. If you want the tags with confidence scores to be very refined then you can select 4 
+decimal places which will filter tags with scores up to 4 decimal places {"Speech": 0.9600, 
 "Clicking": 0.0003}. If you select tags which are dominant you can select 2 decimal places, then only {"Speech" : 0.96} will be 
 filtered and "Clicking" will not be filtered at all in this case. The default value of this flag is set to 2.
   - Generates the plots (log-melo-spectrogram, audio tags) for each audio files in a jpg format. This is set by "-g" argument.
