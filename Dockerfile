@@ -15,15 +15,17 @@ RUN pip install --no-cache --upgrade pip setuptools
     
 # Set working directory
 WORKDIR /TaggingAudioEffects
+RUN pwd
 
 # Copying the folder into the local
 ADD ./tagging_audio_effects .
-
+RUN pwd
 
 # Installing JQ required for parsing
 WORKDIR /bin
 RUN apt-get install -y wget
 RUN wget "http://stedolan.github.io/jq/download/linux64/jq" && chmod 755 jq
+RUN pwd 
 # CMD ["/bin/jq"]
 
 
