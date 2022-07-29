@@ -26,7 +26,7 @@ RUN pwd
 RUN ls -a
 
 # Install local dependencies
-RUN pip3 install -r tagging_audio_effects/requirements.txt
+RUN pip3 install -r requirements.txt
 
 # Installing JQ required for parsing
 WORKDIR /bin
