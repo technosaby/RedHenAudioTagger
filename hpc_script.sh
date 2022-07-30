@@ -4,7 +4,7 @@
 module load singularity/3.8.1
 
 # Change directory into $USER
-cd /scratch/$USER/
+cd /scratch/users/$USER/
 
 # Clone Source Code
 git clone https://github.com/technosaby/gsoc2022.git
