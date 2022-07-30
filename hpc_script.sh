@@ -21,8 +21,7 @@ mkdir FilteredOutput
 
 
 #Remove all files from the 
-rm -rf /scratch/$USER/*
-rm -rf /temp/$USER/*
+rm -rf /scratch/$USER/image.sif
 
 
 
