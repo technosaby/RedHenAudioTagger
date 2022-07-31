@@ -4,3 +4,5 @@ This folder can have all important papers to be used for the project
   https://github.com/qiuqiangkong/audioset_tagging_cnn
 - PSLA: Improving Audio Tagging With Pretraining, Sampling, Labeling, and Aggregation
   https://groups.csail.mit.edu/sls/publications/2021/YuanGong_TASLP-2021.pdf
+- Hugging Face, Audio-Classification-on-Keyword-Spotting
+  https://colab.research.google.com/github/huggingface/notebooks/blob/main/examples/audio_classification.ipynb
