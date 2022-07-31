@@ -41,8 +41,8 @@ rm -rf $SCRATCH_USER/Output/AudioFiles
 echo "All audio and video files removed, only tagged files present"
 
 # Copy the tagged files to home
-cp -r $SCRATCH_USER/Output/TaggedAudioFiles $HOME_FOLDER
-
+#cp -r $SCRATCH_USER/Output/TaggedAudioFiles $HOME_FOLDER
+# echo "All tagged audio files copied to home"
 
 
 
