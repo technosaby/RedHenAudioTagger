@@ -9,8 +9,9 @@ RUN apt-get -y update
 RUN apt-get install --assume-yes --no-install-recommends --quiet \
         python3 \
         python3-pip \
-        ffmpeg \
-        tensorflow-hub
+        ffmpeg
+       
+RUN pip install --upgrade tensorflow-hub        
 
 RUN pip install --no-cache --upgrade pip setuptools
     
