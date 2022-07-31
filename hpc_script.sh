@@ -35,6 +35,9 @@ echo "All the video files are converted to Audio, now run the tagging"
 singularity exec --bind $SCRATCH_USER $SCRATCH_USER/image.sif python3 $ROOT_FOLDER/tag_audio_effects.py -i $SCRATCH_USER/Output/AudioFiles/ -o $SCRATCH_USER/Output/TaggedAudioFiles/ -l 1
 echo "All the audio files are tagged with the effects, now you can run queries on them"
 
+## To filter tags
+#singularity exec --bind $SCRATCH_USER $SCRATCH_USER/image.sif python3 $TOOLS_FOLDER/ssfx.py -i 2022-01-01/ -q "(.Music // .song //.background), (.Television // .Tv)" -l 1
+
 #Remove all Video and Audio files
 rm -rf $SCRATCH_USER/VideosFiles
 rm -rf $SCRATCH_USER/Output/AudioFiles
