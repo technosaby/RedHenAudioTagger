@@ -4,6 +4,7 @@ VIDEO_FILES=/mnt/rds/redhen/gallina/tv/2022/2022-01/2022-01-01
 SCRATCH_USER=/scratch/users/$USER
 TOOLS_FOLDER=$SCRATCH_USER/gsoc2022/tagging_audio_effects/tools
 ROOT_FOLDER=$SCRATCH_USER/gsoc2022/tagging_audio_effects
+HOME_FOLDER=/home/$USER
 
 # Load Module
 module load singularity/3.8.1
@@ -39,6 +40,8 @@ rm -rf $SCRATCH_USER/VideosFiles
 rm -rf $SCRATCH_USER/Output/AudioFiles
 echo "All audio and video files removed, only tagged files present"
 
+# Copy the tagged files to home
+cp -r $SCRATCH_USER/Output/TaggedAudioFiles $HOME_FOLDER
 
 
 
