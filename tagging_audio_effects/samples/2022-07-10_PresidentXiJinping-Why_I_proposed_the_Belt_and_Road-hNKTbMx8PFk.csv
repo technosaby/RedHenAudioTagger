@@ -1,0 +1,724 @@
+Start Time, End Time, Audio Tags
+0.0,0.975,Music=0.9&Television=0.1
+0.4,1.375,Music=1.0&Sad music=0.1
+0.8,1.775,Music=1.0&Sad music=0.1
+1.2000000000000002,2.1750000000000003,Music=1.0
+1.6,2.575,Music=0.8
+2.0,2.975,Music=0.3&Silence=0.1
+2.4000000000000004,3.3750000000000004,Music=0.1&Silence=0.4
+2.8000000000000003,3.7750000000000004,Silence=0.5
+3.2,4.175,Silence=1.0
+3.6,4.575,Silence=1.0
+4.0,4.975,Silence=1.0
+4.4,5.375,Percussion=0.1&Silence=0.8
+4.800000000000001,5.775,Music=0.1&Sonar=0.2&Sine wave=0.1&Sound effect=0.1
+5.2,6.175,Music=0.2&Sonar=0.2&Sine wave=0.1&Chirp tone=0.1
+5.6000000000000005,6.575,Music=0.2&Sonar=0.1&Chirp tone=0.1
+6.0,6.975,Music=0.1&Sonar=0.1&Sine wave=0.1&Chirp tone=0.2&Sound effect=0.1
+6.4,7.375,Music=0.1&Sonar=0.1&Sound effect=0.1
+6.800000000000001,7.775,Music=0.2&Sonar=0.1&Sine wave=0.1&Sound effect=0.1
+7.2,8.175,Heart sounds| heartbeat=0.1&Heart murmur=0.1&Music=0.1&Sonar=0.1&Sound effect=0.1
+7.6000000000000005,8.575000000000001,Animal=0.1&Livestock| farm animals| working animals=0.1&Fowl=0.1&Turkey=0.6&Gobble=0.4&Alarm=0.1&Telephone=0.1&Sound effect=0.1
+8.0,8.975,Music=0.3&Sonar=0.1
+8.4,9.375,Whale vocalization=0.1&Music=0.1
+8.8,9.775,Outside| rural or natural=0.1
+9.200000000000001,10.175,Heart sounds| heartbeat=0.1&Heart murmur=0.1&Music=0.1&Sonar=0.4&Arrow=0.1&Whoosh| swoosh| swish=0.2&Sound effect=0.1&Outside| rural or natural=0.1&White noise=0.1
+9.600000000000001,10.575000000000001,Water=0.2&Stream=0.2&Ocean=0.1&Gurgling=0.3&Vehicle=0.1&Boat| Water vehicle=0.3&Rowboat| canoe| kayak=0.2&Liquid=0.1&Pour=0.1&Trickle| dribble=0.1&Outside| rural or natural=0.1
+10.0,10.975,Water=0.2&Stream=0.2&Gurgling=0.2&Vehicle=0.2&Boat| Water vehicle=0.5&Rowboat| canoe| kayak=0.5
+10.4,11.375,Water=0.1&Stream=0.1&Gurgling=0.1&Vehicle=0.5&Boat| Water vehicle=0.7&Rowboat| canoe| kayak=0.8
+10.8,11.775,Water=0.2&Stream=0.2&Gurgling=0.2&Vehicle=0.2&Boat| Water vehicle=0.6&Rowboat| canoe| kayak=0.6&Liquid=0.1&Pour=0.1&Trickle| dribble=0.1
+11.200000000000001,12.175,Water=0.2&Stream=0.3&Gurgling=0.2&Boat| Water vehicle=0.2&Rowboat| canoe| kayak=0.2&Liquid=0.1&Pour=0.2&Trickle| dribble=0.1
+11.600000000000001,12.575000000000001,Water=0.3&Stream=0.2&Gurgling=0.3&Vehicle=0.1&Boat| Water vehicle=0.4&Rowboat| canoe| kayak=0.4&Liquid=0.1&Pour=0.2&Trickle| dribble=0.1
+12.0,12.975,Water=0.2&Stream=0.1&Gurgling=0.2&Vehicle=0.2&Boat| Water vehicle=0.6&Rowboat| canoe| kayak=0.4&Liquid=0.1&Pour=0.2&Trickle| dribble=0.1
+12.4,13.375,Whale vocalization=0.4&Water=0.1&Gurgling=0.2
+12.8,13.775,Water=0.2&Stream=0.1&Gurgling=0.2&Vehicle=0.1&Boat| Water vehicle=0.3&Rowboat| canoe| kayak=0.1&Pour=0.1
+13.200000000000001,14.175,Water=0.3&Stream=0.2&Gurgling=0.2&Vehicle=0.1&Boat| Water vehicle=0.4&Sailboat| sailing ship=0.1&Rowboat| canoe| kayak=0.2&Liquid=0.1&Pour=0.2&Trickle| dribble=0.2&Outside| rural or natural=0.1
+13.600000000000001,14.575000000000001,Music=0.1&Alarm=0.1&Siren=0.1&Civil defense siren=0.1
+14.0,14.975,Whale vocalization=0.1&Water=0.2&Stream=0.1&Gurgling=0.3&Liquid=0.1&Pour=0.1
+14.4,15.375,Water=0.3&Stream=0.2&Gurgling=0.2&Liquid=0.4&Drip=0.1&Pour=0.5&Trickle| dribble=0.4
+14.8,15.775,Water=0.1&Mechanisms=0.1&Clock=0.2&Tick=0.1&Tick-tock=0.1
+15.200000000000001,16.175,Whale vocalization=0.1&Music=0.1&Water=0.1&Gurgling=0.1&Liquid=0.1
+15.600000000000001,16.575000000000003,Whale vocalization=0.1&Music=0.1&Water=0.2&Gurgling=0.1&Water tap| faucet=0.1&Sink (filling or washing)=0.1&Liquid=0.1
+16.0,16.975,Water=0.1&Gurgling=0.1&Liquid=0.1&Inside| small room=0.1
+16.400000000000002,17.375000000000004,Music=0.1&Water=0.1&Stream=0.1&Ocean=0.1&Gurgling=0.1&Vehicle=0.1&Boat| Water vehicle=0.2&Rowboat| canoe| kayak=0.1&Liquid=0.1&Pour=0.2&Trickle| dribble=0.1
+16.8,17.775000000000002,Water=0.2&Stream=0.1&Gurgling=0.1&Vehicle=0.1&Boat| Water vehicle=0.3&Rowboat| canoe| kayak=0.2&Liquid=0.1&Pour=0.1&Trickle| dribble=0.1
+17.2,18.175,Water=0.2&Stream=0.1&Gurgling=0.1&Vehicle=0.2&Boat| Water vehicle=0.6&Sailboat| sailing ship=0.1&Rowboat| canoe| kayak=0.3&Motorboat| speedboat=0.1
+17.6,18.575000000000003,Music=0.1&Water=0.1&Gurgling=0.1&Boat| Water vehicle=0.2&Motorboat| speedboat=0.1
+18.0,18.975,Speech=0.8
+18.400000000000002,19.375000000000004,Speech=1.0
+18.8,19.775000000000002,Speech=1.0&Narration| monologue=0.1
+19.200000000000003,20.175000000000004,Speech=0.2&Music=0.4
+19.6,20.575000000000003,Speech=0.1&Music=0.6
+20.0,20.975,Speech=0.1&Music=0.4
+20.400000000000002,21.375000000000004,Speech=1.0&Music=0.1
+20.8,21.775000000000002,Speech=0.7&Music=0.5
+21.200000000000003,22.175000000000004,Speech=0.7&Music=0.7
+21.6,22.575000000000003,Speech=0.8&Music=0.5
+22.0,22.975,Speech=0.4&Music=0.7
+22.400000000000002,23.375000000000004,Speech=0.1&Music=0.8
+22.8,23.775000000000002,Speech=0.1&Music=0.6
+23.200000000000003,24.175000000000004,Speech=0.4&Music=0.4
+23.6,24.575000000000003,Speech=0.6&Music=0.3
+24.0,24.975,Speech=0.5&Music=0.1
+24.400000000000002,25.375000000000004,Speech=0.1&Music=0.3
+24.8,25.775000000000002,Speech=0.5&Music=0.2
+25.200000000000003,26.175000000000004,Speech=0.6&Music=0.3
+25.6,26.575000000000003,Speech=0.4&Music=0.5
+26.0,26.975,Speech=0.6&Music=0.6
+26.400000000000002,27.375000000000004,Speech=0.9&Music=0.7
+26.8,27.775000000000002,Speech=0.8&Music=0.7
+27.200000000000003,28.175000000000004,Speech=0.2&Music=0.1
+27.6,28.575000000000003,Speech=0.8&Music=0.4
+28.0,28.975,Speech=0.9&Music=0.3
+28.400000000000002,29.375000000000004,Speech=0.3&Music=0.2
+28.8,29.775000000000002,Speech=0.6&Music=0.4
+29.200000000000003,30.175000000000004,Speech=0.8&Music=0.7
+29.6,30.575000000000003,Speech=0.4&Music=0.4
+30.0,30.975,Speech=0.3&Music=0.4
+30.400000000000002,31.375000000000004,Music=0.9
+30.8,31.775000000000002,Music=0.9
+31.200000000000003,32.175000000000004,Music=1.0
+31.6,32.575,Music=1.0
+32.0,32.975,Music=1.0
+32.4,33.375,Music=1.0&Sad music=0.1
+32.800000000000004,33.775000000000006,Music=1.0
+33.2,34.175000000000004,Music=1.0
+33.6,34.575,Speech=0.8&Music=0.6
+34.0,34.975,Speech=0.4&Music=0.7
+34.4,35.375,Speech=0.4&Music=0.4
+34.800000000000004,35.775000000000006,Speech=0.5&Music=0.2
+35.2,36.175000000000004,Speech=0.1&Music=0.6
+35.6,36.575,Music=0.7
+36.0,36.975,Music=0.8
+36.4,37.375,Speech=0.3&Music=0.8
+36.800000000000004,37.775000000000006,Music=1.0&Scary music=0.2
+37.2,38.175000000000004,Speech=0.6&Music=0.9
+37.6,38.575,Speech=0.5&Music=0.8
+38.0,38.975,Music=0.7
+38.400000000000006,39.37500000000001,Speech=0.4&Music=0.9
+38.800000000000004,39.775000000000006,Speech=0.8&Music=0.7
+39.2,40.175000000000004,Speech=0.2&Music=0.6
+39.6,40.575,Music=0.9&Scary music=0.1
+40.0,40.975,Music=1.0&Scary music=0.3
+40.400000000000006,41.37500000000001,Speech=0.8&Music=0.5
+40.800000000000004,41.775000000000006,Speech=0.7&Music=0.6
+41.2,42.175000000000004,Speech=0.9&Music=0.5
+41.6,42.575,Music=1.0&Scary music=0.3
+42.0,42.975,Speech=0.8&Music=0.7
+42.400000000000006,43.37500000000001,Speech=0.9&Music=0.8
+42.800000000000004,43.775000000000006,Speech=0.5&Music=0.4
+43.2,44.175000000000004,Music=0.9
+43.6,44.575,Music=0.9
+44.0,44.975,Speech=0.7&Music=0.3
+44.400000000000006,45.37500000000001,Speech=0.8&Music=0.2
+44.800000000000004,45.775000000000006,Speech=0.8&Music=0.6
+45.2,46.175000000000004,Speech=0.5&Music=0.8
+45.6,46.575,Speech=0.7&Music=0.6
+46.0,46.975,Speech=0.3&Music=0.1
+46.400000000000006,47.37500000000001,Speech=0.2&Music=0.5
+46.800000000000004,47.775000000000006,Speech=0.3&Music=0.7
+47.2,48.175000000000004,Speech=0.4&Music=0.6
+47.6,48.575,Speech=0.4&Music=0.7
+48.0,48.975,Speech=0.6&Music=0.1
+48.400000000000006,49.37500000000001,Speech=0.9&Music=0.7
+48.800000000000004,49.775000000000006,Music=0.7&Orchestra=0.1&Bell=0.1&Jingle bell=0.1
+49.2,50.175000000000004,Music=0.9&Wind instrument| woodwind instrument=0.1&Flute=0.1
+49.6,50.575,Speech=0.5&Music=0.1
+50.0,50.975,Vehicle=0.2&Motor vehicle (road)=0.1&Emergency vehicle=0.2&Police car (siren)=0.2&Alarm=0.2&Siren=0.1
+50.400000000000006,51.37500000000001,Speech=0.1&Vehicle=0.2&Motor vehicle (road)=0.2&Emergency vehicle=0.4&Police car (siren)=0.2&Ambulance (siren)=0.1&Fire engine| fire truck (siren)=0.1&Alarm=0.2&Siren=0.2
+50.800000000000004,51.775000000000006,Speech=0.1&Vehicle=0.1&Motor vehicle (road)=0.1&Emergency vehicle=0.3&Police car (siren)=0.8&Ambulance (siren)=0.1&Alarm=0.2&Siren=0.2
+51.2,52.175000000000004,Speech=0.4&Music=0.1
+51.6,52.575,Speech=0.8&Music=0.5
+52.0,52.975,Speech=0.8&Music=0.7
+52.400000000000006,53.37500000000001,Speech=0.8&Music=0.7
+52.800000000000004,53.775000000000006,Speech=0.2&Music=0.3
+53.2,54.175000000000004,Clip-clop=0.1&Music=0.6
+53.6,54.575,Music=1.0
+54.0,54.975,Speech=0.4&Music=0.7
+54.400000000000006,55.37500000000001,Speech=0.7&Music=0.7
+54.800000000000004,55.775000000000006,Speech=0.3&Music=0.8
+55.2,56.175000000000004,Speech=0.8&Music=0.8
+55.6,56.575,Speech=0.8&Music=0.7
+56.0,56.975,Speech=0.8&Music=0.8
+56.400000000000006,57.37500000000001,Music=0.8
+56.800000000000004,57.775000000000006,Speech=0.2&Music=0.7
+57.2,58.175000000000004,Speech=0.6&Music=0.6
+57.6,58.575,Music=0.8
+58.0,58.975,Music=0.9
+58.400000000000006,59.37500000000001,Music=1.0
+58.800000000000004,59.775000000000006,Music=1.0
+59.2,60.175000000000004,Music=1.0
+59.6,60.575,Music=1.0
+60.0,60.975,Music=0.9
+60.400000000000006,61.37500000000001,Music=1.0
+60.800000000000004,61.775000000000006,Music=1.0
+61.2,62.175000000000004,Music=0.9
+61.6,62.575,Music=1.0
+62.0,62.975,Music=1.0
+62.400000000000006,63.37500000000001,Music=0.9
+62.800000000000004,63.775000000000006,Music=1.0
+63.2,64.175,Music=0.9
+63.6,64.575,Music=0.9
+64.0,64.975,Animal=0.1&Livestock| farm animals| working animals=0.1&Fowl=0.1&Turkey=0.1&Gobble=0.1&Wild animals=0.1&Frog=0.1&Music=0.2&Outside| rural or natural=0.1
+64.4,65.375,Music=0.4
+64.8,65.77499999999999,Music=0.8
+65.2,66.175,Music=1.0
+65.60000000000001,66.575,Music=1.0
+66.0,66.975,Music=1.0
+66.4,67.375,Music=0.9
+66.8,67.77499999999999,Music=0.8
+67.2,68.175,Vehicle=0.4&Rail transport=0.6&Train=0.6&Train whistle=0.1&Train horn=0.2&Railroad car| train wagon=0.3&Clicking=0.1&Clickety-clack=0.1
+67.60000000000001,68.575,Bell=0.1&Vehicle=0.1&Rail transport=0.2&Train=0.2&Railroad car| train wagon=0.2
+68.0,68.975,Music=0.8
+68.4,69.375,Music=0.4&Ice cream truck| ice cream van=0.1
+68.8,69.77499999999999,Music=0.8
+69.2,70.175,Music=0.9
+69.60000000000001,70.575,Music=1.0
+70.0,70.975,Music=0.7
+70.4,71.375,Music=0.7
+70.8,71.77499999999999,Music=0.8
+71.2,72.175,Music=0.5&Liquid=0.1
+71.60000000000001,72.575,Music=0.7
+72.0,72.975,Music=0.7&Water=0.1&Rain=0.1&Raindrop=0.1&Rain on surface=0.1&Stream=0.1
+72.4,73.375,Music=0.4&Rustling leaves=0.1&Water=0.1&Rain=0.1&Rain on surface=0.1
+72.8,73.77499999999999,Music=0.8&Water=0.1&Rain=0.2&Raindrop=0.2&Rain on surface=0.2
+73.2,74.175,Music=0.9
+73.60000000000001,74.575,Music=0.9
+74.0,74.975,Music=1.0
+74.4,75.375,Hiss=0.1&Music=0.3&Water=0.1&Steam=0.1&Glass=0.1
+74.8,75.77499999999999,Hiss=0.1&Music=0.5&Rustling leaves=0.1&Water=0.1
+75.2,76.175,Music=0.9
+75.60000000000001,76.575,Music=0.9
+76.0,76.975,Music=1.0
+76.4,77.375,Music=1.0
+76.80000000000001,77.775,Music=1.0
+77.2,78.175,Music=1.0
+77.60000000000001,78.575,Music=1.0
+78.0,78.975,Music=0.9
+78.4,79.375,Music=0.9
+78.80000000000001,79.775,Music=0.3
+79.2,80.175,Vehicle=0.2&Motor vehicle (road)=0.1&Bus=0.1&Rail transport=0.1&Train=0.1
+79.60000000000001,80.575,Music=0.3
+80.0,80.975,Vehicle=0.3&Motor vehicle (road)=0.3&Car=0.3&Car passing by=0.2&Race car| auto racing=0.1&Accelerating| revving| vroom=0.1
+80.4,81.375,Vehicle=0.7&Motor vehicle (road)=0.4&Car=0.4&Skidding=0.1&Tire squeal=0.1&Car passing by=0.2&Race car| auto racing=0.1&Truck=0.1&Air brake=0.1&Accelerating| revving| vroom=0.1&Outside| urban or manmade=0.1
+80.80000000000001,81.775,Vehicle=0.5&Motor vehicle (road)=0.3&Car=0.3&Car passing by=0.1&Race car| auto racing=0.1&Accelerating| revving| vroom=0.1
+81.2,82.175,Music=0.8
+81.60000000000001,82.575,Music=0.8
+82.0,82.975,Music=0.6
+82.4,83.375,Music=0.9
+82.80000000000001,83.775,Music=0.9
+83.2,84.175,Music=1.0
+83.60000000000001,84.575,Music=1.0&Scary music=0.1
+84.0,84.975,Music=0.1&Door=0.1&Arrow=0.1&Thump| thud=0.1&Inside| large room or hall=0.1
+84.4,85.375,Speech=0.1&Vehicle=0.1&Motor vehicle (road)=0.1&Door=0.3&Sliding door=0.3&Slam=0.2&Arrow=0.1&Thump| thud=0.1&Inside| large room or hall=0.2
+84.80000000000001,85.775,Music=0.1&Percussion=0.1&Tools=0.1&Hammer=0.3&Glass=0.1&Chink| clink=0.1&Inside| large room or hall=0.1
+85.2,86.175,Speech=0.1&Dishes| pots| and pans=0.1&Tools=0.1&Hammer=0.2&Glass=0.2&Chink| clink=0.1&Inside| small room=0.1&Inside| large room or hall=0.1
+85.60000000000001,86.575,Vehicle=0.5&Motor vehicle (road)=0.1&Truck=0.2&Air brake=0.1&Reversing beeps=0.1&Bus=0.1&Engine=0.1&Tools=0.1&Outside| urban or manmade=0.1
+86.0,86.975,Vehicle=0.4&Motor vehicle (road)=0.2&Car=0.1&Truck=0.1&Air brake=0.1&Bus=0.1&Outside| urban or manmade=0.1
+86.4,87.375,Door=0.2&Sliding door=0.4
+86.80000000000001,87.775,Vehicle=0.1&Motor vehicle (road)=0.1&Door=0.1&Slam=0.1&Hammer=0.1&Explosion=0.2&Gunshot| gunfire=0.2&Machine gun=0.1&Fusillade=0.1&Artillery fire=0.1&Burst| pop=0.2&Wood=0.1&Crack=0.1&Glass=0.1&Whack| thwack=0.1&Smash| crash=0.1&Breaking=0.2&Clang=0.1&Sound effect=0.1&Inside| small room=0.1&Outside| urban or manmade=0.1
+87.2,88.175,Vehicle=0.2&Motor vehicle (road)=0.1&Car=0.1&Bus=0.1&Door=0.1&Sliding door=0.1
+87.60000000000001,88.575,Music=0.2&Door=0.1&Sliding door=0.1&Boom=0.1&Thump| thud=0.1&Inside| large room or hall=0.1
+88.0,88.975,Music=0.2&Boom=0.1
+88.4,89.375,Music=0.7
+88.80000000000001,89.775,Music=0.3
+89.2,90.175,Music=0.4&Vehicle=0.1
+89.60000000000001,90.575,Music=0.4
+90.0,90.975,Music=0.1&Explosion=0.2&Gunshot| gunfire=0.1&Artillery fire=0.1&Eruption=0.1&Boom=0.1
+90.4,91.375,Speech=0.1&Explosion=0.4&Gunshot| gunfire=0.2&Fusillade=0.2&Artillery fire=0.2&Burst| pop=0.1&Eruption=0.1&Boom=0.2&Arrow=0.1&Inside| large room or hall=0.1
+90.80000000000001,91.775,Fire=0.1&Crackle=0.1&Vehicle=0.1&Explosion=0.1&Eruption=0.1&Boom=0.1&Outside| urban or manmade=0.1&Outside| rural or natural=0.1
+91.2,92.175,Fire=0.1&Crackle=0.1&Explosion=0.3&Gunshot| gunfire=0.1&Fusillade=0.2
+91.60000000000001,92.575,Music=0.1&Explosion=0.2&Gunshot| gunfire=0.2&Fusillade=0.1&Boom=0.1
+92.0,92.975,Music=0.4
+92.4,93.375,Music=0.4&Explosion=0.1&Boom=0.1
+92.80000000000001,93.775,Speech=0.3&Music=0.6
+93.2,94.175,Speech=0.1&Music=0.6
+93.60000000000001,94.575,Speech=0.4&Music=0.6
+94.0,94.975,Speech=0.9&Music=0.5
+94.4,95.375,Speech=0.8&Music=0.1
+94.80000000000001,95.775,Speech=0.8&Music=0.5
+95.2,96.175,Speech=0.7&Music=0.2
+95.60000000000001,96.575,Speech=0.8&Music=0.1
+96.0,96.975,Music=0.8&Musical instrument=0.1&Percussion=0.1&Drum=0.1&Timpani=0.1
+96.4,97.375,Music=0.8
+96.80000000000001,97.775,Music=1.0&Scary music=0.1
+97.2,98.175,Music=0.8
+97.60000000000001,98.575,Speech=0.6
+98.0,98.975,Speech=0.7
+98.4,99.375,Speech=0.5&Music=0.1&Tools=0.1
+98.80000000000001,99.775,Speech=0.9&Music=0.1
+99.2,100.175,Speech=1.0&Music=0.1
+99.60000000000001,100.575,Speech=0.7&Music=0.4
+100.0,100.975,Music=0.8&Rock and roll=0.1
+100.4,101.375,Speech=0.9&Music=0.6
+100.80000000000001,101.775,Speech=0.3&Music=0.2
+101.2,102.175,Speech=0.8
+101.60000000000001,102.575,Vehicle=0.8&Motor vehicle (road)=0.3&Car=0.2&Truck=0.1&Outside| urban or manmade=0.1
+102.0,102.975,Vehicle=0.5&Motor vehicle (road)=0.2&Car=0.2&Bus=0.1
+102.4,103.375,Music=0.1&Vehicle=0.2&Motor vehicle (road)=0.1&Car=0.1
+102.80000000000001,103.775,Music=0.6
+103.2,104.175,Music=0.1&Vehicle=0.4&Motor vehicle (road)=0.1&Car=0.1&Truck=0.1&Bus=0.2
+103.60000000000001,104.575,Vehicle=0.4&Motor vehicle (road)=0.1&Car=0.1&Truck=0.1&Bus=0.1&Traffic noise| roadway noise=0.1&Outside| urban or manmade=0.1
+104.0,104.975,Vehicle=0.3&Bus=0.2&Rail transport=0.2&Train=0.2&Railroad car| train wagon=0.2&Subway| metro| underground=0.1&Sliding door=0.1&Clickety-clack=0.1
+104.4,105.375,Vehicle=0.3&Motor vehicle (road)=0.1&Car=0.1&Truck=0.1&Air brake=0.1&Bus=0.1&Door=0.1&Sliding door=0.1&Microwave oven=0.1&Mechanisms=0.1&Outside| urban or manmade=0.1
+104.80000000000001,105.775,Vehicle=0.4&Motor vehicle (road)=0.1&Car=0.1&Truck=0.1&Air brake=0.1&Bus=0.1
+105.2,106.175,Vehicle=0.5&Motor vehicle (road)=0.2&Car=0.1&Truck=0.1&Bus=0.3&Outside| urban or manmade=0.1
+105.60000000000001,106.575,Vehicle=0.5&Boat| Water vehicle=0.1&Motorboat| speedboat=0.1&Motor vehicle (road)=0.1&Car=0.1
+106.0,106.975,Music=0.1&Vehicle=0.1&Boat| Water vehicle=0.1
+106.4,107.375,Music=0.2&Aircraft=0.1
+106.80000000000001,107.775,Music=0.9
+107.2,108.175,Music=0.8&Percussion=0.1
+107.60000000000001,108.575,Music=0.9
+108.0,108.975,Speech=0.4&Music=0.2
+108.4,109.375,Speech=1.0
+108.80000000000001,109.775,Speech=1.0&Music=0.1
+109.2,110.175,Speech=1.0&Music=0.5
+109.60000000000001,110.575,Speech=1.0&Music=0.1
+110.0,110.975,Speech=1.0&Music=0.1
+110.4,111.375,Speech=1.0&Music=0.5
+110.80000000000001,111.775,Music=0.9
+111.2,112.175,Speech=0.9&Music=0.3
+111.60000000000001,112.575,Speech=0.8&Narration| monologue=0.2&Music=0.1
+112.0,112.975,Speech=1.0&Narration| monologue=0.1
+112.4,113.375,Speech=0.8&Music=0.3
+112.80000000000001,113.775,Speech=1.0
+113.2,114.175,Speech=1.0
+113.60000000000001,114.575,Speech=1.0
+114.0,114.975,Speech=0.3&Music=0.3
+114.4,115.375,Speech=0.9&Music=0.1
+114.80000000000001,115.775,Speech=0.9
+115.2,116.175,Speech=1.0
+115.60000000000001,116.575,Speech=0.9
+116.0,116.975,Speech=1.0
+116.4,117.375,Speech=1.0
+116.80000000000001,117.775,Speech=0.9&Music=0.4
+117.2,118.175,Music=0.9
+117.60000000000001,118.575,Music=0.8&Musical instrument=0.1&Plucked string instrument=0.1&Guitar=0.1
+118.0,118.975,Music=0.7&Musical instrument=0.1&Bowed string instrument=0.1&Violin| fiddle=0.1&Pizzicato=0.1
+118.4,119.375,Music=0.8
+118.80000000000001,119.775,Music=0.9
+119.2,120.175,Music=1.0
+119.60000000000001,120.575,Music=1.0
+120.0,120.975,Music=0.9
+120.4,121.375,Music=0.9
+120.80000000000001,121.775,Music=0.9&Musical instrument=0.1&Plucked string instrument=0.1&Guitar=0.1
+121.2,122.175,Music=1.0
+121.60000000000001,122.575,Music=1.0
+122.0,122.975,Music=1.0
+122.4,123.375,Music=1.0
+122.80000000000001,123.775,Music=1.0
+123.2,124.175,Music=1.0
+123.60000000000001,124.575,Music=1.0
+124.0,124.975,Music=0.9
+124.4,125.375,Speech=0.9&Music=0.9
+124.80000000000001,125.775,Speech=0.7&Music=0.9
+125.2,126.175,Speech=0.8&Music=1.0
+125.60000000000001,126.575,Speech=0.5&Music=0.9
+126.0,126.975,Speech=0.1&Music=0.8
+126.4,127.375,Music=0.4
+126.80000000000001,127.775,Music=0.7&Scary music=0.2
+127.2,128.175,Speech=0.5&Music=0.3
+127.60000000000001,128.57500000000002,Speech=0.7&Music=0.9
+128.0,128.975,Speech=0.9&Music=0.9
+128.4,129.375,Speech=0.9&Music=0.8
+128.8,129.775,Speech=0.9&Music=0.7
+129.20000000000002,130.175,Speech=1.0&Music=0.8
+129.6,130.575,Music=0.9
+130.0,130.975,Speech=0.3&Music=0.9
+130.4,131.375,Speech=0.7&Music=0.8
+130.8,131.775,Speech=1.0&Music=0.9
+131.20000000000002,132.175,Speech=0.9&Music=0.9
+131.6,132.575,Speech=0.5&Music=0.9
+132.0,132.975,Speech=0.3&Music=0.7
+132.4,133.375,Speech=0.4&Music=0.8
+132.8,133.775,Speech=0.6&Music=0.1
+133.20000000000002,134.175,Speech=0.3&Music=0.5
+133.6,134.575,Music=0.6
+134.0,134.975,Speech=0.4&Music=0.9
+134.4,135.375,Speech=0.7&Music=0.8
+134.8,135.775,Speech=0.7&Music=0.9
+135.20000000000002,136.175,Speech=0.8&Music=0.9
+135.6,136.575,Music=0.9
+136.0,136.975,Music=0.9
+136.4,137.375,Speech=0.5&Music=0.6
+136.8,137.775,Speech=0.6&Music=0.9
+137.20000000000002,138.175,Speech=0.8&Music=1.0
+137.6,138.575,Speech=0.9&Music=0.9
+138.0,138.975,Speech=0.9&Music=0.9
+138.4,139.375,Speech=0.5&Music=0.8
+138.8,139.775,Speech=0.8&Music=0.8
+139.20000000000002,140.175,Music=0.9
+139.6,140.575,Music=1.0
+140.0,140.975,Speech=0.3&Music=0.9
+140.4,141.375,Speech=0.6&Music=0.6
+140.8,141.775,Speech=0.3&Music=0.3
+141.20000000000002,142.175,Speech=0.2&Music=0.9
+141.6,142.575,Music=0.9
+142.0,142.975,Speech=0.4&Music=0.9
+142.4,143.375,Speech=0.8&Music=0.9
+142.8,143.775,Speech=0.6&Music=0.9
+143.20000000000002,144.175,Speech=0.3&Music=0.9
+143.6,144.575,Speech=0.8&Music=0.8
+144.0,144.975,Speech=0.8&Music=0.9
+144.4,145.375,Speech=0.9&Music=1.0
+144.8,145.775,Speech=0.9&Music=0.8
+145.20000000000002,146.175,Speech=0.9&Music=0.6
+145.6,146.575,Speech=0.9&Music=0.8
+146.0,146.975,Speech=0.8&Music=0.9
+146.4,147.375,Speech=0.8&Music=0.9
+146.8,147.775,Speech=1.0&Music=0.9
+147.20000000000002,148.175,Speech=0.9&Music=0.8
+147.6,148.575,Speech=0.8&Music=0.8
+148.0,148.975,Speech=0.8&Music=0.8
+148.4,149.375,Speech=0.3&Music=0.9
+148.8,149.775,Speech=0.2&Music=0.3
+149.20000000000002,150.175,Music=0.9
+149.6,150.575,Speech=0.2&Music=0.7
+150.0,150.975,Speech=0.8&Music=0.5
+150.4,151.375,Speech=0.9&Music=0.6
+150.8,151.775,Speech=0.9&Music=0.9
+151.20000000000002,152.175,Music=1.0
+151.6,152.575,Speech=0.8&Music=0.8
+152.0,152.975,Speech=0.9&Music=0.9
+152.4,153.375,Speech=0.8&Music=0.9
+152.8,153.775,Speech=0.9&Music=0.9
+153.20000000000002,154.175,Speech=0.9&Music=0.9
+153.60000000000002,154.57500000000002,Speech=0.9&Music=0.9
+154.0,154.975,Speech=0.9&Music=0.9
+154.4,155.375,Speech=0.6&Music=1.0
+154.8,155.775,Speech=0.4&Music=1.0
+155.20000000000002,156.175,Speech=0.9&Music=0.8
+155.60000000000002,156.57500000000002,Music=1.0&Musical instrument=0.1&Percussion=0.1&Steelpan=0.1&Orchestra=0.1
+156.0,156.975,Speech=0.9&Music=0.8
+156.4,157.375,Speech=0.3&Music=0.9
+156.8,157.775,Speech=0.1&Music=0.9
+157.20000000000002,158.175,Speech=0.1&Music=0.9
+157.60000000000002,158.57500000000002,Speech=0.1&Music=0.5
+158.0,158.975,Vehicle=0.6&Rail transport=0.5&Train=0.4&Train horn=0.1&Railroad car| train wagon=0.4&Subway| metro| underground=0.1&Clicking=0.1&Clickety-clack=0.1
+158.4,159.375,Vehicle=0.7&Motor vehicle (road)=0.1&Truck=0.1&Bus=0.1&Rail transport=0.2&Train=0.2&Railroad car| train wagon=0.1&Outside| urban or manmade=0.1
+158.8,159.775,Vehicle=0.4&Rail transport=0.6&Train=0.6&Railroad car| train wagon=0.4&Train wheels squealing=0.1&Subway| metro| underground=0.2&Clicking=0.3&Clickety-clack=0.3&Outside| urban or manmade=0.1
+159.20000000000002,160.175,Vehicle=0.1&Bus=0.1&Rail transport=0.1&Train=0.1&Sliding door=0.1&Mechanisms=0.1
+159.60000000000002,160.57500000000002,Speech=1.0
+160.0,160.975,Speech=1.0
+160.4,161.375,Speech=0.7&Music=0.1
+160.8,161.775,Speech=0.8&Music=0.8
+161.20000000000002,162.175,Speech=0.1&Music=0.8
+161.60000000000002,162.57500000000002,Speech=0.4&Music=0.2&Bell=0.1
+162.0,162.975,Speech=0.9&Music=0.4
+162.4,163.375,Speech=0.5&Music=0.6
+162.8,163.775,Speech=0.8&Music=0.6
+163.20000000000002,164.175,Speech=0.6&Music=0.8
+163.60000000000002,164.57500000000002,Speech=0.3&Music=0.9
+164.0,164.975,Speech=0.5&Music=0.8
+164.4,165.375,Music=1.0
+164.8,165.775,Speech=0.7&Music=0.8
+165.20000000000002,166.175,Speech=0.9&Music=0.6
+165.60000000000002,166.57500000000002,Speech=0.9&Music=0.8
+166.0,166.975,Speech=0.9&Music=0.8
+166.4,167.375,Speech=0.7&Music=0.2
+166.8,167.775,Speech=0.9&Music=0.5
+167.20000000000002,168.175,Speech=0.6&Music=0.6
+167.60000000000002,168.57500000000002,Speech=0.4&Music=0.6
+168.0,168.975,Speech=0.8&Music=0.7
+168.4,169.375,Speech=0.9&Music=0.6
+168.8,169.775,Speech=0.3&Music=0.8
+169.20000000000002,170.175,Speech=0.5&Music=0.7
+169.60000000000002,170.57500000000002,Speech=0.3&Music=0.7
+170.0,170.975,Speech=0.5&Music=0.9
+170.4,171.375,Speech=0.7&Music=0.8
+170.8,171.775,Speech=0.7&Music=0.5
+171.20000000000002,172.175,Speech=0.8&Music=0.3
+171.60000000000002,172.57500000000002,Speech=0.5&Music=0.6
+172.0,172.975,Music=0.8&Orchestra=0.1&Jingle bell=0.1
+172.4,173.375,Music=1.0&Keyboard (musical)=0.1&Organ=0.2&Electronic organ=0.1&Hammond organ=0.1
+172.8,173.775,Music=1.0
+173.20000000000002,174.175,Music=1.0&Organ=0.1&Steelpan=0.1
+173.60000000000002,174.57500000000002,Music=1.0&Musical instrument=0.2&Percussion=0.1&Mallet percussion=0.2&Steelpan=0.7
+174.0,174.975,Music=1.0&Musical instrument=0.4&Percussion=0.4&Drum=0.1&Mallet percussion=0.6&Steelpan=0.9&Orchestra=0.1
+174.4,175.375,Music=1.0&Harpsichord=0.1
+174.8,175.775,Music=0.9&Musical instrument=0.1&Organ=0.1&Orchestra=0.1&Classical music=0.1
+175.20000000000002,176.175,Music=0.9&Musical instrument=0.1&Percussion=0.1&Mallet percussion=0.1&Marimba| xylophone=0.1&Classical music=0.1
+175.60000000000002,176.57500000000002,Music=0.6&Jingle| tinkle=0.1
+176.0,176.975,Music=0.2&Mallet percussion=0.1&Bell=0.2&Jingle bell=0.2&Christmas music=0.1&Jingle| tinkle=0.3
+176.4,177.375,Music=0.9&Musical instrument=0.1&Keyboard (musical)=0.1&Piano=0.1&Percussion=0.1&Mallet percussion=0.1&Marimba| xylophone=0.1&Glockenspiel=0.1
+176.8,177.775,Music=0.9
+177.20000000000002,178.175,Music=0.9&Percussion=0.1&Mallet percussion=0.1&Marimba| xylophone=0.1&Glockenspiel=0.1
+177.60000000000002,178.57500000000002,Music=0.4&Bell=0.1&Jingle bell=0.3&Jingle| tinkle=0.2
+178.0,178.975,Music=0.4&Bell=0.2&Jingle bell=0.2&Jingle| tinkle=0.1
+178.4,179.375,Music=0.8
+178.8,179.775,Music=1.0
+179.20000000000002,180.175,Music=0.9
+179.60000000000002,180.57500000000002,Music=0.9
+180.0,180.975,Music=0.9
+180.4,181.375,Music=0.9&Musical instrument=0.1&Percussion=0.1&Steelpan=0.1
+180.8,181.775,Music=0.6
+181.20000000000002,182.175,Music=0.8&Musical instrument=0.1
+181.60000000000002,182.57500000000002,Music=0.7
+182.0,182.975,Music=0.8&Jingle bell=0.1&Jingle| tinkle=0.1
+182.4,183.375,Music=0.9
+182.8,183.775,Music=0.8
+183.20000000000002,184.175,Music=0.7&Jingle bell=0.1&Jingle| tinkle=0.1
+183.60000000000002,184.57500000000002,Music=0.7&Musical instrument=0.1&Percussion=0.1&Mallet percussion=0.1&Marimba| xylophone=0.1&Glockenspiel=0.1&Bell=0.1&Jingle bell=0.1&Jingle| tinkle=0.1
+184.0,184.975,Music=0.8
+184.4,185.375,Music=0.8
+184.8,185.775,Music=1.0&Organ=0.1
+185.20000000000002,186.175,Music=0.9
+185.60000000000002,186.57500000000002,Music=0.7
+186.0,186.975,Music=1.0
+186.4,187.375,Music=0.9
+186.8,187.775,Music=0.9
+187.20000000000002,188.175,Music=1.0
+187.60000000000002,188.57500000000002,Music=1.0
+188.0,188.975,Music=0.9&Musical instrument=0.1&Percussion=0.1&Mallet percussion=0.2&Marimba| xylophone=0.1&Glockenspiel=0.2
+188.4,189.375,Music=1.0&Video game music=0.1
+188.8,189.775,Music=1.0
+189.20000000000002,190.175,Music=0.6
+189.60000000000002,190.57500000000002,Music=0.8
+190.0,190.975,Music=1.0
+190.4,191.375,Music=1.0
+190.8,191.775,Music=1.0
+191.20000000000002,192.175,Music=0.9
+191.60000000000002,192.57500000000002,Music=0.9
+192.0,192.975,Music=0.9
+192.4,193.375,Music=1.0&Musical instrument=0.1&Keyboard (musical)=0.2&Organ=0.3&Electronic organ=0.2&Hammond organ=0.1
+192.8,193.775,Music=0.9
+193.20000000000002,194.175,Music=1.0
+193.60000000000002,194.57500000000002,Music=1.0
+194.0,194.975,Music=0.9
+194.4,195.375,Music=1.0
+194.8,195.775,Music=1.0
+195.20000000000002,196.175,Music=0.9
+195.60000000000002,196.57500000000002,Music=0.9
+196.0,196.975,Music=1.0
+196.4,197.375,Music=1.0
+196.8,197.775,Music=0.9
+197.20000000000002,198.175,Music=1.0
+197.60000000000002,198.57500000000002,Music=1.0
+198.0,198.975,Music=1.0
+198.4,199.375,Music=0.9
+198.8,199.775,Music=0.8
+199.20000000000002,200.175,Music=1.0&Video game music=0.1
+199.60000000000002,200.57500000000002,Music=0.9
+200.0,200.975,Music=1.0
+200.4,201.375,Music=1.0
+200.8,201.775,Music=0.9&Jingle| tinkle=0.1
+201.20000000000002,202.175,Music=1.0
+201.60000000000002,202.57500000000002,Music=0.9
+202.0,202.975,Music=0.9
+202.4,203.375,Music=1.0
+202.8,203.775,Music=1.0
+203.20000000000002,204.175,Music=1.0
+203.60000000000002,204.57500000000002,Music=0.9
+204.0,204.975,Music=0.9&Musical instrument=0.1&Percussion=0.2&Mallet percussion=0.3&Marimba| xylophone=0.2&Glockenspiel=0.2
+204.4,205.375,Music=0.9&Musical instrument=0.2&Percussion=0.3&Mallet percussion=0.4&Marimba| xylophone=0.3&Glockenspiel=0.3
+204.8,205.775,Music=0.9
+205.20000000000002,206.175,Music=0.7
+205.60000000000002,206.57500000000002,Music=0.9
+206.0,206.975,Music=1.0
+206.4,207.375,Music=1.0
+206.8,207.775,Music=1.0
+207.20000000000002,208.175,Music=1.0
+207.60000000000002,208.57500000000002,Music=1.0
+208.0,208.975,Music=1.0
+208.4,209.375,Music=1.0
+208.8,209.775,Music=1.0
+209.20000000000002,210.175,Music=1.0
+209.60000000000002,210.57500000000002,Music=1.0
+210.0,210.975,Music=1.0&Musical instrument=0.1&Orchestra=0.2&Bowed string instrument=0.1&Violin| fiddle=0.1&Classical music=0.1
+210.4,211.375,Music=1.0&Bowed string instrument=0.1
+210.8,211.775,Music=1.0
+211.20000000000002,212.175,Music=1.0
+211.60000000000002,212.57500000000002,Music=1.0
+212.0,212.975,Music=1.0&Harpsichord=0.1
+212.4,213.375,Music=1.0&Video game music=0.1
+212.8,213.775,Music=1.0
+213.20000000000002,214.175,Music=1.0
+213.60000000000002,214.57500000000002,Music=1.0
+214.0,214.975,Music=1.0
+214.4,215.375,Music=1.0
+214.8,215.775,Music=1.0
+215.20000000000002,216.175,Music=1.0
+215.60000000000002,216.57500000000002,Music=1.0
+216.0,216.975,Music=1.0
+216.4,217.375,Music=1.0
+216.8,217.775,Music=1.0&Harpsichord=0.1
+217.20000000000002,218.175,Music=1.0
+217.60000000000002,218.57500000000002,Music=1.0
+218.0,218.975,Music=1.0
+218.4,219.375,Music=1.0
+218.8,219.775,Music=1.0
+219.20000000000002,220.175,Music=0.9&Television=0.1
+219.60000000000002,220.57500000000002,Music=1.0
+220.0,220.975,Music=1.0
+220.4,221.375,Music=1.0
+220.8,221.775,Music=1.0&Video game music=0.1
+221.20000000000002,222.175,Music=1.0
+221.60000000000002,222.57500000000002,Music=1.0&Video game music=0.1
+222.0,222.975,Music=1.0
+222.4,223.375,Music=1.0&Musical instrument=0.1&Bowed string instrument=0.1&Violin| fiddle=0.1
+222.8,223.775,Music=0.9
+223.20000000000002,224.175,Music=0.9
+223.60000000000002,224.57500000000002,Music=1.0
+224.0,224.975,Music=1.0
+224.4,225.375,Music=1.0
+224.8,225.775,Music=0.8&Jingle| tinkle=0.2
+225.20000000000002,226.175,Music=0.9
+225.60000000000002,226.57500000000002,Music=0.8&Christmas music=0.1&Jingle| tinkle=0.1
+226.0,226.975,Speech=0.7&Music=0.9
+226.4,227.375,Speech=0.8&Music=0.7
+226.8,227.775,Speech=0.6&Music=0.8
+227.20000000000002,228.175,Speech=0.1&Music=0.8
+227.60000000000002,228.57500000000002,Speech=0.8&Music=0.9
+228.0,228.975,Speech=0.6&Music=0.4
+228.4,229.375,Speech=0.6&Music=0.6
+228.8,229.775,Speech=0.8&Music=0.3
+229.20000000000002,230.175,Music=0.8
+229.60000000000002,230.57500000000002,Speech=0.1&Music=0.5
+230.0,230.975,Speech=0.2&Music=0.7
+230.4,231.375,Music=0.9
+230.8,231.775,Music=0.8
+231.20000000000002,232.175,Speech=0.2&Music=0.9
+231.60000000000002,232.57500000000002,Speech=0.7&Music=1.0
+232.0,232.975,Speech=0.6&Music=0.8
+232.4,233.375,Speech=0.4&Music=0.9
+232.8,233.775,Speech=0.7&Music=0.9
+233.20000000000002,234.175,Speech=0.6&Music=0.8
+233.60000000000002,234.57500000000002,Music=0.6&Jingle| tinkle=0.1
+234.0,234.975,Music=1.0
+234.4,235.375,Music=0.9
+234.8,235.775,Music=1.0
+235.20000000000002,236.175,Music=1.0&Musical instrument=0.1&Bowed string instrument=0.1&Violin| fiddle=0.1
+235.60000000000002,236.57500000000002,Music=1.0&Musical instrument=0.1&Orchestra=0.1
+236.0,236.975,Music=1.0&Musical instrument=0.1
+236.4,237.375,Music=1.0
+236.8,237.775,Music=1.0
+237.20000000000002,238.175,Music=1.0
+237.60000000000002,238.57500000000002,Music=1.0
+238.0,238.975,Music=0.9
+238.4,239.375,Music=0.8&Percussion=0.1
+238.8,239.775,Music=0.3&Bus=0.1
+239.20000000000002,240.175,Music=0.7
+239.60000000000002,240.57500000000002,Music=0.9
+240.0,240.975,Speech=0.1&Music=0.7
+240.4,241.375,Speech=0.4&Music=0.8
+240.8,241.775,Speech=0.9&Music=0.2
+241.20000000000002,242.175,Speech=0.7&Music=0.6
+241.60000000000002,242.57500000000002,Speech=0.3&Music=0.7
+242.0,242.975,Speech=0.7&Music=1.0
+242.4,243.375,Speech=0.1&Music=0.7
+242.8,243.775,Speech=0.8&Music=0.5
+243.20000000000002,244.175,Speech=0.1&Music=0.5
+243.60000000000002,244.57500000000002,Speech=0.2&Music=0.8
+244.0,244.975,Speech=0.6&Music=0.8
+244.4,245.375,Speech=0.9&Music=0.7
+244.8,245.775,Speech=0.4&Music=0.7
+245.20000000000002,246.175,Speech=0.7&Music=0.5
+245.60000000000002,246.57500000000002,Speech=0.4&Music=0.7
+246.0,246.975,Speech=0.2&Music=0.9
+246.4,247.375,Speech=0.5&Music=0.4
+246.8,247.775,Speech=0.7&Music=0.5
+247.20000000000002,248.175,Speech=0.7&Music=0.9
+247.60000000000002,248.57500000000002,Speech=0.5&Music=0.8
+248.0,248.975,Speech=0.9&Music=0.9
+248.4,249.375,Music=0.9
+248.8,249.775,Speech=0.1&Music=0.8
+249.20000000000002,250.175,Music=0.9
+249.60000000000002,250.57500000000002,Speech=0.8&Music=0.1
+250.0,250.975,Speech=0.9
+250.4,251.375,Speech=0.5&Music=0.1
+250.8,251.775,Speech=0.1&Music=0.9
+251.20000000000002,252.175,Speech=0.5&Music=0.9
+251.60000000000002,252.57500000000002,Music=1.0
+252.0,252.975,Music=0.9&Tender music=0.1
+252.4,253.375,Music=1.0&Orchestra=0.1&Wedding music=0.1
+252.8,253.775,Music=1.0
+253.20000000000002,254.175,Music=0.9
+253.60000000000002,254.57500000000002,Music=0.9
+254.0,254.975,Music=1.0
+254.4,255.375,Music=1.0&Theme music=0.2
+254.8,255.775,Music=1.0&Theme music=0.2
+255.20000000000002,256.175,Music=1.0&Theme music=0.1
+255.60000000000002,256.57500000000005,Choir=0.1&Music=0.9&Orchestra=0.1
+256.0,256.975,Music=1.0&Theme music=0.1
+256.40000000000003,257.37500000000006,Music=1.0&Orchestra=0.1
+256.8,257.77500000000003,Music=1.0
+257.2,258.175,Music=1.0&Orchestra=0.1
+257.6,258.57500000000005,Music=1.0&Orchestra=0.2
+258.0,258.975,Music=1.0
+258.40000000000003,259.37500000000006,Music=1.0
+258.8,259.77500000000003,Music=1.0&Orchestra=0.1
+259.2,260.175,Music=0.9&Orchestra=0.1
+259.6,260.57500000000005,Music=1.0
+260.0,260.975,Music=1.0&Orchestra=0.1
+260.40000000000003,261.37500000000006,Music=0.9
+260.8,261.77500000000003,Music=0.8
+261.2,262.175,Music=0.9
+261.6,262.57500000000005,Music=0.9
+262.0,262.975,Music=0.8&Wedding music=0.1
+262.40000000000003,263.37500000000006,Singing=0.1&Music=0.7&Wedding music=0.1
+262.8,263.77500000000003,Music=0.9
+263.2,264.175,Music=0.9
+263.6,264.57500000000005,Music=0.6
+264.0,264.975,Music=0.3
+264.40000000000003,265.37500000000006,Music=0.9
+264.8,265.77500000000003,Music=1.0
+265.2,266.175,Music=1.0&Theme music=0.1
+265.6,266.57500000000005,Music=0.9
+266.0,266.975,Music=1.0&Theme music=0.1
+266.40000000000003,267.37500000000006,Music=1.0
+266.8,267.77500000000003,Music=1.0
+267.2,268.175,Music=1.0
+267.6,268.57500000000005,Music=0.9
+268.0,268.975,Music=1.0
+268.40000000000003,269.37500000000006,Speech=0.2&Music=0.9
+268.8,269.77500000000003,Speech=0.2&Music=0.9
+269.2,270.175,Music=0.8
+269.6,270.57500000000005,Music=0.9
+270.0,270.975,Music=1.0
+270.40000000000003,271.37500000000006,Speech=0.2&Music=0.7
+270.8,271.77500000000003,Speech=0.8&Music=0.5
+271.2,272.175,Speech=1.0&Music=1.0
+271.6,272.57500000000005,Music=1.0
+272.0,272.975,Music=0.9
+272.40000000000003,273.37500000000006,Music=0.9
+272.8,273.77500000000003,Music=0.9
+273.2,274.175,Music=0.8
+273.6,274.57500000000005,Speech=0.4&Music=0.7
+274.0,274.975,Speech=0.1&Music=0.7
+274.40000000000003,275.37500000000006,Speech=0.1&Music=0.7
+274.8,275.77500000000003,Speech=0.3&Music=0.8
+275.2,276.175,Speech=0.1&Music=0.6
+275.6,276.57500000000005,Music=0.8
+276.0,276.975,Music=0.9
+276.40000000000003,277.37500000000006,Speech=0.4&Music=0.6
+276.8,277.77500000000003,Speech=0.2&Music=0.8
+277.2,278.175,Speech=0.5&Music=0.8
+277.6,278.57500000000005,Speech=0.5&Music=0.9
+278.0,278.975,Music=0.7
+278.40000000000003,279.37500000000006,Speech=0.1&Music=0.4
+278.8,279.77500000000003,Speech=0.1&Music=0.2
+279.2,280.175,Music=0.7
+279.6,280.57500000000005,Music=0.9&Television=0.1
+280.0,280.975,Music=0.3&Sound effect=0.1
+280.40000000000003,281.37500000000006,Music=0.1&Vehicle=0.1&Arrow=0.1&Whoosh| swoosh| swish=0.1&Sound effect=0.2
+280.8,281.77500000000003,Arrow=0.1&Whoosh| swoosh| swish=0.2&Silence=0.1&Sound effect=0.2
+281.2,282.175,Music=0.7&Scary music=0.1
+281.6,282.57500000000005,Music=1.0
+282.0,282.975,Music=1.0
+282.40000000000003,283.37500000000006,Music=1.0
+282.8,283.77500000000003,Music=1.0
+283.2,284.175,Music=0.4
+283.6,284.57500000000005,Music=0.5&Wind=0.1&Water=0.1&Ocean=0.2&Waves| surf=0.1
+284.0,284.975,Music=0.4&Ocean=0.1&Ship=0.1
+284.40000000000003,285.37500000000006,Music=0.4
+284.8,285.77500000000003,Music=0.4
+285.2,286.175,Music=0.7
+285.6,286.57500000000005,Music=0.1&Vehicle=0.1&Motor vehicle (road)=0.1&Car=0.1&Sound effect=0.1
+286.0,286.975,Music=0.2&Gong=0.1
+286.40000000000003,287.37500000000006,Music=0.3&Percussion=0.1
+286.8,287.77500000000003,Music=0.3
+287.2,288.175,Music=0.9
+287.6,288.57500000000005,Music=0.9&Plucked string instrument=0.1&Guitar=0.1
+288.0,288.975,Music=0.2&Silence=0.2
+288.40000000000003,289.37500000000006,Music=0.9
+288.8,289.77500000000003,Music=0.9
