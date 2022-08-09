@@ -248,7 +248,7 @@ if __name__ == '__main__':
                                  SCORE_FILTERING_DECIMAL_PLACES,
                                  is_seg_file_present,
                                  PATCH_HOP_SECONDS,
-                                 PATCH_WINDOW_SECONDS, STFT_HOP, STFT_WINDOW, "SFX", LOGS)
+                                 PATCH_WINDOW_SECONDS, STFT_HOP, STFT_WINDOW, "CSV", LOGS)
         data_parser.parse_dump_scores()
         if LOGS:
             print("Operation complete for file ", file_name)

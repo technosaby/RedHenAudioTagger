@@ -40,13 +40,18 @@ class DataParser:
 
     def process_scores(self):
         derived_classes = []
+        dominant_classes = []
         score_data = {}
         for row in self.scores:
+            score_data_str = str()
             for i, x in enumerate(row):
                 if np.round(x, self.round_val) > 0.0:
                     score_data[self.class_names[i]] = str(np.round(x, self.round_val))
+                    score_data_str += self.class_names[i].replace(',', '|') + \
+                                      "=" + str(np.round(x, self.round_val)) + "&"
             derived_classes.append(json.dumps(score_data))
-        return derived_classes
+            dominant_classes.append(score_data_str.rstrip('&'))
+        return derived_classes, dominant_classes
 
     def parse_dump_scores(self):
         """
@@ -56,7 +61,7 @@ class DataParser:
             - The data section
         :return: None
         """
-        derived_classes_with_scores = self.process_scores()
+        derived_classes_with_scores, dominant_classes_csv = self.process_scores()
         frame_start_times = [0.4 * i for i in range(0, len(derived_classes_with_scores))]
         sfx_tags = ["SFX_01" for i in range(0, len(derived_classes_with_scores))]
         frame_length = self.patch_window_seconds + (self.stft_window - self.stft_hop)
@@ -88,6 +93,19 @@ class DataParser:
                 writer.writerows(
                     zip(frame_start_times_with_filename, frame_end_times_with_filename,
                         sfx_tags, derived_classes_with_scores))
+        elif self.parsing_format == "CSV":
+            os.makedirs(os.path.dirname(self.output_file_name_with_path + '.csv'), exist_ok=True)
+            with open(self.output_file_name_with_path + '.csv', 'w') as f:
+                # Create Header of the file, read if seg file present else create Top header
+                f.write("Start Time, End Time, Audio Tags")
+                f.write("\n")
+                # Write data section
+                writer = csv.writer(f, delimiter=",")
+                writer.writerows(
+                    zip(frame_start_times, frame_end_times,
+                        dominant_classes_csv))
+
+
         else:
             if self.is_logs_enabled: print("Please use specified formats")
 
