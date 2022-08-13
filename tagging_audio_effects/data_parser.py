@@ -21,7 +21,7 @@ class DataParser:
     def __init__(self, scores, input_file_name_with_path, output_file_name_with_path, class_names,
                  audio_format, duration, sample_rate, score_filtering_decimal_places,
                  is_seg_file_present, patch_hop_seconds, patch_window_seconds,
-                 stft_hop, stft_window, parsing_format="SFX", LOGS=0):
+                 stft_hop, stft_window, parsing_format, logs = 0):
         self.scores = np.array(scores)
         self.parsing_format = parsing_format
         self.class_names = class_names
@@ -36,22 +36,28 @@ class DataParser:
         self.stft_window = stft_window
         self.sample_rate = sample_rate
         self.round_val = score_filtering_decimal_places
-        self.is_logs_enabled = LOGS
+        self.is_logs_enabled = logs
 
-    def process_scores(self):
+    def process_scores_for_sfx(self):
         derived_classes = []
-        dominant_classes = []
         score_data = {}
         for row in self.scores:
-            score_data_str = str()
             for i, x in enumerate(row):
                 if np.round(x, self.round_val) > 0.0:
                     score_data[self.class_names[i]] = str(np.round(x, self.round_val))
-                    score_data_str += self.class_names[i].replace(',', '|') + \
-                                      "=" + str(np.round(x, self.round_val)) + "&"
             derived_classes.append(json.dumps(score_data))
-            dominant_classes.append(score_data_str.rstrip('&'))
-        return derived_classes, dominant_classes
+        return derived_classes
+
+    #ToDo:// Can be optimised
+    def process_scores_for_csv(self):
+        derived_classes = []
+        score_data = {}
+        for row in self.scores:
+            for i, x in enumerate(row):
+                if np.round(x, self.round_val) > 0.0:
+                    score_data[self.class_names[i]] = str(np.round(x, self.round_val))
+            derived_classes.append(score_data)
+        return derived_classes
 
     def parse_dump_scores(self):
         """
@@ -61,19 +67,20 @@ class DataParser:
             - The data section
         :return: None
         """
-        derived_classes_with_scores, dominant_classes_csv = self.process_scores()
-        frame_start_times = [0.4 * i for i in range(0, len(derived_classes_with_scores))]
-        sfx_tags = ["SFX_01" for i in range(0, len(derived_classes_with_scores))]
-        frame_length = self.patch_window_seconds + (self.stft_window - self.stft_hop)
-        frame_end_times = np.array(frame_start_times) + frame_length
-
-        # Appending file names to the seconds
-        file_name = os.path.split(self.output_file_name_with_path)[1]
-        file_name_frame_header = "-".join(file_name.split("_", 2)[:2]).replace("-", "")
-        frame_start_times_with_filename = [file_name_frame_header + str(format(s, '07.03f')) for s in frame_start_times]
-        frame_end_times_with_filename = [file_name_frame_header + str(format(s, '07.03f')) for s in frame_end_times]
-
+        # process all record on tag basis for SFX
         if self.parsing_format == "SFX":
+            derived_classes_with_scores = self.process_scores_for_sfx()
+            frame_start_times = [self.patch_hop_seconds * i for i in range(0, len(derived_classes_with_scores))]
+            frame_length = self.patch_window_seconds + (self.stft_window - self.stft_hop)
+            frame_end_times = np.array(frame_start_times) + frame_length
+
+            # Appending file names to the seconds
+            file_name = os.path.split(self.output_file_name_with_path)[1]
+            file_name_frame_header = "-".join(file_name.split("_", 2)[:2]).replace("-", "")
+            frame_start_times_with_filename = [file_name_frame_header + str(format(s, '07.03f')) for s in
+                                               frame_start_times]
+            frame_end_times_with_filename = [file_name_frame_header + str(format(s, '07.03f')) for s in frame_end_times]
+            sfx_tags = ["SFX_01" for i in range(0, len(derived_classes_with_scores))]
             os.makedirs(os.path.dirname(self.output_file_name_with_path + '.sfx'), exist_ok=True)
             with open(self.output_file_name_with_path + '.sfx', 'w') as f:
                 # Create Header of the file, read if seg file present else create Top header
@@ -93,21 +100,25 @@ class DataParser:
                 writer.writerows(
                     zip(frame_start_times_with_filename, frame_end_times_with_filename,
                         sfx_tags, derived_classes_with_scores))
+
         elif self.parsing_format == "CSV":
+            # Same logic as SFX
+            AUDIO_TAG = "Audio_Tag_"
+            derived_classes_with_scores = self.process_scores_for_csv()
+            frame_start_times = [self.patch_hop_seconds * i for i in range(0, len(derived_classes_with_scores))]
+            frame_length = self.patch_window_seconds + (self.stft_window - self.stft_hop)
+            frame_end_times = np.array(frame_start_times) + frame_length
             os.makedirs(os.path.dirname(self.output_file_name_with_path + '.csv'), exist_ok=True)
             with open(self.output_file_name_with_path + '.csv', 'w') as f:
-                # Create Header of the file, read if seg file present else create Top header
-                f.write("Start Time, End Time, Audio Tags")
-                f.write("\n")
-                # Write data section
-                writer = csv.writer(f, delimiter=",")
-                writer.writerows(
-                    zip(frame_start_times, frame_end_times,
-                        dominant_classes_csv))
-
-
+                for index, derived_classes_with_score in enumerate(derived_classes_with_scores):
+                    frame_start_time = frame_start_times[index]
+                    frame_end_time = frame_end_times[index]
+                    for class_name, score in derived_classes_with_score.items():
+                        f.write(AUDIO_TAG + class_name + "," + str(frame_start_time) + ","
+                                + str(frame_end_time) + "," + str(score))
+                        f.write("\n")
         else:
-            if self.is_logs_enabled: print("Please use specified formats")
+            if self.is_logs_enabled: print("Please use specified formats SFX/CSV")
 
     def generate_top_header(self):
         file_header_top = "TOP"

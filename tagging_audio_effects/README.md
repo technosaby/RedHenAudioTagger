@@ -5,7 +5,9 @@ At the first step I am using YaMNet model to do a baseline.
   - File Name : tag_audio_effects.py 
   - Uses the YaMNet model to tag audio effects and generate outputs in a folder specified by the "-o" argument. 
 The default path to generate the output is the path from where the command is run.
-  - Generates a file with extension(.sfx) with the output tags based on the timeline of the video.
+  - Takes an argument "-f" with the output file type (SFX/CSV) and generates a file with that extension 
+with the output tags based on the timeline of the video. The CSV format is consumed by ELAN tool while SFX by the 
+RedHen community for further research. 
   - Takes the audio files as an input in a folder. This can be specified using the "-i" argument.
   - Takes the format of the audio files given as input. This can be specified by the "-a" argument. 
 For now the default value is set to "wav" and it only supports WAV files because YaMNet supports only WAV files. 
@@ -21,7 +23,7 @@ By default, it is set to 0.
 
   ### Instructions to Run 
   To run this locally, we can use the command as below.
-  ```python tag_audio_effects.py -i <audio input path> -a <audio input format (default: wav)> -o <output data path (default: .)> -d <decimal places for scores filtering (default : 2)> -g <plot graphs(default: 0)> -l <logs enabled (default 0) >```
+  ```python tag_audio_effects.py -i <audio input path> -a <audio input format (default: wav)> -o <output data path (default: .)> -d <decimal places for scores filtering (default : 2)> -f <output file type (default : SFX) -g <plot graphs(default: 0)> -l <logs enabled (default 0) >```
 
   #### Example: 
   1. Download a sample wav file using the following command

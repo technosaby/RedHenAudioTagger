@@ -137,7 +137,8 @@ def plot_graph(scores_graph, spectrogram_graph, waveform, class_names_graph, out
 class TagAudioEffects:
     def __init__(self):
         # Model is extracted from Tensorflow hub as sometimes hub does not work.
-        self.model = hub.load('https://tfhub.dev/google/yamnet/1')
+        #self.model = hub.load('https://tfhub.dev/google/yamnet/1')
+        self.model = hub.load('models')
 
     # Find the name of the class with the top score when mean-aggregated across frames.
     def run_model(self, waveform):
@@ -159,13 +160,16 @@ def process_args(argv):
     arg_decimal_places = "2"
     arg_logs = "0"
     arg_plot_graphs = "0"
+    arg_output_file_type = "SFX"
 
     arg_help = "{0} -i <audio input path> -a <audio input format (default: wav)> -o <output data path (default: .)> " \
                "-d <decimal places for scores filtering (default : 2)> " \
+               "-f <output file type (default : SFX)> " \
                "-g <plot graphs(default: 0)> -l <logs enabled (default 0) >".format(argv[0])
     try:
-        opts, args = getopt.getopt(argv[1:], "hi:a:o:d:g:l:", ["help", "audio input path=", "audio input format=",
+        opts, args = getopt.getopt(argv[1:], "hi:a:o:d:f:g:l:", ["help", "audio input path=", "audio input format=",
                                                                "output path=", "score round-off=",
+                                                               "output_file_type=",
                                                                "plot graphs=", "logs="])
     except:
         print(arg_help)
@@ -183,18 +187,20 @@ def process_args(argv):
             arg_output = arg
         elif opt in ("-d", "--score round-off"):
             arg_decimal_places = arg
+        elif opt in ("-f", "--output_file_type"):
+            arg_output_file_type = arg
         elif opt in ("-g", "--plot graphs"):
             arg_plot_graphs = arg
         elif opt in ("-l", "--logs"):
             arg_logs = arg
 
     return arg_audio_input, arg_audio_input_format, \
-           arg_output, int(arg_decimal_places), int(arg_plot_graphs), int(arg_logs)
+           arg_output, int(arg_decimal_places), arg_output_file_type, int(arg_plot_graphs), int(arg_logs)
 
 
 if __name__ == '__main__':
-    INPUT_AUDIO_PATH, INPUT_AUDIO_FORMAT, OUTPUT_DATA_PATH, SCORE_FILTERING_DECIMAL_PLACES, PLOT_GRAPHS, LOGS = \
-        process_args(sys.argv)
+    INPUT_AUDIO_PATH, INPUT_AUDIO_FORMAT, OUTPUT_DATA_PATH, SCORE_FILTERING_DECIMAL_PLACES, \
+    OUTPUT_FILE_TYPE, PLOT_GRAPHS, LOGS = process_args(sys.argv)
 
     # All these values (in sec) are from parameter.py of YaMNet
     PATCH_HOP_SECONDS = 0.48
@@ -248,7 +254,7 @@ if __name__ == '__main__':
                                  SCORE_FILTERING_DECIMAL_PLACES,
                                  is_seg_file_present,
                                  PATCH_HOP_SECONDS,
-                                 PATCH_WINDOW_SECONDS, STFT_HOP, STFT_WINDOW, "CSV", LOGS)
+                                 PATCH_WINDOW_SECONDS, STFT_HOP, STFT_WINDOW, OUTPUT_FILE_TYPE, LOGS)
         data_parser.parse_dump_scores()
         if LOGS:
             print("Operation complete for file ", file_name)
