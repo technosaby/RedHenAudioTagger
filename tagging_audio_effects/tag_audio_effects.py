@@ -240,6 +240,8 @@ if __name__ == '__main__':
         scores, embeddings, spectrogram = tagging_audio_effects.run_model(converted_wav_data)
 
         class_names = class_names_from_csv(tagging_audio_effects.get_class_map_path())
+        # This is specific to this YaMNet Version, because there are same labels ("Whimper")
+        class_names[75] = class_names[75] + "_dog"
 
         if PLOT_GRAPHS:
             plot_graph(scores, spectrogram, converted_wav_data, class_names,

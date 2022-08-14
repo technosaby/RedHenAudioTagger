@@ -4,6 +4,7 @@ import json
 import os
 
 import numpy as np
+import pandas as pd
 
 """ This file will parse the data and show in the required formats
 The data will be frame by frame scores which is received by YaMNet model
@@ -107,19 +108,25 @@ class DataParser:
         elif self.parsing_format == "CSV":
             # Same logic as SFX
             AUDIO_TAG = "Audio_Tag_"
-            derived_classes_with_scores = self.process_scores_for_csv()
-            frame_start_times = [self.patch_hop_seconds * i for i in range(0, len(derived_classes_with_scores))]
+            df = pd.DataFrame(self.scores, columns=self.class_names)
+            df = df.round(self.round_val)
+            frame_start_times = [self.patch_hop_seconds * i for i in range(0, len(df[df.columns[0]]))]
             frame_length = self.patch_window_seconds + (self.stft_window - self.stft_hop)
             frame_end_times = np.array(frame_start_times) + frame_length
             os.makedirs(os.path.dirname(self.output_file_name_with_path + '.csv'), exist_ok=True)
+            # Now writing the data
             with open(self.output_file_name_with_path + '.csv', 'w') as f:
-                for index, derived_classes_with_score in enumerate(derived_classes_with_scores):
-                    frame_start_time = frame_start_times[index]
-                    frame_end_time = frame_end_times[index]
-                    for class_name, score in derived_classes_with_score.items():
-                        f.write(AUDIO_TAG + class_name + "," + str(frame_start_time) + ","
-                                + str(frame_end_time) + "," + str(score))
-                        f.write("\n")
+                for column in df:
+                    frame_start_time = frame_start_times[0]
+                    for index, score in enumerate(df[column][:-1]):
+                        if np.round(score, self.round_val) == 0:
+                            frame_start_time = frame_start_times[index + 1]
+                            continue
+                        if np.isclose(score, df[column][index + 1], rtol=1e-05, atol=1e-08, equal_nan=False):
+                            continue
+                        f.write(AUDIO_TAG + column + "," + str(frame_start_time) + "," +
+                                str(frame_end_times[index]) + "," + str(score) + "\n")
+                        frame_start_time = frame_start_times[index + 1]
         else:
             if self.is_logs_enabled: print("Please use specified formats SFX/CSV")
 
