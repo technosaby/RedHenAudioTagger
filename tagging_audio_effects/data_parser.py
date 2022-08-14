@@ -124,7 +124,7 @@ class DataParser:
                             continue
                         if np.isclose(score, df[column][index + 1], rtol=1e-05, atol=1e-08, equal_nan=False):
                             continue
-                        f.write(AUDIO_TAG + column + "," + str(frame_start_time) + "," +
+                        f.write(AUDIO_TAG + column.replace(",", "|") + "," + str(frame_start_time) + "," +
                                 str(frame_end_times[index]) + "," + str(score) + "\n")
                         frame_start_time = frame_start_times[index + 1]
         else:
