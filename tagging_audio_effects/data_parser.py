@@ -76,10 +76,13 @@ class DataParser:
 
             # Appending file names to the seconds
             file_name = os.path.split(self.output_file_name_with_path)[1]
-            file_name_frame_header = "-".join(file_name.split("_", 2)[:2]).replace("-", "")
+            file_name_frame_header = "-".join(file_name.split("_", 2)[0]).replace("-", "")
             frame_start_times_with_filename = [file_name_frame_header + str(format(s, '07.03f')) for s in
                                                frame_start_times]
             frame_end_times_with_filename = [file_name_frame_header + str(format(s, '07.03f')) for s in frame_end_times]
+            # frame_start_times_with_filename = [str(format(s, '07.03f')) for s in
+            #                                    frame_start_times]
+            # frame_end_times_with_filename = [str(format(s, '07.03f')) for s in frame_end_times]
             sfx_tags = ["SFX_01" for i in range(0, len(derived_classes_with_scores))]
             os.makedirs(os.path.dirname(self.output_file_name_with_path + '.sfx'), exist_ok=True)
             with open(self.output_file_name_with_path + '.sfx', 'w') as f:
