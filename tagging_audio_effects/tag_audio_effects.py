@@ -137,8 +137,8 @@ def plot_graph(scores_graph, spectrogram_graph, waveform, class_names_graph, out
 class TagAudioEffects:
     def __init__(self):
         # Model is extracted from Tensorflow hub as sometimes hub does not work.
-        #self.model = hub.load('https://tfhub.dev/google/yamnet/1')
-        self.model = hub.load('models')
+        self.model = hub.load('https://tfhub.dev/google/yamnet/1')
+        #self.model = hub.load('models')
 
     # Find the name of the class with the top score when mean-aggregated across frames.
     def run_model(self, waveform):
