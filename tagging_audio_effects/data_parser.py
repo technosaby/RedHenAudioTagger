@@ -57,8 +57,8 @@ class DataParser:
             self.create_csv_file()
             self.create_sfx_file()
         else:
-            if self.is_logs_enabled: print("Please use specified formats SFX/CSV")
-
+            if self.is_logs_enabled:
+                print("Please use specified formats SFX/CSV")
 
     def create_csv_file(self):
         audio_tag_prefix_str = "Audio_Tag_"
@@ -85,16 +85,22 @@ class DataParser:
                             str(frame_end_times[index]) + "," + str(score) + "\n")
                     frame_start_time = frame_start_times[index + 1]
 
+    def process_scores_for_sfx(self):
+        derived_classes = []
+        score_data = {}
+        for row in self.scores:
+            for i, x in enumerate(row):
+                if np.round(x, self.round_val) > 0.0:
+                    score_data[self.class_names[i]] = str(np.round(x, self.round_val))
+            derived_classes.append(json.dumps(score_data))
+        return derived_classes
+
     def create_sfx_file(self):
-        df = pd.DataFrame(self.scores, columns=self.class_names)
-        df = df.round(self.round_val)
-        derived_classes_with_scores = []
-        for index, row in df.iterrows():
-            res = row[row > self.filter_csv_score].to_json()
-            derived_classes_with_scores.append(res)
-        frame_start_times = [self.patch_hop_seconds * i for i in range(0, len(df[df.columns[0]]))]
+        derived_classes_with_scores = self.process_scores_for_sfx()
+        frame_start_times = [self.patch_hop_seconds * i for i in range(0, len(derived_classes_with_scores))]
         frame_length = self.patch_window_seconds + (self.stft_window - self.stft_hop)
         frame_end_times = np.array(frame_start_times) + frame_length
+
         # Appending file names to the seconds
         file_name = os.path.split(self.output_file_name_with_path)[1]
         file_name_frame_header = "-".join(file_name.split("_", 2)[0]).replace("-", "")
@@ -132,34 +138,34 @@ class DataParser:
         return file_header_top
 
     def generate_header(self):
-        N = 30  # read first 20 lines of the seg file
+        first_lines_seg_file_count = 30  # read first 20 lines of the seg file
         with open(self.input_file_name_with_path + ".seg", "r") as fi:
-            head = [next(fi) for x in range(N)]
-            id = ""
+            head = [next(fi) for _ in range(first_lines_seg_file_count)]
+            id_sfx = ""
             for ln in head:
                 if ln.startswith("TOP"):
-                    id += ln
+                    id_sfx += ln
                 elif ln.startswith("COL"):
-                    id += ln
+                    id_sfx += ln
                 elif ln.startswith("UID"):
-                    id += ln
+                    id_sfx += ln
                 elif ln.startswith("SRC"):
-                    id += ln
+                    id_sfx += ln
                 elif ln.startswith("TTL"):
-                    id += ln
+                    id_sfx += ln
                 elif ln.startswith("PID"):
-                    id += ln
+                    id_sfx += ln
                 elif ln.startswith("CMT"):
-                    id += ln
+                    id_sfx += ln
                 elif ln.startswith("DUR"):
-                    id += ln
+                    id_sfx += ln
                 elif ln.startswith("VID"):
-                    id += ln
+                    id_sfx += ln
                 elif ln.startswith("CC1"):
-                    id += ln
+                    id_sfx += ln
                 elif ln.startswith("LBT"):
-                    id += ln
-        file_header = id
+                    id_sfx += ln
+        file_header = id_sfx
         return str(file_header)
 
     def generate_audio_model_properties(self):

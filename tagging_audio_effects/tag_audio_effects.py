@@ -156,6 +156,7 @@ def process_args(argv):
     """
     arg_audio_input = ""
     arg_audio_input_format = "wav"
+    arg_decimal_places = "2"
     arg_output = "."
     arg_logs = "0"
     arg_plot_graphs = "0"
@@ -163,16 +164,16 @@ def process_args(argv):
     arg_filter_score = "0.0"
 
     arg_help = "{0} -i <audio input path> -a <audio input format (default: wav)> -o <output data path (default: .)> " \
+               "-d <decimal places for scores filtering (default : 2)> " \
                "-f <output file type (default : SFX)> " \
                "-s <score_filter>" \
                "-g <plot graphs(default: 0)> -l <logs enabled (default 0) >".format(argv[0])
     try:
-        opts, args = getopt.getopt(argv[1:], "hi:a:o:f:g:s:l:", ["help", "audio input path=", "audio input format=",
-                                                               "output path=",
-                                                               "output_file_type=",
-                                                               "plot graphs=",
-                                                                "csv_score_val="   
-                                                                   "logs="])
+        opts, args = getopt.getopt(argv[1:], "hi:a:o:d:f:s:g:l:", ["help", "audio input path=", "audio input format=",
+                                                                 "output path=", "score round-off=",
+                                                                 "output_file_type=",
+                                                                 "csv_score_val="
+                                                                 "plot graphs=", "logs="])
     except:
         print(arg_help)
         sys.exit(2)
@@ -187,6 +188,8 @@ def process_args(argv):
             arg_audio_input_format = arg
         elif opt in ("-o", "--output path"):
             arg_output = arg
+        elif opt in ("-d", "--score round-off"):
+            arg_decimal_places = arg
         elif opt in ("-f", "--output_file_type"):
             arg_output_file_type = arg
         elif opt in ("-g", "--plot graphs"):
@@ -197,21 +200,19 @@ def process_args(argv):
             arg_logs = arg
 
     return arg_audio_input, arg_audio_input_format, \
-           arg_output,  arg_output_file_type, int(arg_plot_graphs), \
-           float(arg_filter_score), int(arg_logs)
+           arg_output, int(arg_decimal_places), arg_output_file_type, float(arg_filter_score), int(arg_plot_graphs), int(arg_logs)
 
 
 if __name__ == '__main__':
-    INPUT_AUDIO_PATH, INPUT_AUDIO_FORMAT, OUTPUT_DATA_PATH, \
-    OUTPUT_FILE_TYPE, PLOT_GRAPHS, FILTER_CSV_SCORE, LOGS = process_args(sys.argv)
+    INPUT_AUDIO_PATH, INPUT_AUDIO_FORMAT, OUTPUT_DATA_PATH, SCORE_FILTERING_DECIMAL_PLACES, \
+     OUTPUT_FILE_TYPE, FILTER_CSV_SCORE, PLOT_GRAPHS, LOGS = process_args(sys.argv)
 
     # All these values (in sec) are from parameter.py of YaMNet
     PATCH_HOP_SECONDS = 0.48
     PATCH_WINDOW_SECONDS = 0.96
     STFT_WINDOW = 0.025
     STFT_HOP = 0.010
-    # Currently hard coding this, so value of 4 will tag no scores >=0.00001
-    SCORE_FILTERING_DECIMAL_PLACES = 4
+
 
     if LOGS:
         print("Tagging Audio Effects using YaMNet... ")
