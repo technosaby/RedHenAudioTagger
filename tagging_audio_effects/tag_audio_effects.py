@@ -138,7 +138,7 @@ class TagAudioEffects:
     def __init__(self):
         # Model is extracted from Tensorflow hub as sometimes hub does not work.
         # self.model = hub.load('https://tfhub.dev/google/yamnet/1')
-        model_path = os.path.abspath("models")
+        model_path = os.path.abspath("tagging_audio_effects/models")
         self.model = hub.load(model_path)
 
     # Find the name of the class with the top score when mean-aggregated across frames.
