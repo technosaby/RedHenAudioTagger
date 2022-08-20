@@ -22,7 +22,7 @@ class DataParser:
     def __init__(self, scores, input_file_name_with_path, output_file_name_with_path, class_names,
                  audio_format, duration, sample_rate, score_filtering_decimal_places,
                  is_seg_file_present, patch_hop_seconds, patch_window_seconds,
-                 stft_hop, stft_window, parsing_format, logs = 0):
+                 stft_hop, stft_window, parsing_format, filter_csv_score, logs=0):
         self.scores = np.array(scores)
         self.parsing_format = parsing_format
         self.class_names = class_names
@@ -38,27 +38,7 @@ class DataParser:
         self.sample_rate = sample_rate
         self.round_val = score_filtering_decimal_places
         self.is_logs_enabled = logs
-
-    def process_scores_for_sfx(self):
-        derived_classes = []
-        score_data = {}
-        for row in self.scores:
-            for i, x in enumerate(row):
-                if np.round(x, self.round_val) > 0.0:
-                    score_data[self.class_names[i]] = str(np.round(x, self.round_val))
-            derived_classes.append(json.dumps(score_data))
-        return derived_classes
-
-    #ToDo:// Can be optimised
-    def process_scores_for_csv(self):
-        derived_classes = []
-        score_data = {}
-        for row in self.scores:
-            for i, x in enumerate(row):
-                if np.round(x, self.round_val) > 0.0:
-                    score_data[self.class_names[i]] = str(np.round(x, self.round_val))
-            derived_classes.append(score_data)
-        return derived_classes
+        self.filter_csv_score = filter_csv_score
 
     def parse_dump_scores(self):
         """
@@ -70,65 +50,80 @@ class DataParser:
         """
         # process all record on tag basis for SFX
         if self.parsing_format == "SFX":
-            derived_classes_with_scores = self.process_scores_for_sfx()
-            frame_start_times = [self.patch_hop_seconds * i for i in range(0, len(derived_classes_with_scores))]
-            frame_length = self.patch_window_seconds + (self.stft_window - self.stft_hop)
-            frame_end_times = np.array(frame_start_times) + frame_length
-
-            # Appending file names to the seconds
-            file_name = os.path.split(self.output_file_name_with_path)[1]
-            file_name_frame_header = "-".join(file_name.split("_", 2)[0]).replace("-", "")
-            frame_start_times_with_filename = [file_name_frame_header + str(format(s, '07.03f')) for s in
-                                               frame_start_times]
-            frame_end_times_with_filename = [file_name_frame_header + str(format(s, '07.03f')) for s in frame_end_times]
-            # frame_start_times_with_filename = [str(format(s, '07.03f')) for s in
-            #                                    frame_start_times]
-            # frame_end_times_with_filename = [str(format(s, '07.03f')) for s in frame_end_times]
-            sfx_tags = ["SFX_01" for i in range(0, len(derived_classes_with_scores))]
-            os.makedirs(os.path.dirname(self.output_file_name_with_path + '.sfx'), exist_ok=True)
-            with open(self.output_file_name_with_path + '.sfx', 'w') as f:
-                # Create Header of the file, read if seg file present else create Top header
-                if self.is_seg_file_present:
-                    file_header = self.generate_header()
-                else:
-                    file_header = self.generate_top_header()
-                f.write(file_header)
-
-                # Write audio model properties
-                audio_model_properties = self.generate_audio_model_properties()
-                f.write(audio_model_properties)
-                legend_info = generate_legend()
-                f.write(legend_info)
-                # Write data section
-                writer = csv.writer(f, delimiter="|", quoting=csv.QUOTE_NONE, quotechar='')
-                writer.writerows(
-                    zip(frame_start_times_with_filename, frame_end_times_with_filename,
-                        sfx_tags, derived_classes_with_scores))
-
+            self.create_sfx_file()
         elif self.parsing_format == "CSV":
-            # Same logic as SFX
-            AUDIO_TAG = "Audio_Tag_"
-            df = pd.DataFrame(self.scores, columns=self.class_names)
-            df = df.round(self.round_val)
-            frame_start_times = [self.patch_hop_seconds * i for i in range(0, len(df[df.columns[0]]))]
-            frame_length = self.patch_window_seconds + (self.stft_window - self.stft_hop)
-            frame_end_times = np.array(frame_start_times) + frame_length
-            os.makedirs(os.path.dirname(self.output_file_name_with_path + '.csv'), exist_ok=True)
-            # Now writing the data
-            with open(self.output_file_name_with_path + '.csv', 'w') as f:
-                for column in df:
-                    frame_start_time = frame_start_times[0]
-                    for index, score in enumerate(df[column][:-1]):
-                        if np.round(score, self.round_val) == 0:
-                            frame_start_time = frame_start_times[index + 1]
-                            continue
-                        if np.isclose(score, df[column][index + 1], rtol=1e-05, atol=1e-08, equal_nan=False):
-                            continue
-                        f.write(AUDIO_TAG + column.replace(",", "|") + "," + str(frame_start_time) + "," +
-                                str(frame_end_times[index]) + "," + str(score) + "\n")
-                        frame_start_time = frame_start_times[index + 1]
+            self.create_csv_file()
+        elif self.parsing_format == "BOTH":
+            self.create_csv_file()
+            self.create_sfx_file()
         else:
             if self.is_logs_enabled: print("Please use specified formats SFX/CSV")
+
+
+    def create_csv_file(self):
+        audio_tag_prefix_str = "Audio_Tag_"
+        df = pd.DataFrame(self.scores, columns=self.class_names)
+        df = df.round(self.round_val)
+        frame_start_times = [self.patch_hop_seconds * i for i in range(0, len(df[df.columns[0]]))]
+        frame_length = self.patch_window_seconds + (self.stft_window - self.stft_hop)
+        frame_end_times = np.array(frame_start_times) + frame_length
+        os.makedirs(os.path.dirname(self.output_file_name_with_path + '.csv'), exist_ok=True)
+        # Now writing the data
+        # ToDo:// This can be improved, can be made more faster
+        with open(self.output_file_name_with_path + '.csv', 'w') as f:
+            for column in df:
+                frame_start_time = frame_start_times[0]
+                for index, score in enumerate(df[column][:-1]):
+                    if np.round(score, self.round_val) == 0:
+                        frame_start_time = frame_start_times[index + 1]
+                        continue
+                    if np.round(score, self.round_val) < self.filter_csv_score:
+                        continue
+                    if np.isclose(score, df[column][index + 1], rtol=1e-05, atol=1e-08, equal_nan=False):
+                        continue
+                    f.write(audio_tag_prefix_str + column.replace(",", "|") + "," + str(frame_start_time) + "," +
+                            str(frame_end_times[index]) + "," + str(score) + "\n")
+                    frame_start_time = frame_start_times[index + 1]
+
+    def create_sfx_file(self):
+        df = pd.DataFrame(self.scores, columns=self.class_names)
+        df = df.round(self.round_val)
+        derived_classes_with_scores = []
+        for index, row in df.iterrows():
+            res = row[row > self.filter_csv_score].to_json()
+            derived_classes_with_scores.append(res)
+        frame_start_times = [self.patch_hop_seconds * i for i in range(0, len(df[df.columns[0]]))]
+        frame_length = self.patch_window_seconds + (self.stft_window - self.stft_hop)
+        frame_end_times = np.array(frame_start_times) + frame_length
+        # Appending file names to the seconds
+        file_name = os.path.split(self.output_file_name_with_path)[1]
+        file_name_frame_header = "-".join(file_name.split("_", 2)[0]).replace("-", "")
+        frame_start_times_with_filename = [file_name_frame_header + str(format(s, '07.03f')) for s in
+                                           frame_start_times]
+        frame_end_times_with_filename = [file_name_frame_header + str(format(s, '07.03f')) for s in frame_end_times]
+        # frame_start_times_with_filename = [str(format(s, '07.03f')) for s in
+        #                                    frame_start_times]
+        # frame_end_times_with_filename = [str(format(s, '07.03f')) for s in frame_end_times]
+        sfx_tags = ["SFX_01" for i in range(0, len(derived_classes_with_scores))]
+        os.makedirs(os.path.dirname(self.output_file_name_with_path + '.sfx'), exist_ok=True)
+        with open(self.output_file_name_with_path + '.sfx', 'w') as f:
+            # Create Header of the file, read if seg file present else create Top header
+            if self.is_seg_file_present:
+                file_header = self.generate_header()
+            else:
+                file_header = self.generate_top_header()
+            f.write(file_header)
+
+            # Write audio model properties
+            audio_model_properties = self.generate_audio_model_properties()
+            f.write(audio_model_properties)
+            legend_info = generate_legend()
+            f.write(legend_info)
+            # Write data section
+            writer = csv.writer(f, delimiter="|", quoting=csv.QUOTE_NONE, quotechar='')
+            writer.writerows(
+                zip(frame_start_times_with_filename, frame_end_times_with_filename,
+                    sfx_tags, derived_classes_with_scores))
 
     def generate_top_header(self):
         file_header_top = "TOP"
