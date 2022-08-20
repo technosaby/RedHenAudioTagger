@@ -14,11 +14,12 @@ based on the tiers as sound effects.
 ## Usage
 ### Singularity Environment
 A script called [hpc_script.py](hpc_script.sh) contains all the steps for running in a singularity container.
-1. Please clone the repo in RedHen's HPC as a scratch user in the home of the scratch user.
-2. Create a folder name with videos required for tagging or use an existing folder from RedHen's mount point.
-3. Pass the created folder name as an argument while running the file
+1. Create a folder name with videos required for tagging or use an existing folder from RedHen's mount point.
+2. Please clone the repo in RedHen's HPC as a scratch user in the home of the scratch user (e.g: /scratch/users/sxg1263/). 
+3. Now cd into the cloned repo such that you are now gsoc2022 folder
+4. Pass the created folder name as an argument while running the file
  ```hpc_script.sh <<folder_name_with videos>>```
-4. After the script is run, an Output folder will be generated with the tagged audio files.
+5. After the script is run, an Output folder will be generated with the tagged audio files.
 
 ## Future work
 - Evaluate other audio taggers and evaluate their results 
