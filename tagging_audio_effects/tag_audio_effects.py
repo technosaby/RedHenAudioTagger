@@ -137,8 +137,9 @@ def plot_graph(scores_graph, spectrogram_graph, waveform, class_names_graph, out
 class TagAudioEffects:
     def __init__(self):
         # Model is extracted from Tensorflow hub as sometimes hub does not work.
-        #self.model = hub.load('https://tfhub.dev/google/yamnet/1')
-        self.model = hub.load('models')
+        # self.model = hub.load('https://tfhub.dev/google/yamnet/1')
+        model_path = os.path.abspath("models")
+        self.model = hub.load(model_path)
 
     # Find the name of the class with the top score when mean-aggregated across frames.
     def run_model(self, waveform):
@@ -170,10 +171,10 @@ def process_args(argv):
                "-g <plot graphs(default: 0)> -l <logs enabled (default 0) >".format(argv[0])
     try:
         opts, args = getopt.getopt(argv[1:], "hi:a:o:d:f:s:g:l:", ["help", "audio input path=", "audio input format=",
-                                                                 "output path=", "score round-off=",
-                                                                 "output_file_type=",
-                                                                 "csv_score_val="
-                                                                 "plot graphs=", "logs="])
+                                                                   "output path=", "score round-off=",
+                                                                   "output_file_type=",
+                                                                   "csv_score_val="
+                                                                   "plot graphs=", "logs="])
     except:
         print(arg_help)
         sys.exit(2)
@@ -200,19 +201,19 @@ def process_args(argv):
             arg_logs = arg
 
     return arg_audio_input, arg_audio_input_format, \
-           arg_output, int(arg_decimal_places), arg_output_file_type, float(arg_filter_score), int(arg_plot_graphs), int(arg_logs)
+           arg_output, int(arg_decimal_places), arg_output_file_type, float(arg_filter_score), int(
+        arg_plot_graphs), int(arg_logs)
 
 
 if __name__ == '__main__':
     INPUT_AUDIO_PATH, INPUT_AUDIO_FORMAT, OUTPUT_DATA_PATH, SCORE_FILTERING_DECIMAL_PLACES, \
-     OUTPUT_FILE_TYPE, FILTER_CSV_SCORE, PLOT_GRAPHS, LOGS = process_args(sys.argv)
+    OUTPUT_FILE_TYPE, FILTER_CSV_SCORE, PLOT_GRAPHS, LOGS = process_args(sys.argv)
 
     # All these values (in sec) are from parameter.py of YaMNet
     PATCH_HOP_SECONDS = 0.48
     PATCH_WINDOW_SECONDS = 0.96
     STFT_WINDOW = 0.025
     STFT_HOP = 0.010
-
 
     if LOGS:
         print("Tagging Audio Effects using YaMNet... ")
