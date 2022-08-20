@@ -4,7 +4,7 @@ VIDEO_FILES=$1 #/mnt/rds/redhen/gallina/tv/2022/2022-01/2022-01-01
 SCRATCH_USER=/scratch/users/$USER
 TOOLS_FOLDER=$SCRATCH_USER/gsoc2022/tagging_audio_effects/tools
 ROOT_FOLDER=$SCRATCH_USER/gsoc2022/tagging_audio_effects
-#HOME_FOLDER=/home/$USER
+HOME_FOLDER=$SCRATCH_USER/gsoc2022
 
 # Load Module
 module load singularity/3.8.1
@@ -23,6 +23,8 @@ mkdir Output/
 cd Output || exit
 mkdir AudioFiles
 mkdir TaggedAudioFiles
+
+cd $HOME_FOLDER || exit
 
 #Testing for 1 month videos 
 #singularity exec /scratch/users/$USER/image.sif python3 /scratch/users/$USER/gsoc2022/tagging_audio_effects/tools/audio_file_convertor.py -i /mnt/rds/redhen/gallina/tv/2022/2022-01/2022-01-01/ -a "wav" -o /scratch/users/$USER/Output/AudioFiles/  -l 0 --verbose=True
