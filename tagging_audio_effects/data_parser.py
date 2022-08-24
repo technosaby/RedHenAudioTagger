@@ -2,6 +2,7 @@
 import csv
 import json
 import os
+import sys
 
 import numpy as np
 import pandas as pd
@@ -139,33 +140,38 @@ class DataParser:
 
     def generate_header(self):
         first_lines_seg_file_count = 30  # read first 20 lines of the seg file
-        with open(self.input_file_name_with_path + ".seg", "r") as fi:
-            head = [next(fi) for _ in range(first_lines_seg_file_count)]
-            id_sfx = ""
-            for ln in head:
-                if ln.startswith("TOP"):
-                    id_sfx += ln
-                elif ln.startswith("COL"):
-                    id_sfx += ln
-                elif ln.startswith("UID"):
-                    id_sfx += ln
-                elif ln.startswith("SRC"):
-                    id_sfx += ln
-                elif ln.startswith("TTL"):
-                    id_sfx += ln
-                elif ln.startswith("PID"):
-                    id_sfx += ln
-                elif ln.startswith("CMT"):
-                    id_sfx += ln
-                elif ln.startswith("DUR"):
-                    id_sfx += ln
-                elif ln.startswith("VID"):
-                    id_sfx += ln
-                elif ln.startswith("CC1"):
-                    id_sfx += ln
-                elif ln.startswith("LBT"):
-                    id_sfx += ln
-        file_header = id_sfx
+        file_header = None
+        try:
+            with open(self.input_file_name_with_path + ".seg", "r") as fi:
+                head = [next(fi) for _ in range(first_lines_seg_file_count)]
+                id_sfx = ""
+                for ln in head:
+                    if ln.startswith("TOP"):
+                        id_sfx += ln
+                    elif ln.startswith("COL"):
+                        id_sfx += ln
+                    elif ln.startswith("UID"):
+                        id_sfx += ln
+                    elif ln.startswith("SRC"):
+                        id_sfx += ln
+                    elif ln.startswith("TTL"):
+                        id_sfx += ln
+                    elif ln.startswith("PID"):
+                        id_sfx += ln
+                    elif ln.startswith("CMT"):
+                        id_sfx += ln
+                    elif ln.startswith("DUR"):
+                        id_sfx += ln
+                    elif ln.startswith("VID"):
+                        id_sfx += ln
+                    elif ln.startswith("CC1"):
+                        id_sfx += ln
+                    elif ln.startswith("LBT"):
+                        id_sfx += ln
+            file_header = id_sfx
+        except:
+            print("ERROR: SEG File format not correct, SFX could not be generated")
+            print(sys.exc_info()[0], "occurred.")
         return str(file_header)
 
     def generate_audio_model_properties(self):

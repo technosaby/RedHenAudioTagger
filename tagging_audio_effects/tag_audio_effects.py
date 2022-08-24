@@ -229,15 +229,17 @@ if __name__ == '__main__':
     for index, audio_file in enumerate(audio_file_path):
         is_seg_file_present = False
         file_path_head, file_name = os.path.split(audio_file)
-        # Check if seg files are present
-        seg_file_path = os.path.join(file_path_head, os.path.splitext(file_name)[0] + ".seg")
-        if not os.path.exists(seg_file_path):
-            if LOGS:
-                print(".seg file not present in path " + seg_file_path)
-        else:
-            is_seg_file_present = True
-            if LOGS:
-                print(".seg file present, Audio Processing file " + audio_file)
+        if OUTPUT_FILE_TYPE == "BOTH" or OUTPUT_FILE_TYPE == "SFX":
+            # Check if seg files are present
+            seg_file_path = os.path.join(file_path_head, os.path.splitext(file_name)[0] + ".seg")
+            if not os.path.exists(seg_file_path):
+                if LOGS:
+                    print(".seg file not present in path, cannot continue " + seg_file_path)
+                    exit()
+            else:
+                is_seg_file_present = True
+                if LOGS:
+                    print(".seg file present, Audio Processing file " + audio_file)
 
         result, converted_wav_data, duration, sample_rate = convert_to_compatible_file(audio_file)
         if result == -1:
@@ -270,4 +272,4 @@ if __name__ == '__main__':
         if LOGS:
             print("Operation complete for file ", file_name)
     if LOGS:
-        print("All operations done ...")
+        print("Finished executing script...")
