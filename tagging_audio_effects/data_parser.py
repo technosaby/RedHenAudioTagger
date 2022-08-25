@@ -171,9 +171,7 @@ class DataParser:
             file_header = id_sfx
         except:
             print("WARNING: SEG File format not correct, SFX could not be generated properly")
-
-        # Generate top block separately
-        if file_header is None:
+            # Generate top block separately
             file_header = "TOP|" + os.path.normpath(self.input_file_name_with_path).split(os.sep)[-1]
         return str(file_header)
 
