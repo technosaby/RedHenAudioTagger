@@ -1,7 +1,7 @@
 # Gsoc2022 - RedHen Labs - Tagging Audio Effects
-In GSoc 2022, I will be working with [Redhen Labs](https://www.redhenlab.org/summer-of-code/red-hen-lab-gsoc-2022-projects). 
+In GSoc 2022, I worked with [Redhen Labs](https://www.redhenlab.org/summer-of-code/red-hen-lab-gsoc-2022-projects). 
 
-The objective is to develop a machine learning model to tag sound effects in streams (like police sirens in a news-stream) 
+The objective was to develop a machine learning model to tag sound effects in streams (like police sirens in a news-stream) 
 of Red Hen’s data. A single stream of data can contain multiple sound effects, so the model should be able to label them 
 from a group of known sound effects like a Multi-label classification problem. YamNet is used a pretrained model in this project.
 The video files are converted into audio files. Then they are tagged by YamNet for the sound effects and dumped into 
