@@ -18,7 +18,7 @@ The below mentioned steps are to run the Audio Tagger in Case Western Reserve HP
 
 1. Create a folder name with videos required for tagging or use an existing folder from RedHen's mount point. Store it in a variable VIDEO_FILES. 
 ```VIDEO_FILES=/mnt/rds/redhen/gallina/tv/2022/2022-01/2022-01-01/``` 
-If you are planning to create in the tags in SFX file, please ensure that you have the .seg files for your videos.
+If you are planning to create in the tags in SFX file, it is better to have a .seg files for your videos. If you dont have a .seg file only TOP Block will be generated along with the Audio taggings. 
 
 2. Please clone the repo in RedHen's HPC as a scratch user in the home of the scratch user (e.g: /scratch/users/sxg1263/). After cloning you will have 
 a gsoc2022 folder.
