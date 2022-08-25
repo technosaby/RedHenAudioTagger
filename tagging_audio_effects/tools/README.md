@@ -33,7 +33,7 @@ This will take the sfx file(s) from the "samples" folder (which are generated fr
   between the dates "2022-01-01" and "2022-11-01" and then filters the scores based on the query for each frame of data.
   The output will contain the timestamp where the tag is found and the scores for all the tags at that timestamp.
   The tags which are present in the SFX file and should be used for filtering are given in the [code book](../codebook/codebook_yamnet_1.0.csv)
-  . An example of an output csv file filtered by the command given above can be found [here](../samples/2022-07-10_PresidentXiJinping-Why_I_proposed_the_Belt_and_Road-hNKTbMx8PFk.csv) can 
+  . An example of an output csv file filtered by the command given above can be found [here](../samples/2022/2022-07-10_PresidentXiJinping-Why_I_proposed_the_Belt_and_Road-hNKTbMx8PFk.csv) can 
   for reference.
   
   ### Reference for writing the query

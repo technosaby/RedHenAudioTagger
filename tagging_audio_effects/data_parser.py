@@ -170,8 +170,11 @@ class DataParser:
                         id_sfx += ln
             file_header = id_sfx
         except:
-            print("ERROR: SEG File format not correct, SFX could not be generated")
-            print(sys.exc_info()[0], "occurred.")
+            print("WARNING: SEG File format not correct, SFX could not be generated properly")
+
+        # Generate top block separately
+        if file_header is None:
+            file_header = "TOP|" + os.path.normpath(self.input_file_name_with_path).split(os.sep)[-1]
         return str(file_header)
 
     def generate_audio_model_properties(self):

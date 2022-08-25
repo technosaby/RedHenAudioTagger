@@ -234,8 +234,7 @@ if __name__ == '__main__':
             seg_file_path = os.path.join(file_path_head, os.path.splitext(file_name)[0] + ".seg")
             if not os.path.exists(seg_file_path):
                 if LOGS:
-                    print(".seg file not present in path, cannot continue " + seg_file_path)
-                    exit()
+                    print(".seg file not present in path: " + seg_file_path + " , so only TOP block will be generated")
             else:
                 is_seg_file_present = True
                 if LOGS:
