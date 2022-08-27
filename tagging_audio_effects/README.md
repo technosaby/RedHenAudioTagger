@@ -2,7 +2,7 @@ The main idea is to create a pipeline for tagging the audio effects in the audio
 At the first step I am using YaMNet model to do a baseline.
 
 ## Baselining
-  - File Name : tag_audio_effects.py 
+  - File Name : [tag_audio_effects.py](tag_audio_effects.py) 
   - Uses the YaMNet model to tag audio effects and generate outputs in a folder specified by the "-o" argument. 
 The default path to generate the output is the path from where the command is run.
   - Takes an argument "-f" with the output file type (SFX/CSV) and generates a file with that extension 
