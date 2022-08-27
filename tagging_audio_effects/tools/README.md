@@ -1,7 +1,7 @@
 This will contain all the tools required for the project. 
 
 ## Generate Audio files from the video files
-  - File Name : audio_file_convertor.py
+  - File Name : [audio_file_convertor.py](audio_file_convertor.py)
   - Parses the video files and extracts audio from the video files. 
   - This will copy the folder structure with all videos and create similar folder structure with generated audio files.
   - It generates mono audio because YaMNet needs only mono.
