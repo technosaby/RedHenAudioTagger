@@ -1,7 +1,7 @@
 This will contain all the tools required for the project. 
 
 ## Generate Audio files from the video files
-  - File Name : audio_file_convertor.py
+  - File Name : [audio_file_convertor.py](audio_file_convertor.py)
   - Parses the video files and extracts audio from the video files. 
   - This will copy the folder structure with all videos and create similar folder structure with generated audio files.
   - It generates mono audio because YaMNet needs only mono.
@@ -18,7 +18,7 @@ This will contain all the tools required for the project.
   ```python audio_file_convertor.py sample/ ./ "wav" 1```
 
 ## Parse the metadata(.sfx) to filter tags
- - File Name: ssfx.py
+ - File Name: [ssfx.py](ssfx.py)
  - Parses the metadata file (.sfx) file to filter tags based on query. The .sfx file is passed as an argument with "-i". 
  - It takes a JQ query and filters the tags and the scores based on that. 
 This is passed as an argument with "-q". 
@@ -47,7 +47,7 @@ This will take the sfx file(s) from the "samples" folder (which are generated fr
     Filter the frames which contain tag with (Music or Radio) and (Television or Radio)
  
  ## Generate Codebook
- - File Name: codebook_generator.py
+ - File Name: [codebook_generator.py](codebook_generator.py)
  - This file with take the YaMNet class mapping [csv file](../models/assets/yamnet_class_map.csv) and generate 
  a [codebook file](../codebook/codebook_yamnet_1.0.csv)
  - In the process, it also does some formatting ( like removing the ',' between tags and replacing them with '|', 
