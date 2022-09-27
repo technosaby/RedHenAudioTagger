@@ -52,7 +52,7 @@ def get_sfx_files(folder_path, sfx_files, date_filter=None, sfx_format="sfx"):
     """
 
     for dir_path, dir_names, file_names in os.walk(folder_path):
-        if date_range == None:
+        if date_range is None:
             for file_name_sfx in [f for f in file_names if f.endswith("." + sfx_format)]:
                 sfx_files.append(os.path.join(dir_path, file_name_sfx))
         else:
