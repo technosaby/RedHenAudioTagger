@@ -39,10 +39,8 @@ This will take the sfx file(s) from the "samples" folder (which are generated fr
   ### Reference for writing the query
   [JQ](https://stedolan.github.io/jq/) has been used to generate the query for the tags. Some examples to make the queries 
   are given below. These are standard JQ query formats.
-  - ```"(.Music // .Song)"```
-    Filter the frames which contain tag with (Music or Radio) 
-  - ```".Song, .Radio"```
-    Filter the frames which contain tags with Song and Radio
+  - ```"(.Music, .Song)"```
+    Filter the frames which contain tag with (Music and Radio ) 
   - ```"(.Music // .Song), (.Television // .Radio)"```
     Filter the frames which contain tag with (Music or Radio) and (Television or Radio)
  
