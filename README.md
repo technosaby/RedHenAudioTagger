@@ -21,14 +21,14 @@ The below mentioned steps are to run the Audio Tagger in Case Western Reserve HP
 If you are planning to create in the tags in SFX file, it is better to have a .seg files for your videos. If you dont have a .seg file only TOP Block will be generated along with the Audio taggings. 
 
 2. Please clone the repo in RedHen's HPC as a scratch user in the home of the scratch user (e.g: /scratch/users/sxg1263/). After cloning you will have 
-a gsoc2022 folder.
+a RedHenAudioTagger folder.
 
 3. Set all the variables as below
    ```
     SCRATCH_USER=/scratch/users/$USER
-    TOOLS_FOLDER=$SCRATCH_USER/gsoc2022/tagging_audio_effects/tools
-    ROOT_FOLDER=$SCRATCH_USER/gsoc2022/tagging_audio_effects
-    HOME_FOLDER=$SCRATCH_USER/gsoc2022
+    TOOLS_FOLDER=$SCRATCH_USER/RedHenAudioTagger/tagging_audio_effects/tools
+    ROOT_FOLDER=$SCRATCH_USER/RedHenAudioTagger/tagging_audio_effects
+    HOME_FOLDER=$SCRATCH_USER/RedHenAudioTagger
    ```
 4. Load the singularity container.  
   ```module load singularity/3.8.1```
